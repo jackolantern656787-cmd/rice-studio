@@ -1,0 +1,10 @@
+__pycache__/
+*.py[cod]
+.venv/
+.env
+*.token
+*.key
+*.pem
+captures/
+installation.json
+original-main.json

@@ -1,0 +1,5 @@
+#!/bin/sh
+export QT_QUICK_CONTROLS_STYLE=Basic
+qml="$HOME/.local/share/rice-studio-portable/qt/shell.qml"
+if quickshell -p "$qml" ipc call studio focus >/dev/null 2>&1; then exit 0; fi
+exec quickshell -n -d -p "$qml"
