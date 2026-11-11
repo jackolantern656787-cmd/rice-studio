@@ -1,0 +1,52 @@
+{
+  "custom/left#accent": {
+    "format": "",
+    "tooltip": false,
+    "cursor": 68
+  },
+  "custom/left#bg_1": {
+    "format": "",
+    "tooltip": false,
+    "cursor": 68
+  },
+  "custom/left#bg_2": {
+    "format": "",
+    "tooltip": false,
+    "cursor": 68
+  },
+  "custom/left#bg_3": {
+    "format": "",
+    "tooltip": false,
+    "cursor": 68
+  },
+  "custom/right#accent": {
+    "format": "",
+    "tooltip": false,
+    "cursor": 68
+  },
+  "custom/right#bg_1": {
+    "format": "",
+    "tooltip": false,
+    "cursor": 68
+  },
+  "custom/right#bg_2": {
+    "format": "",
+    "tooltip": false,
+    "cursor": 68
+  },
+  "custom/right#bg_3": {
+    "format": "",
+    "tooltip": false,
+    "cursor": 68
+  },
+  "custom/left_inverse#bg_3": {
+    "format": "",
+    "tooltip": false,
+    "cursor": 68
+  },
+  "custom/right_inverse#bg_3": {
+    "format": "",
+    "tooltip": false,
+    "cursor": 68
+  }
+}

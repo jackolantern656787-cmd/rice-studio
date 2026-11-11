@@ -1,0 +1,9 @@
+{
+  "custom/distro": {
+    "format": "󰣇",
+    "tooltip-format": "Left: settings • right: bar switcher",
+    "on-click": "@STUDIO_APP@/commands/serpantinum settings",
+    "on-click-right": "kitty --class mechabar-switcher --title \"Top bar switcher\" -e @STUDIO_APP@/commands/bar-switch",
+    "cursor": 68
+  }
+}

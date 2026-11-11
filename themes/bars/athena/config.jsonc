@@ -1,0 +1,285 @@
+{
+  "layer": "top",
+  "height": 42,
+  "spacing": 6,
+  "modules-left": [
+    "group/distro-group",
+    "group/storage",
+    "group/system"
+  ],
+  "modules-center": [
+    "ext/workspaces",
+    "idle_inhibitor"
+  ],
+  "modules-right": [
+    "group/audio",
+    "group/connections",
+    "clock",
+    "group/tray-group"
+  ],
+  "pulseaudio": {
+    "format": "{icon}",
+    "format-muted": "\ueee8",
+    "format-icons": {
+      "headphone": "\udb80\udecb",
+      "headset": "\udb80\udecb",
+      "hands-free": "\udb80\udecb",
+      "default": [
+        "\uf026",
+        "\uf027",
+        "\uf028"
+      ]
+    },
+    "tooltip-format": "Output: {volume}%",
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg toggle volume",
+    "on-click-right": "@STUDIO_APP@/themes/bars/athena/volume output mute",
+    "on-scroll-up": "@STUDIO_APP@/themes/bars/athena/volume output up",
+    "on-scroll-down": "@STUDIO_APP@/themes/bars/athena/volume output down",
+    "max-volume": 100,
+    "cursor": 68
+  },
+  "pulseaudio#microphone": {
+    "format": "{format_source}",
+    "format-source": "\uf130",
+    "format-source-muted": "\uf131",
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg toggle volume",
+    "on-click-right": "@STUDIO_APP@/themes/bars/athena/volume input mute",
+    "on-scroll-up": "@STUDIO_APP@/themes/bars/athena/volume input up",
+    "on-scroll-down": "@STUDIO_APP@/themes/bars/athena/volume input down",
+    "max-volume": 100,
+    "cursor": 68
+  },
+  "pulseaudio/slider": {
+    "min": 0,
+    "max": 100,
+    "orientation": "horizontal",
+    "cursor": 68
+  },
+  "clock": {
+    "format": "\udb80\udcf1 <span size='11pt'>{:%H.%M }</span>",
+    "format-alt": "\udb80\udcf1 <span size='11pt'>{:%d %B %Y}</span>",
+    "tooltip-format": "<tt><small>{calendar}</small></tt>",
+    "on-click-right": "@STUDIO_APP@/commands/serpantinum msg toggle calendar",
+    "cursor": 68
+  },
+  "network": {
+    "format-wifi": "{icon}",
+    "format-ethernet": "\uef09",
+    "format-linked": "\udb85\ude16",
+    "format-disconnected": "\udb82\udd23",
+    "format-disabled": "\udb82\udd2e",
+    "format-icons": [
+      "\udb82\udd2f",
+      "\udb82\udd1f",
+      "\udb82\udd22",
+      "\udb82\udd25",
+      "\udb82\udd28"
+    ],
+    "tooltip-format-disconnected": "No Connection",
+    "tooltip-format-disabled": "Wi-Fi is OFF",
+    "tooltip-format-wifi": "\udb84\udd19  {essid} ({signalStrength}%)\n\n\udb81\udc3b  Freq: {frequency}GHz\n\uf019  {bandwidthDownBytes} \uf093  {bandwidthUpBytes}",
+    "tooltip-format-ethernet": "\udb80\ude00  {ifname} (Connected)\n\uf019  {bandwidthDownBytes} \uf093  {bandwidthUpBytes}",
+    "tooltip-format-linked": "\udb85\ude16 {ifname}: No IP Address",
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg toggle network",
+    "on-click-right": "@STUDIO_APP@/commands/serpantinum msg toggle network",
+    "cursor": 68
+  },
+  "bluetooth": {
+    "format": "\udb80\udcaf",
+    "format-connected": "\udb80\udcb1",
+    "format-disabled": "\udb80\udcb2",
+    "tooltip-format": "{controller_alias} {status}",
+    "tooltip-format-connected": "\udb81\udc3b  {num_connections} Connected:\n{device_enumerate}",
+    "tooltip-format-enumerate-connected-battery": "\udb80\udcb1  {device_alias} (\udb82\udc20  {device_battery_percentage}%)",
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg open network bluetooth",
+    "on-click-right": "@STUDIO_APP@/commands/serpantinum msg open network bluetooth",
+    "cursor": 68
+  },
+  "custom/distro": {
+    "format": "\uf303",
+    "tooltip": true,
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg toggle launcher",
+    "on-click-right": "@STUDIO_APP@/commands/serpantinum settings",
+    "tooltip-format": "Launcher \u2022 right-click: settings",
+    "cursor": 68
+  },
+  "custom/terminal": {
+    "format": "\udb80\udd8d",
+    "tooltip": true,
+    "on-click": "kitty",
+    "tooltip-format": "Terminal",
+    "cursor": 68
+  },
+  "custom/code": {
+    "format": "\udb82\ude1e",
+    "tooltip": true,
+    "on-click": "kitty -e nvim",
+    "tooltip-format": "Neovim",
+    "cursor": 68
+  },
+  "custom/files": {
+    "format": "\uf07b",
+    "tooltip": true,
+    "on-click": "kitty -e yazi",
+    "tooltip-format": "Yazi files",
+    "cursor": 68
+  },
+  "custom/spotify": {
+    "format": "\uf1bc",
+    "tooltip": true,
+    "on-click": "flatpak run com.spotify.Client",
+    "tooltip-format": "Spotify",
+    "cursor": 68
+  },
+  "custom/browser": {
+    "format": "\ue658",
+    "tooltip": true,
+    "on-click": "firefox",
+    "tooltip-format": "Firefox",
+    "cursor": 68
+  },
+  "group/distro-group": {
+    "orientation": "horizontal",
+    "drawer": {
+      "transition-duration": 650,
+      "transition-left-to-right": true
+    },
+    "modules": [
+      "custom/distro",
+      "custom/terminal",
+      "custom/code",
+      "custom/files",
+      "custom/spotify",
+      "custom/browser"
+    ]
+  },
+  "group/storage": {
+    "orientation": "horizontal",
+    "modules": [
+      "disk",
+      "memory"
+    ]
+  },
+  "group/system": {
+    "orientation": "horizontal",
+    "modules": [
+      "custom/temperature",
+      "cpu"
+    ]
+  },
+  "group/audio": {
+    "orientation": "horizontal",
+    "drawer": {
+      "transition-duration": 650,
+      "transition-left-to-right": false
+    },
+    "modules": [
+      "pulseaudio",
+      "pulseaudio/slider",
+      "pulseaudio#microphone"
+    ]
+  },
+  "group/connections": {
+    "orientation": "horizontal",
+    "drawer": {
+      "transition-duration": 500,
+      "transition-left-to-right": false
+    },
+    "modules": [
+      "network",
+      "bluetooth"
+    ]
+  },
+  "group/tray-group": {
+    "orientation": "horizontal",
+    "drawer": {
+      "transition-duration": 500,
+      "transition-left-to-right": false
+    },
+    "modules": [
+      "custom/tray-arrow",
+      "tray"
+    ]
+  },
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+      "activated": "\udb81\udee8",
+      "deactivated": "\udb81\udee9"
+    },
+    "tooltip-format-activated": "System Focused",
+    "tooltip-format-deactivated": "Normal Mode",
+    "cursor": 68
+  },
+  "disk": {
+    "tooltip": true,
+    "interval": 3600,
+    "path": "/",
+    "format": "\udb85\ude4b",
+    "format-alt": "\udb85\ude4b <span size='11pt'>{used}</span>",
+    "states": {
+      "warning": 80,
+      "critical": 90
+    },
+    "on-click": "kitty --class bar-monitor -e btop",
+    "on-click-right": "kitty --class bar-gpu -e nvtop",
+    "cursor": 68
+  },
+  "memory": {
+    "tooltip": true,
+    "interval": 15,
+    "format": "\udb80\udf5b",
+    "format-alt": "\udb80\udf5b <span size='11pt'>{used}</span>",
+    "states": {
+      "warning": 75,
+      "critical": 85
+    },
+    "on-click": "kitty --class bar-monitor -e btop",
+    "on-click-right": "kitty --class bar-gpu -e nvtop",
+    "cursor": 68
+  },
+  "cpu": {
+    "tooltip": true,
+    "interval": 10,
+    "format": "\udb83\udee0",
+    "format-alt": "\udb83\udee0 <span size='11pt'>{usage}%</span>",
+    "states": {
+      "warning": 75,
+      "critical": 90
+    },
+    "on-click": "kitty --class bar-monitor -e btop",
+    "on-click-right": "kitty --class bar-gpu -e nvtop",
+    "cursor": 68
+  },
+  "custom/tray-arrow": {
+    "format": "\udb80\udc9a",
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg toggle notifications",
+    "on-click-right": "@STUDIO_APP@/commands/serpantinum settings",
+    "tooltip-format": "Notifications \u2022 right-click: settings",
+    "cursor": 68
+  },
+  "tray": {
+    "icon-size": 16,
+    "spacing": 10,
+    "show-passive-items": true,
+    "cursor": 68
+  },
+  "name": "athena-managed",
+  "reload_style_on_change": true,
+  "ext/workspaces": {
+    "format": "{name}",
+    "on-click": "activate",
+    "sort-by-name": true,
+    "all-outputs": true,
+    "ignore-hidden": false,
+    "cursor": 68
+  },
+  "custom/temperature": {
+    "exec": "@STUDIO_APP@/themes/bars/athena/actions.py temperature",
+    "interval": 5,
+    "return-type": "json",
+    "on-click": "kitty -e btop",
+    "on-click-right": "kitty -e nvtop",
+    "cursor": 68
+  }
+}

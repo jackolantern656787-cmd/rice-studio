@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=Phosphor
+Type=X-GNOME-Metatheme
+[X-GNOME-Metatheme]
+GtkTheme=Phosphor
+IconTheme=Adwaita

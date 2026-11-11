@@ -1,0 +1,122 @@
+{
+  "layer": "top",
+  "exclusive": true,
+  "passthrough": false,
+  "gtk-layer-shell": true,
+  "reload_style_on_change": true,
+  "height": 24,
+  "margin-left": 8,
+  "margin-right": 8,
+  "margin-top": 6,
+  "margin-bottom": 0,
+  "spacing": 0,
+  "modules-left": [
+    "ext/workspaces"
+  ],
+  "modules-center": [
+    "clock"
+  ],
+  "modules-right": [
+    "memory",
+    "cpu",
+    "pulseaudio",
+    "pulseaudio/slider",
+    "tray",
+    "custom/power"
+  ],
+  "tray": {
+    "icon-size": 16,
+    "spacing": 6,
+    "cursor": 68
+  },
+  "clock": {
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+    "format": "{:%I:%M %p}",
+    "format-alt": "{:%Y-%m-%d}",
+    "on-click-right": "@STUDIO_APP@/commands/serpantinum msg toggle calendar",
+    "cursor": 68
+  },
+  "cpu": {
+    "format": "{usage}% \uf2db",
+    "on-click": "kitty --class bar-monitor -e btop",
+    "on-click-right": "kitty --class bar-gpu -e nvtop",
+    "tooltip": true,
+    "cursor": 68
+  },
+  "memory": {
+    "format": "{}% \uf0c9",
+    "on-click": "kitty --class bar-monitor -e btop",
+    "on-click-right": "kitty --class bar-gpu -e nvtop",
+    "tooltip": true,
+    "cursor": 68
+  },
+  "network": {
+    "tooltip": true,
+    "format-wifi": "{icon}\u2009",
+    "format-icons": [
+      "\udb82\udd1f",
+      "\udb82\udd22",
+      "\udb82\udd25"
+    ],
+    "format-ethernet": "\udb80\ude00 ",
+    "tooltip-format": "Network: <big><b>{essid}</b></big>\nSignal strength: <b>{signaldBm}dBm ({signalStrength}%)</b>\nFrequency: <b>{frequency}MHz</b>\nInterface: <b>{ifname}</b>\nIP: <b>{ipaddr}/{cidr}</b>\nGateway: <b>{gwaddr}</b>\nNetmask: <b>{netmask}</b>",
+    "format-linked": "\udb80\ude00 {ifname} (No IP)",
+    "format-disconnected": "\uf06a ",
+    "tooltip-format-disconnected": "Disconnected",
+    "interval": 2,
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg toggle network",
+    "on-click-right": "@STUDIO_APP@/commands/serpantinum msg toggle network",
+    "cursor": 68
+  },
+  "pulseaudio": {
+    "format": "{icon}",
+    "rotate": 0,
+    "format-muted": "\uf026x",
+    "tooltip-format": "{icon} {desc} {volume}%",
+    "scroll-step": 5,
+    "format-icons": {
+      "headphone": "\uf025",
+      "hands-free": "\uf025",
+      "headset": "\uf025",
+      "phone": "\uf095",
+      "portable": "\uf095",
+      "car": "\uf1b9",
+      "default": [
+        "\uf026",
+        "\uf027",
+        "\uf028"
+      ]
+    },
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg toggle volume",
+    "on-click-right": "@STUDIO_APP@/themes/bars/coolblue/volume output mute",
+    "on-scroll-up": "@STUDIO_APP@/themes/bars/coolblue/volume output up",
+    "on-scroll-down": "@STUDIO_APP@/themes/bars/coolblue/volume output down",
+    "max-volume": 100,
+    "cursor": 68
+  },
+  "custom/power": {
+    "format": "\u23fb ",
+    "tooltip": true,
+    "on-click": "kitty --class bar-power -e @STUDIO_APP@/themes/bars/coolblue/actions.py power",
+    "tooltip-format": "Power menu (confirmation required)",
+    "cursor": 68
+  },
+  "pulseaudio/slider": {
+    "min": 0,
+    "max": 100,
+    "rotate": 0,
+    "orientation": "vertical",
+    "device": "pulseaudio",
+    "scroll-step": 1,
+    "cursor": 68
+  },
+  "name": "coolblue-managed",
+  "ext/workspaces": {
+    "format": "{name}",
+    "on-click": "activate",
+    "sort-by-name": true,
+    "all-outputs": true,
+    "ignore-hidden": false,
+    "cursor": 68
+  }
+}

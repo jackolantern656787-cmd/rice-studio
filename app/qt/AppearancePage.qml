@@ -31,6 +31,14 @@ Item {
                 width:inspector.availableWidth-6;spacing:11
                 Text {text:"THEME COLLECTION";color:"#d6ab7d";font.family:"JetBrains Mono";font.pixelSize:11}
                 Text {Layout.fillWidth:true;wrapMode:Text.Wrap;text:"Use the theme bar to open its launcher. New Kitty windows use the preset’s terminal profile automatically.";font.pixelSize:12;color:"#aaa49a"}
+                Text {text:"WINDOW MODE";font.family:"JetBrains Mono";font.pixelSize:10;color:"#8a878c"}
+                RowLayout {
+                    Layout.fillWidth:true
+                    ActionButton {text:"Tiling";Layout.fillWidth:true;primary:page.studio.library.windowMode==="tiling";enabled:!page.studio.busy;onClicked:page.studio.request("window_mode",{mode:"tiling"},"Arranging tiled windows")}
+                    ActionButton {text:"Floating";Layout.fillWidth:true;primary:page.studio.library.windowMode==="floating";enabled:!page.studio.busy;onClicked:page.studio.request("window_mode",{mode:"floating"},"Switching to floating windows")}
+                }
+                ActionButton {text:"Scrolling";Layout.fillWidth:true;primary:page.studio.library.windowMode==="scrolling";enabled:!page.studio.busy;onClicked:page.studio.request("window_mode",{mode:"scrolling"},"Arranging scrolling columns")}
+                Text {Layout.fillWidth:true;wrapMode:Text.Wrap;text:"Applies to the current Hyprland session.";font.pixelSize:11;color:"#aaa49a"}
                 Text {textFormat:Text.PlainText;text:"SETUP";font.family:"JetBrains Mono";font.pixelSize:10;font.letterSpacing:1.2;color:"#8a878c";Layout.bottomMargin:4}
                 Field {Layout.fillWidth:true;text:page.studio.draft.label || "";onTextEdited:page.studio.setField("label",text);Accessible.name:"Preset name"}
                 GridLayout {

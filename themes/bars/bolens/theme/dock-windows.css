@@ -1,0 +1,9 @@
+/* Dock window strip chrome — slot layout from dock-windows.generated.css */
+
+#dock-windows {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    margin: 4px 2px;
+    padding: 0 2px;
+}

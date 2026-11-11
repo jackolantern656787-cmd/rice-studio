@@ -1,0 +1,51 @@
+{
+  "group/pulseaudio": {
+    "modules": [
+      "pulseaudio#output",
+      "pulseaudio#input"
+    ],
+    "orientation": "horizontal",
+    "drawer": {
+      "transition-left-to-right": false
+    }
+  },
+  "pulseaudio#output": {
+    "format": "{icon} {volume}%",
+    "format-muted": "{icon} {volume}%",
+    "format-icons": {
+      "default": [
+        "󰕿",
+        "󰖀",
+        "󰕾"
+      ],
+      "default-muted": "󰝟",
+      "headphone": "󰋋",
+      "headphone-muted": "󰟎",
+      "headset": "󰋎",
+      "headset-muted": "󰋐"
+    },
+    "min-length": 8,
+    "max-length": 8,
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg toggle volume",
+    "on-scroll-up": "@STUDIO_APP@/themes/bars/mechabar/scripts/volume output up",
+    "on-scroll-down": "@STUDIO_APP@/themes/bars/mechabar/scripts/volume output down",
+    "tooltip-format": "Speakers: {desc}\nLeft: audio panel • right: mute • scroll: volume",
+    "on-click-right": "@STUDIO_APP@/themes/bars/mechabar/scripts/volume output mute",
+    "scroll-step": 2,
+    "cursor": 68
+  },
+  "pulseaudio#input": {
+    "format": "{format_source}",
+    "format-source": "󰍬 {volume}%",
+    "format-source-muted": "󰍭 {volume}%",
+    "min-length": 8,
+    "max-length": 8,
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg toggle volume",
+    "on-scroll-up": "@STUDIO_APP@/themes/bars/mechabar/scripts/volume input up",
+    "on-scroll-down": "@STUDIO_APP@/themes/bars/mechabar/scripts/volume input down",
+    "tooltip-format": "Microphone: {desc}\nLeft: audio panel • right: mute • scroll: volume",
+    "on-click-right": "@STUDIO_APP@/themes/bars/mechabar/scripts/volume input mute",
+    "scroll-step": 2,
+    "cursor": 68
+  }
+}

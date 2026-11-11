@@ -1,0 +1,253 @@
+{
+  "layer": "top",
+  "position": "top",
+  "height": 27,
+  "margin": "5 0",
+  "modules-left": [
+    "group/left-hidden-top",
+    "group/left"
+  ],
+  "modules-center": [
+    "clock"
+  ],
+  "modules-right": [
+    "group/right",
+    "group/right-hidden-top"
+  ],
+  "group/left": {
+    "orientation": "horizontal",
+    "modules": [
+      "ext/workspaces",
+      "mpris"
+    ]
+  },
+  "group/left-hidden": {
+    "orientation": "horizontal",
+    "drawer": {
+      "transition-duration": 500,
+      "transition-left-to-right": false,
+      "click-to-reveal": true
+    },
+    "modules": [
+      "custom/arrow-right",
+      "cpu",
+      "load"
+    ]
+  },
+  "group/left-hidden-top": {
+    "orientation": "horizontal",
+    "modules": [
+      "custom/start",
+      "group/left-hidden"
+    ]
+  },
+  "group/right": {
+    "orientation": "horizontal",
+    "modules": [
+      "bluetooth",
+      "group/group-volume",
+      "network",
+      "tray"
+    ]
+  },
+  "group/right-hidden": {
+    "orientation": "horizontal",
+    "drawer": {
+      "transition-duration": 500,
+      "transition-left-to-right": true,
+      "click-to-reveal": true
+    },
+    "modules": [
+      "custom/arrow-left",
+      "memory",
+      "custom/temperature"
+    ]
+  },
+  "group/right-hidden-top": {
+    "orientation": "horizontal",
+    "modules": [
+      "group/right-hidden",
+      "custom/ctlcenter"
+    ]
+  },
+  "hyprland/window": {
+    "max-length": 30,
+    "separate-outputs": true,
+    "cursor": 68
+  },
+  "cpu": {
+    "interval": 30,
+    "format": "\uf2db {usage}%",
+    "cursor": 68,
+    "states": {
+      "warning": 80,
+      "critical": 90
+    },
+    "on-click": "kitty --class bar-monitor -e btop",
+    "on-click-right": "kitty --class bar-gpu -e nvtop",
+    "tooltip": true
+  },
+  "tray": {
+    "icon-size": 13,
+    "spacing": 12,
+    "cursor": 68
+  },
+  "load": {
+    "interval": 30,
+    "format": "\uf4bc {load1}%",
+    "cursor": 68,
+    "on-click": "kitty --class bar-monitor -e btop",
+    "on-click-right": "kitty --class bar-gpu -e nvtop",
+    "tooltip": true
+  },
+  "memory": {
+    "interval": 10,
+    "format": "\uefc5  {used:0.1f}G/{total:0.1f}G",
+    "states": {
+      "warning": 80,
+      "critical": 90
+    },
+    "on-click": "kitty --class bar-monitor -e btop",
+    "on-click-right": "kitty --class bar-gpu -e nvtop",
+    "tooltip": true,
+    "cursor": 68
+  },
+  "pulseaudio": {
+    "format": "{icon}",
+    "format-bluetooth": "{icon}",
+    "tooltip-format": "{volume}%",
+    "format-muted": "<span size='9.5pt'>\ueee8</span>",
+    "scroll-step": 2,
+    "format-icons": {
+      "headphone": "\uee58",
+      "hands-free": "\uee58",
+      "headset": "\uee58",
+      "phone": "\uf095",
+      "portable": "\uf095",
+      "car": "\uf1b9",
+      "default": [
+        "<span size='9.5pt'>\uf026</span>",
+        "<span size='9.5pt'>\uf027</span>",
+        "<span size='9.5pt'>\uefcf</span>",
+        "<span size='9.5pt'>\uf028</span>"
+      ]
+    },
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg toggle volume",
+    "on-click-right": "@STUDIO_APP@/themes/bars/cebem/volume output mute",
+    "on-scroll-up": "@STUDIO_APP@/themes/bars/cebem/volume output up",
+    "on-scroll-down": "@STUDIO_APP@/themes/bars/cebem/volume output down",
+    "max-volume": 100,
+    "cursor": 68
+  },
+  "pulseaudio/slider": {
+    "min": 0,
+    "max": 100,
+    "cursor": 68
+  },
+  "network": {
+    "interval": 10,
+    "format-disabled": "\uf071",
+    "format-disconnected": "\uf071",
+    "format-wifi": "\uf1eb",
+    "format-ethernet": "\udb80\ude00",
+    "tooltip-format": "{essid}\n\nFrequency: {frequency}GHz\nStrength: {signalStrength}%\n\n{bandwidthUpBytes} \uf062 \uf063 {bandwidthDownBytes}",
+    "tooltip-format-ethernet": "{bandwidthUpBytes} \uf062 \uf063 {bandwidthDownBytes}",
+    "tooltip-format-disconnected": "No network connection!",
+    "tooltip-format-disabled": "No network connection!",
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg toggle network",
+    "on-click-right": "@STUDIO_APP@/commands/serpantinum msg toggle network",
+    "cursor": 68
+  },
+  "bluetooth": {
+    "format": "{}",
+    "format-on": "\udb80\udcb0",
+    "format-off": "\udb80\udcb2",
+    "format-disabled": "\udb80\udcb2",
+    "format-connected": "{device_alias}",
+    "format-connected-battery": "{device_alias}",
+    "tooltip-format": "{device_enumerate}",
+    "tooltip-format-enumerate-connected": "{device_alias}",
+    "tooltip-format-enumerate-connected-battery": "{device_alias}  \uf240 {device_battery_percentage}%",
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg open network bluetooth",
+    "on-click-right": "@STUDIO_APP@/commands/serpantinum msg open network bluetooth",
+    "cursor": 68
+  },
+  "clock": {
+    "tooltip-format": "<tt><small>{calendar}</small></tt>",
+    "format-alt": "{:%H:%M %d %B %Y}",
+    "calendar": {
+      "mode": "year",
+      "weeks-pos": "right",
+      "mode-mon-col": 3,
+      "format": {
+        "months": "<span color='#acb0d0'><b>{}</b></span>",
+        "weeks": "<span color='#7aa2f7'><b>W{}</b></span>",
+        "weekdays": "<span color='#e0af68'><b>{}</b></span>",
+        "days": "<span color='#acb0d0'><b>{}</b></span>",
+        "today": "<span color='#41a6b5'><b><u>{}</u></b></span>"
+      }
+    },
+    "on-click-right": "@STUDIO_APP@/commands/serpantinum msg toggle calendar",
+    "cursor": 68
+  },
+  "mpris": {
+    "format": "{artist} - {title}",
+    "tooltip-format": "{album}",
+    "format-paused": "\uf04c {artist} - {title}",
+    "max-length": 30,
+    "cursor": 68
+  },
+  "custom/start": {
+    "format": "\uf303",
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg toggle launcher",
+    "cursor": 68
+  },
+  "custom/ctlcenter": {
+    "tooltip": true,
+    "format": "\ueef8",
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg toggle notifications",
+    "on-click-right": "@STUDIO_APP@/commands/serpantinum settings",
+    "tooltip-format": "Notifications \u2022 right-click: settings",
+    "cursor": 68
+  },
+  "custom/arrow-left": {
+    "format": "\uf47d",
+    "tooltip": false,
+    "cursor": 68
+  },
+  "custom/arrow-right": {
+    "format": "\uf460",
+    "tooltip": false,
+    "cursor": 68
+  },
+  "group/group-volume": {
+    "orientation": "horizontal",
+    "drawer": {
+      "transition-duration": 600,
+      "transition-left-to-right": true,
+      "reveal-delay": 450
+    },
+    "modules": [
+      "pulseaudio",
+      "pulseaudio/slider"
+    ]
+  },
+  "name": "cebem-managed",
+  "reload_style_on_change": true,
+  "ext/workspaces": {
+    "format": "{name}",
+    "on-click": "activate",
+    "sort-by-name": true,
+    "all-outputs": true,
+    "ignore-hidden": false,
+    "cursor": 68
+  },
+  "custom/temperature": {
+    "exec": "@STUDIO_APP@/themes/bars/cebem/actions.py temperature",
+    "interval": 5,
+    "return-type": "json",
+    "on-click": "kitty -e btop",
+    "on-click-right": "kitty -e nvtop",
+    "cursor": 68
+  }
+}

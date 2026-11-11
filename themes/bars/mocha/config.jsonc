@@ -1,0 +1,270 @@
+{
+  "layer": "top",
+  "position": "top",
+  "name": "mocha-managed",
+  "height": 36,
+  "reload_style_on_change": true,
+  "margin-top": 4,
+  "margin-left": 24,
+  "margin-right": 24,
+  "modules-left": [
+    "group/traym",
+    "ext/workspaces",
+    "hyprland/submap",
+    "hyprland/window"
+  ],
+  "modules-right": [
+    "custom/spacer1",
+    "cpu",
+    "custom/temperature",
+    "custom/nvidia",
+    "memory#ram",
+    "memory#swap",
+    "disk",
+    "network#info",
+    "custom/spacer2",
+    "pulseaudio#input",
+    "pulseaudio#output",
+    "custom/cava",
+    "custom/spacer4",
+    "custom/timer",
+    "clock"
+  ],
+  "disk": {
+    "interval": 16,
+    "format": "\uf0c7 {percentage_used}%",
+    "tooltip": true,
+    "tooltip-format": "Free {free}",
+    "states": {
+      "warning": 85,
+      "critical": 95
+    },
+    "cursor": 68,
+    "on-click": "kitty -e btop",
+    "on-click-right": "kitty -e nvtop"
+  },
+  "custom/timer": {
+    "exec": "@STUDIO_APP@/themes/bars/mocha/widgets.py show",
+    "return-type": "json",
+    "interval": 1,
+    "on-click": "@STUDIO_APP@/themes/bars/mocha/widgets.py toggle",
+    "on-click-right": "@STUDIO_APP@/themes/bars/mocha/widgets.py reset",
+    "cursor": 68
+  },
+  "group/traym": {
+    "orientation": "horizontal",
+    "drawer": {},
+    "modules": [
+      "custom/trayicon",
+      "tray"
+    ]
+  },
+  "custom/nvidia": {
+    "interval": 4,
+    "return-type": "json",
+    "format": "<span size='x-large' rise='-2500'>\udb82\udcae</span>{}",
+    "tooltip": true,
+    "cursor": 68,
+    "exec": "@STUDIO_APP@/themes/bars/mocha/gpu.py",
+    "on-click": "kitty -e nvtop"
+  },
+  "clock": {
+    "interval": 1,
+    "format": "\ue641 {:%H:%M:%S  \u2009\ueab0 %a %d.%m}",
+    "tooltip-format": "{calendar}",
+    "calendar": {
+      "weeks-pos": "right",
+      "mode": "month",
+      "format": {
+        "months": "<span color='#cba6f7'><b>{}</b></span>",
+        "days": "<span color='#cdd6f4'><b>{}</b></span>",
+        "weeks": "<span color='#94e2d5'> W{}</span>",
+        "weekdays": "<span color='#f9e2af'><b>{}</b></span>",
+        "today": "<span color='#f5e0dc'><b><u>{}</u></b></span>"
+      }
+    },
+    "cursor": 68,
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg toggle calendar"
+  },
+  "cpu": {
+    "interval": 4,
+    "min-length": 6,
+    "format": "\uf2db {usage}%",
+    "states": {
+      "warning": 80,
+      "critical": 95
+    },
+    "cursor": 68,
+    "on-click": "kitty -e btop",
+    "on-click-right": "kitty -e nvtop",
+    "tooltip": true
+  },
+  "memory#ram": {
+    "interval": 4,
+    "format": "\uefc5 {percentage}%",
+    "states": {
+      "warning": 80,
+      "critical": 95
+    },
+    "tooltip": true,
+    "tooltip-format": "{used}/{total} GiB",
+    "cursor": 68,
+    "on-click": "kitty -e btop",
+    "on-click-right": "kitty -e nvtop"
+  },
+  "memory#swap": {
+    "interval": 16,
+    "format": "\udb83\udfb5 {swapPercentage}%",
+    "tooltip": true,
+    "tooltip-format": "{swapUsed}/{swapTotal}GiB",
+    "cursor": 68,
+    "on-click": "kitty -e btop",
+    "on-click-right": "kitty -e nvtop"
+  },
+  "network#info": {
+    "interval": 2,
+    "format": "\udb85\ude16  Offline",
+    "format-wifi": "{icon} {bandwidthDownBits}",
+    "format-ethernet": "\udb80\ude00 {bandwidthDownBits}",
+    "min-length": 11,
+    "tooltip": true,
+    "tooltip-format-wifi": "{ifname}\n{essid}\n{signalStrength}% \n{frequency} GHz\n\udb80\uddda {bandwidthDownBits}\n\udb81\udd52 {bandwidthUpBits}",
+    "tooltip-format-ethernet": "{ifname}\n\udb80\uddda {bandwidthDownBits} \n\udb81\udd52 {bandwidthUpBits}",
+    "format-icons": [
+      "\udb82\udd2b",
+      "\udb82\udd1f",
+      "\udb82\udd22",
+      "\udb82\udd25",
+      "\udb82\udd28"
+    ],
+    "states": {
+      "normal": 25
+    },
+    "cursor": 68,
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg toggle network"
+  },
+  "hyprland/submap": {
+    "always-on": true,
+    "default-submap": "",
+    "format": "{}",
+    "format-RESIZE": "{}lol",
+    "tooltip": false,
+    "cursor": 68
+  },
+  "hyprland/window": {
+    "format": "{title}",
+    "max-length": 22,
+    "tooltip": true,
+    "icon": true,
+    "icon-size": 18,
+    "cursor": 68
+  },
+  "pulseaudio#output": {
+    "format": "{icon} {volume}%",
+    "format-bluetooth": "{icon}\uf294 {volume}%",
+    "format-source-muted": "{volume}",
+    "format-icons": {
+      "headphone": "\uf025",
+      "hands-free": "\uf025",
+      "headset": "\uf025",
+      "phone": "\uf095",
+      "portable": "\uf095",
+      "car": "\uf1b9",
+      "default": [
+        "\uf027",
+        "\uf028"
+      ]
+    },
+    "tooltip": true,
+    "scroll-step": 4,
+    "cursor": 68,
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg toggle volume",
+    "on-click-right": "@STUDIO_APP@/themes/bars/mocha/volume output mute",
+    "on-scroll-up": "@STUDIO_APP@/themes/bars/mocha/volume output up",
+    "on-scroll-down": "@STUDIO_APP@/themes/bars/mocha/volume output down",
+    "max-volume": 100,
+    "format-muted": "\udb81\udf5f muted"
+  },
+  "pulseaudio#input": {
+    "format": "{format_source}",
+    "format-source": "\uf130 {volume}%",
+    "format-source-muted": "\uf131 muted",
+    "max-volume": 100,
+    "tooltip-format": "Microphone",
+    "scroll-step": 4,
+    "cursor": 68,
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg toggle volume",
+    "on-click-right": "@STUDIO_APP@/themes/bars/mocha/volume input mute",
+    "on-scroll-up": "@STUDIO_APP@/themes/bars/mocha/volume input up",
+    "on-scroll-down": "@STUDIO_APP@/themes/bars/mocha/volume input down",
+    "tooltip": true
+  },
+  "tray": {
+    "icon-size": 18,
+    "spacing": 8,
+    "cursor": 68
+  },
+  "custom/spacer": {
+    "format": " ",
+    "tooltip": false,
+    "cursor": 68
+  },
+  "custom/spacer1": {
+    "format": "\ue0be",
+    "tooltip": false,
+    "cursor": 68
+  },
+  "custom/spacer2": {
+    "format": "\ue0be",
+    "tooltip": false,
+    "cursor": 68
+  },
+  "custom/spacer3": {
+    "format": "\ue0be",
+    "tooltip": false,
+    "cursor": 68
+  },
+  "custom/spacer4": {
+    "format": "\ue0be",
+    "tooltip": false,
+    "cursor": 68
+  },
+  "custom/spacer5": {
+    "format": "\ue0ba",
+    "tooltip": false,
+    "cursor": 68
+  },
+  "custom/spacer6": {
+    "format": "\ue0bc",
+    "tooltip": false,
+    "cursor": 68
+  },
+  "custom/trayicon": {
+    "format": "\u15e7 ",
+    "tooltip": true,
+    "cursor": 68,
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg toggle launcher",
+    "on-click-right": "@STUDIO_APP@/commands/serpantinum settings",
+    "tooltip-format": "Launcher \u2022 hover: tray \u2022 right-click: settings"
+  },
+  "ext/workspaces": {
+    "format": "{name}",
+    "sort-by-name": true,
+    "all-outputs": true,
+    "ignore-hidden": false,
+    "cursor": 68
+  },
+  "custom/temperature": {
+    "exec": "@STUDIO_APP@/themes/bars/mocha/actions.py temperature",
+    "return-type": "json",
+    "interval": 5,
+    "on-click": "kitty -e btop",
+    "cursor": 68
+  },
+  "custom/cava": {
+    "exec": "@STUDIO_APP@/themes/bars/mocha/visualizer.py",
+    "return-type": "json",
+    "restart-interval": 3,
+    "cursor": 68
+  }
+}

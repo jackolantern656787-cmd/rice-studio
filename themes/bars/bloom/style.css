@@ -1,0 +1,48 @@
+* { font-family: 'JetBrainsMono Nerd Font Mono'; font-size: 11px; font-weight: 600;
+ border: none; border-radius: 0; min-height: 0; padding: 0; margin: 0; text-shadow: none; box-shadow: none; }
+window#waybar { background: transparent; color: #cdd6f4; }
+#bloom-launcher, #bloom-workspaces, #bloom-clock, #bloom-media, #bloom-system,
+#bloom-connections, #bloom-sound, #bloom-session {
+ background: #1e1e2e; border: 1px solid #45475a; border-radius: 17px;
+ padding: 0 5px; margin: 1px 0;
+ transition: border-color 160ms ease-out, background-color 160ms ease-out, box-shadow 160ms ease-out; }
+#bloom-launcher:hover, #bloom-clock:hover, #bloom-session:hover { border-color: #cba6f7; box-shadow: 0 1px 3px rgba(203,166,247,0.16); }
+#bloom-media:hover { border-color: #f5c2e7; }
+#bloom-system:hover { border-color: #fab387; }
+#bloom-connections:hover { border-color: #89b4fa; }
+#bloom-sound:hover { border-color: #a6e3a1; }
+#custom-cat { font-size: 20px; color: #cba6f7; padding: 0 7px; }
+#custom-terminal, #custom-files, #custom-browser, #custom-rice,
+#custom-previous, #custom-next, #bluetooth, #custom-notifications, #idle_inhibitor, #custom-power {
+ padding: 0 7px; border-radius: 10px; margin: 4px 0; }
+#custom-terminal { color: #b4befe; }
+#custom-files { color: #f9e2af; }
+#custom-browser { color: #89b4fa; }
+#custom-rice { color: #f5c2e7; }
+#custom-ws1, #custom-ws2, #custom-ws3, #custom-ws4, #custom-ws5 {
+ min-width: 23px; margin: 6px 2px; border-radius: 11px; color: #7f849c; }
+#custom-ws1.active, #custom-ws2.active, #custom-ws3.active, #custom-ws4.active, #custom-ws5.active { background: #cba6f7; color: #1e1e2e; }
+#clock { padding: 0 9px; color: #b4befe; }
+#clock.date { color: #a6adc8; padding-left: 3px; }
+#custom-music { font-size: 17px; color: #f5c2e7; padding: 0 7px; }
+#mpris { color: #f5c2e7; padding: 0 7px; }
+#custom-cava { color: #cba6f7; padding: 0 7px; font-size: 11px; }
+#cpu { color: #fab387; font-size: 16px; padding: 0 7px; }
+#memory, #custom-temperature, #custom-gpu { color: #fab387; padding: 0 7px; }
+#network { color: #89b4fa; font-size: 16px; padding: 0 7px; }
+#custom-network-title, #bluetooth { color: #89b4fa; padding: 0 7px; }
+#pulseaudio { color: #a6e3a1; padding: 0 8px; }
+#pulseaudio.microphone { color: #f5c2e7; }
+#pulseaudio-slider { padding: 0 5px; }
+#pulseaudio-slider trough { min-width: 80px; min-height: 5px; background: #45475a; border-radius: 6px; }
+#pulseaudio-slider highlight { background: #a6e3a1; border-radius: 6px; }
+#pulseaudio-slider slider { min-width: 10px; min-height: 10px; background: #cdd6f4; border-radius: 5px; }
+#custom-session { color: #cba6f7; padding: 0 8px; font-size: 15px; }
+#custom-notifications { color: #f9e2af; }
+#idle_inhibitor { color: #b4befe; }
+#custom-power { color: #f38ba8; }
+#tray { padding: 0 5px; }
+#custom-terminal:hover, #custom-files:hover, #custom-browser:hover, #custom-rice:hover,
+#custom-previous:hover, #custom-next:hover, #custom-notifications:hover, #idle_inhibitor:hover, #custom-power:hover { background: #313244; }
+tooltip { background: #181825; border: 1px solid #45475a; border-radius: 9px; }
+tooltip label { color: #cdd6f4; padding: 7px 9px; }

@@ -1,0 +1,20 @@
+@define-color theme_bg_color #080d0a;
+@define-color theme_fg_color #a9b3aa;
+@define-color theme_base_color #070c09;
+@define-color theme_text_color #b8c4ba;
+@define-color theme_selected_bg_color #27382d;
+@define-color theme_selected_fg_color #d2ddd3;
+* { font-family: 'JetBrainsMono Nerd Font Mono'; font-size: 10px; }
+window, .background, dialog { background-color: #080d0a; color: #a9b3aa; }
+headerbar, notebook, notebook header, .view, list, row { background: #080d0a; color: #a9b3aa; box-shadow: none; }
+button, dropdown, combobox { background: #142018; color: #b8c4ba; border: 1px solid #27372d; border-radius: 0; box-shadow: none; }
+button:hover { background: #27382d; }
+notebook tab { background: transparent; color: #a9b3aa; border-bottom: 1px solid transparent; padding: 5px; }
+notebook tab:checked { border-bottom-color: #a79bb9; }
+scale trough { background: #17231b; border: 1px solid #38463b; border-radius: 0; min-height: 5px; }
+scale highlight { background: #b5c3b8; border-radius: 0; }
+scale slider { background: #d2ddd3; border-radius: 0; min-height: 10px; min-width: 6px; box-shadow: none; }
+progressbar trough { background: #142018; border-radius: 0; }
+progressbar progress { background: #b5c3b8; border-radius: 0; }
+separator { background: #27372d; min-height: 1px; }
+entry { background: #0d1710; color: #b8c4ba; border: 1px solid #38463b; border-radius: 0; }

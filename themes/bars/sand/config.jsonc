@@ -1,0 +1,202 @@
+{
+  "name": "sand-managed",
+  "position": "top",
+  "layer": "top",
+  "height": 30,
+  "spacing": 3,
+  "reload_style_on_change": true,
+  "modules-left": [
+    "custom/media-title",
+    "clock",
+    "custom/media-progress",
+    "pulseaudio"
+  ],
+  "modules-center": [
+    "custom/ws1",
+    "custom/ws2",
+    "custom/ws3",
+    "custom/ws4",
+    "custom/ws5",
+    "custom/cava",
+    "custom/ws6",
+    "custom/ws7",
+    "custom/ws8",
+    "custom/ws9",
+    "custom/ws10"
+  ],
+  "modules-right": [
+    "custom/ticker",
+    "network",
+    "custom/language",
+    "cpu",
+    "memory",
+    "custom/temperature",
+    "custom/power"
+  ],
+  "custom/media-title": {
+    "exec": "@STUDIO_APP@/themes/bars/sand/media.py title",
+    "return-type": "json",
+    "interval": 3,
+    "escape": true,
+    "on-click": "playerctl play-pause",
+    "cursor": 68
+  },
+  "clock": {
+    "format": "{:%H:%M}",
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg toggle calendar",
+    "tooltip-format": "<tt>{calendar}</tt>",
+    "cursor": 68
+  },
+  "custom/media-progress": {
+    "exec": "@STUDIO_APP@/themes/bars/sand/media.py progress",
+    "return-type": "json",
+    "interval": 1,
+    "on-click": "playerctl play-pause",
+    "on-click-right": "playerctl next",
+    "on-click-middle": "playerctl previous",
+    "cursor": 68
+  },
+  "pulseaudio": {
+    "format": "{icon}",
+    "format-muted": "\udb81\udf5f",
+    "format-icons": {
+      "default": [
+        "\uf026",
+        "\uf027",
+        "\uf028"
+      ]
+    },
+    "tooltip-format": "Volume: {volume}%",
+    "max-volume": 100,
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg toggle volume",
+    "on-click-right": "@STUDIO_APP@/themes/bars/sand/volume output mute",
+    "on-scroll-up": "@STUDIO_APP@/themes/bars/sand/volume output up",
+    "on-scroll-down": "@STUDIO_APP@/themes/bars/sand/volume output down",
+    "cursor": 68
+  },
+  "custom/cava": {
+    "exec": "@STUDIO_APP@/themes/bars/sand/visualizer.py",
+    "return-type": "json",
+    "restart-interval": 3,
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg toggle volume",
+    "cursor": 68
+  },
+  "custom/ticker": {
+    "exec": "@STUDIO_APP@/themes/bars/sand/ticker.py",
+    "return-type": "json",
+    "interval": 300,
+    "on-click": "firefox https://www.binance.com/en/trade/ETH_USDT",
+    "cursor": 68
+  },
+  "network": {
+    "format-ethernet": "\uf0c1",
+    "format-wifi": "\uf1eb",
+    "format-disconnected": "\udb82\udd2e",
+    "tooltip-format-ethernet": "Ethernet\n\u2193 {bandwidthDownBytes} \u2191 {bandwidthUpBytes}",
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg toggle network",
+    "cursor": 68
+  },
+  "custom/language": {
+    "exec": "@STUDIO_APP@/themes/bars/sand/status.py language",
+    "return-type": "json",
+    "interval": 3,
+    "format": "\udb80\udf0c {}",
+    "on-click": "@STUDIO_APP@/commands/serpantinum settings",
+    "cursor": 68
+  },
+  "cpu": {
+    "format": "\uf2db {usage}%",
+    "interval": 3,
+    "on-click": "kitty -e btop",
+    "cursor": 68
+  },
+  "memory": {
+    "format": "\udb80\udf5b {used:.1f}G",
+    "interval": 3,
+    "on-click": "kitty -e btop",
+    "cursor": 68
+  },
+  "custom/temperature": {
+    "exec": "@STUDIO_APP@/themes/bars/sand/actions.py temperature",
+    "return-type": "json",
+    "interval": 5,
+    "on-click": "kitty -e btop",
+    "cursor": 68
+  },
+  "custom/power": {
+    "format": "\u23fb",
+    "tooltip-format": "Power menu \u2022 confirmation required",
+    "on-click": "kitty --class sand-power -e @STUDIO_APP@/themes/bars/sand/actions.py power",
+    "cursor": 68
+  },
+  "custom/ws1": {
+    "exec": "@STUDIO_APP@/themes/bars/sand/workspace.py 1",
+    "return-type": "json",
+    "interval": 1,
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg workspace 1",
+    "cursor": 68
+  },
+  "custom/ws2": {
+    "exec": "@STUDIO_APP@/themes/bars/sand/workspace.py 2",
+    "return-type": "json",
+    "interval": 1,
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg workspace 2",
+    "cursor": 68
+  },
+  "custom/ws3": {
+    "exec": "@STUDIO_APP@/themes/bars/sand/workspace.py 3",
+    "return-type": "json",
+    "interval": 1,
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg workspace 3",
+    "cursor": 68
+  },
+  "custom/ws4": {
+    "exec": "@STUDIO_APP@/themes/bars/sand/workspace.py 4",
+    "return-type": "json",
+    "interval": 1,
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg workspace 4",
+    "cursor": 68
+  },
+  "custom/ws5": {
+    "exec": "@STUDIO_APP@/themes/bars/sand/workspace.py 5",
+    "return-type": "json",
+    "interval": 1,
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg workspace 5",
+    "cursor": 68
+  },
+  "custom/ws6": {
+    "exec": "@STUDIO_APP@/themes/bars/sand/workspace.py 6",
+    "return-type": "json",
+    "interval": 1,
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg workspace 6",
+    "cursor": 68
+  },
+  "custom/ws7": {
+    "exec": "@STUDIO_APP@/themes/bars/sand/workspace.py 7",
+    "return-type": "json",
+    "interval": 1,
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg workspace 7",
+    "cursor": 68
+  },
+  "custom/ws8": {
+    "exec": "@STUDIO_APP@/themes/bars/sand/workspace.py 8",
+    "return-type": "json",
+    "interval": 1,
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg workspace 8",
+    "cursor": 68
+  },
+  "custom/ws9": {
+    "exec": "@STUDIO_APP@/themes/bars/sand/workspace.py 9",
+    "return-type": "json",
+    "interval": 1,
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg workspace 9",
+    "cursor": 68
+  },
+  "custom/ws10": {
+    "exec": "@STUDIO_APP@/themes/bars/sand/workspace.py 10",
+    "return-type": "json",
+    "interval": 1,
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg workspace 10",
+    "cursor": 68
+  }
+}

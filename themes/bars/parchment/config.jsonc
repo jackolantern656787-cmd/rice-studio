@@ -1,0 +1,157 @@
+{
+  "name": "parchment-managed",
+  "layer": "top",
+  "position": "top",
+  "height": 27,
+  "spacing": 0,
+  "reload_style_on_change": true,
+  "modules-left": [
+    "clock#day",
+    "clock#time",
+    "custom/divider",
+    "mpris"
+  ],
+  "modules-center": [
+    "custom/ws1",
+    "custom/ws2",
+    "custom/ws3",
+    "custom/arch",
+    "custom/ws4",
+    "custom/ws5",
+    "custom/ws6"
+  ],
+  "modules-right": [
+    "cpu",
+    "memory",
+    "custom/divider",
+    "pulseaudio",
+    "network",
+    "custom/notifications",
+    "custom/power"
+  ],
+  "clock#day": {
+    "format": "{:%a %d}",
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg toggle calendar",
+    "tooltip-format": "{:%A, %d %B %Y}",
+    "cursor": 68
+  },
+  "clock#time": {
+    "format": "{:%H:%M}",
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg toggle calendar",
+    "tooltip-format": "<tt>{calendar}</tt>",
+    "cursor": 68
+  },
+  "custom/divider": {
+    "format": "\u2502",
+    "tooltip": false,
+    "cursor": 68
+  },
+  "mpris": {
+    "format": "\uf001  {title}",
+    "format-paused": "\uf04c  {title}",
+    "max-length": 30,
+    "tooltip-format": "{artist} \u2014 {title}\nClick: play/pause \u2022 right: next \u2022 middle: previous",
+    "cursor": 68
+  },
+  "custom/arch": {
+    "format": "\uf303",
+    "on-click": "@STUDIO_APP@/commands/rice-launch",
+    "on-click-right": "@STUDIO_APP@/commands/studio",
+    "tooltip-format": "Zunder \u2022 right-click: Rice Control",
+    "cursor": 68
+  },
+  "cpu": {
+    "format": "cpu {usage}%",
+    "interval": 3,
+    "on-click": "kitty -e btop",
+    "on-click-right": "kitty -e nvtop",
+    "tooltip-format": "CPU usage \u2022 click: system monitor",
+    "cursor": 68
+  },
+  "memory": {
+    "format": "ram {used:.1f}G",
+    "interval": 4,
+    "on-click": "kitty -e btop",
+    "tooltip-format": "RAM: {percentage}%",
+    "cursor": 68
+  },
+  "pulseaudio": {
+    "format": "{icon} {volume}%",
+    "format-muted": "\udb81\udf5f muted",
+    "format-icons": {
+      "default": [
+        "\uf026",
+        "\uf027",
+        "\uf028"
+      ]
+    },
+    "max-volume": 100,
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg toggle volume",
+    "on-click-right": "@STUDIO_APP@/themes/bars/parchment/volume output mute",
+    "on-scroll-up": "@STUDIO_APP@/themes/bars/parchment/volume output up",
+    "on-scroll-down": "@STUDIO_APP@/themes/bars/parchment/volume output down",
+    "cursor": 68
+  },
+  "network": {
+    "format-ethernet": "\udb80\ude00",
+    "format-wifi": "\uf1eb",
+    "format-disconnected": "\udb82\udd2e",
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg toggle network",
+    "tooltip-format-ethernet": "Ethernet\n\u2193 {bandwidthDownBytes} \u2191 {bandwidthUpBytes}",
+    "cursor": 68
+  },
+  "custom/notifications": {
+    "format": "\udb80\udc9a",
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg toggle notifications",
+    "tooltip-format": "Notifications",
+    "cursor": 68
+  },
+  "custom/power": {
+    "format": "\u23fb",
+    "on-click": "kitty --class parchment-power -e @STUDIO_APP@/themes/bars/parchment/actions.py power",
+    "tooltip-format": "Power menu \u2022 confirmation required",
+    "cursor": 68
+  },
+  "custom/ws1": {
+    "exec": "@STUDIO_APP@/themes/bars/parchment/workspace.py 1",
+    "return-type": "json",
+    "interval": 1,
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg workspace 1",
+    "cursor": 68
+  },
+  "custom/ws2": {
+    "exec": "@STUDIO_APP@/themes/bars/parchment/workspace.py 2",
+    "return-type": "json",
+    "interval": 1,
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg workspace 2",
+    "cursor": 68
+  },
+  "custom/ws3": {
+    "exec": "@STUDIO_APP@/themes/bars/parchment/workspace.py 3",
+    "return-type": "json",
+    "interval": 1,
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg workspace 3",
+    "cursor": 68
+  },
+  "custom/ws4": {
+    "exec": "@STUDIO_APP@/themes/bars/parchment/workspace.py 4",
+    "return-type": "json",
+    "interval": 1,
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg workspace 4",
+    "cursor": 68
+  },
+  "custom/ws5": {
+    "exec": "@STUDIO_APP@/themes/bars/parchment/workspace.py 5",
+    "return-type": "json",
+    "interval": 1,
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg workspace 5",
+    "cursor": 68
+  },
+  "custom/ws6": {
+    "exec": "@STUDIO_APP@/themes/bars/parchment/workspace.py 6",
+    "return-type": "json",
+    "interval": 1,
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg workspace 6",
+    "cursor": 68
+  }
+}

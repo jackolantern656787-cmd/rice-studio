@@ -1,0 +1,9 @@
+{
+  "custom/user": {
+    "format": "󰌽",
+    "tooltip-format": "App launcher • right-click settings",
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg toggle launcher",
+    "on-click-right": "@STUDIO_APP@/commands/serpantinum settings",
+    "cursor": 68
+  }
+}

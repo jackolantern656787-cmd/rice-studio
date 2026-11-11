@@ -1,0 +1,25 @@
+* { font-family: 'GoogleSansCode Nerd Font'; font-size: 10px; font-weight: 600;
+ border: none; border-radius: 0; min-height: 0; padding: 0; margin: 0;
+ box-shadow: none; text-shadow: none; }
+window#waybar { background: rgba(49,42,43,0.78); color: #c5c2bd; border-bottom: 1px solid rgba(202,172,150,0.25); }
+#custom-launcher { color: #ece1cd; padding: 0 9px; }
+#custom-ws1, #custom-ws2, #custom-ws3, #custom-ws4 { min-width: 18px; margin: 4px 1px; color: #8b8a8c; }
+#custom-ws1.active, #custom-ws2.active, #custom-ws3.active, #custom-ws4.active { background: #778ba2; color: #202736; border-radius: 2px; }
+#custom-aspect { background: rgba(160,151,139,0.14); padding: 0 7px; margin: 3px 2px; border-radius: 6px; }
+#custom-mic, #custom-clipboard { padding: 0 5px; }
+#clock { padding: 0 10px; }
+#pulseaudio, #network, #disk, #memory, #custom-gpu, #cpu, #idle_inhibitor {
+ background: rgba(19,20,22,0.24); padding: 0 7px; margin: 3px 0; border-radius: 4px; }
+#custom-temperature { background: rgba(19,20,22,0.24); padding: 0 5px 0 0; margin: 3px 0; border-radius: 0 4px 4px 0; }
+#pulseaudio.input.source-muted { color: #b7a366; }
+#idle_inhibitor { color: #c2b773; border: 1px solid rgba(194,183,115,0.25); border-radius: 8px; }
+#custom-power { padding: 0 7px; }
+#custom-launcher, #custom-ws1, #custom-ws2, #custom-ws3, #custom-ws4, #custom-aspect,
+#custom-mic, #custom-clipboard, #clock, #pulseaudio, #network, #disk, #memory,
+#custom-gpu, #cpu, #custom-temperature, #idle_inhibitor, #custom-power { transition: background-color 120ms ease-out, color 120ms ease-out; }
+#custom-launcher:hover, #custom-ws1:hover, #custom-ws2:hover, #custom-ws3:hover, #custom-ws4:hover,
+#custom-aspect:hover, #custom-mic:hover, #custom-clipboard:hover, #clock:hover, #pulseaudio:hover,
+#network:hover, #disk:hover, #memory:hover, #custom-gpu:hover, #cpu:hover, #custom-temperature:hover,
+#idle_inhibitor:hover, #custom-power:hover { background: rgba(185,158,125,0.28); color: #fff0d9; }
+tooltip { background: #302a29; border: 1px solid #6b5c4a; border-radius: 4px; }
+tooltip label { color: #ddd0bc; padding: 6px; }

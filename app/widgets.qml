@@ -5,6 +5,7 @@ import Quickshell.Services.Mpris
 import Quickshell.Wayland
 ShellRoot {
     id: root
+    readonly property string studioHome:Quickshell.env("RICE_STUDIO_HOME") || Quickshell.env("HOME")
     property string selected: ""
     property var layouts: ({})
     property var profiles: ({})
@@ -16,14 +17,14 @@ ShellRoot {
     property date now: new Date()
     readonly property var items: (layouts[selected] || []).filter(w=>w.enabled && w.kind!=="dock")
     readonly property var colors: ((profiles[selected] || {}).theme || {}).colors || ({base:"#191e20",text:"#c4cacc",blue:"#8b9c7b",surface0:"#303737"})
-    FileView { path: Quickshell.env("HOME")+"/.local/state/rice-studio-portable/current";watchChanges:true;onLoaded: root.selected=text().trim();onFileChanged:reload() }
-    FileView { path: Quickshell.env("HOME")+"/.config/rice-studio-portable/widgets.json";watchChanges:true;onLoaded: {try{root.layouts=JSON.parse(text());}catch(e){}} onFileChanged:reload() }
-    FileView { path: Quickshell.env("HOME")+"/.config/rice-studio-portable/profiles.json";watchChanges:true;onLoaded: {try{root.profiles=JSON.parse(text());}catch(e){}} onFileChanged:reload() }
+    FileView { path: root.studioHome+"/.local/state/rice-studio-portable/current";watchChanges:true;onLoaded: root.selected=text().trim();onFileChanged:reload() }
+    FileView { path: root.studioHome+"/.config/rice-studio-portable/widgets.json";watchChanges:true;onLoaded: {try{root.layouts=JSON.parse(text());}catch(e){}} onFileChanged:reload() }
+    FileView { path: root.studioHome+"/.config/rice-studio-portable/profiles.json";watchChanges:true;onLoaded: {try{root.profiles=JSON.parse(text());}catch(e){}} onFileChanged:reload() }
     Timer {interval:1000;running:root.selected!=="main" && root.items.length>0;repeat:true;onTriggered:root.now=new Date()}
     Timer {interval:2000;running:root.items.some(w=>w.kind==="cpu" || w.kind==="ram" || w.kind==="music");repeat:true;triggeredOnStart:true;onTriggered:if(!metrics.running)metrics.running=true}
     Process {
         id: metrics
-        command:["python3",Quickshell.env("HOME")+"/.local/share/rice-studio-portable/metrics.py"]
+        command:["python3",root.studioHome+"/.local/share/rice-studio-portable/metrics.py"]
         stdout:StdioCollector {onStreamFinished:{try {
             let d=JSON.parse(text);d.cpu=root.oldTotal && d.total>root.oldTotal ? Math.max(0,100*(1-(d.idle-root.oldIdle)/(d.total-root.oldTotal))):0;
             root.oldTotal=d.total;root.oldIdle=d.idle;root.stats=d;

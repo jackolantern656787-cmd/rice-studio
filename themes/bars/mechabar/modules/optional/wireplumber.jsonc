@@ -1,0 +1,41 @@
+{
+  "group/wireplumber": {
+    "modules": [
+      "wireplumber#output",
+      "wireplumber#input"
+    ],
+    "orientation": "horizontal",
+    "drawer": {
+      "transition-left-to-right": false
+    }
+  },
+  "wireplumber#output": {
+    "node-type": "Audio/Sink",
+    "format": "{icon} {volume}%",
+    "format-icons": [
+      "󰕿",
+      "󰖀",
+      "󰕾"
+    ],
+    "format-muted": "󰝟 {volume}%",
+    "min-length": 8,
+    "max-length": 8,
+    "on-click": "@STUDIO_APP@/themes/bars/mechabar/scripts/volume output mute",
+    "on-scroll-up": "@STUDIO_APP@/themes/bars/mechabar/scripts/volume output up",
+    "on-scroll-down": "@STUDIO_APP@/themes/bars/mechabar/scripts/volume output down",
+    "tooltip-format": "Device: {node_name}",
+    "cursor": 68
+  },
+  "wireplumber#input": {
+    "node-type": "Audio/Source",
+    "format": "󰍬 {volume}%",
+    "format-muted": "󰍭 {volume}%",
+    "min-length": 8,
+    "max-length": 8,
+    "on-click": "@STUDIO_APP@/themes/bars/mechabar/scripts/volume input mute",
+    "on-scroll-up": "@STUDIO_APP@/themes/bars/mechabar/scripts/volume input up",
+    "on-scroll-down": "@STUDIO_APP@/themes/bars/mechabar/scripts/volume input down",
+    "tooltip-format": "Device: {node_name}",
+    "cursor": 68
+  }
+}

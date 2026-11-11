@@ -4,6 +4,7 @@ from pathlib import Path
 import sys,json,os,time,copy,subprocess,threading,concurrent.futures,contextlib,io,hashlib,shutil,signal
 APP=Path(__file__).resolve().parent
 sys.path.insert(0,str(APP.parent));import core
+import window_mode as modes
 OUT=sys.stdout;LOCK=threading.Lock()
 def send(value):
  try:
@@ -37,7 +38,9 @@ def preview_url(value):
  if not target.exists():
   with Image.open(path) as im:im.convert('RGB').save(target)
  return target.as_uri()
-def window_mode():return 'unchanged'
+def window_mode():
+ try:return modes.status(core.control())
+ except (OSError,RuntimeError,ValueError,subprocess.SubprocessError):return 'unavailable'
 def bootstrap():
  profiles=core.read(core.FILES['profiles']);fallback=core.read(core.CONFIG/'main.json').get('theme',{});widgets=core.read(core.FILES['widgets']);rows=[]
  for key,p in profiles.items():
@@ -103,7 +106,7 @@ def handle(method,p):
   return {'media':media_library()}
  if method=='capture':return capture_media(keycheck(p['key']),bool(p.get('video',False)))
  if method=='health':return {'health':health()}
- if method=='window_mode':raise ValueError('Portable edition preserves your global window mode. Use your existing Hyprland bindings.')
+ if method=='window_mode':return {'windowMode':modes.switch(core.control(),p.get('mode'))}
  if method=='bootstrap':return bootstrap()
  if method=='wallpaper_preview':return {'previewUrl':preview_url(p['path'])}
  if method=='status':return {'windowMode':window_mode(),'pending':core.read(core.STATE/'pending.json'),'current':current()}

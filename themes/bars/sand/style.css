@@ -1,0 +1,26 @@
+* { font-family: 'GoogleSansCode Nerd Font'; font-size: 11px; font-weight: 500;
+ border: none; border-radius: 0; min-height: 0; padding: 0; margin: 0; box-shadow: none; text-shadow: none; }
+window#waybar { background: #0d0d0d; color: #d5c4a1; border-bottom: 1px solid #22221d; }
+.modules-left, .modules-right { margin: 0 8px; }
+#custom-media-title, #clock, #custom-media-progress, #pulseaudio,
+#custom-ticker, #network, #custom-language, #cpu, #memory, #custom-temperature, #custom-power {
+ padding: 0 7px; margin: 2px 0; background: #11110f; border: 1px solid #1b1b17; border-radius: 4px; }
+#custom-media-title { min-width: 74px; }
+#pulseaudio { min-width: 30px; }
+#custom-cava { color: #d5c4a1; padding: 0 8px; min-width: 160px; font-size: 11px; }
+#custom-ws1, #custom-ws2, #custom-ws3, #custom-ws4, #custom-ws5,
+#custom-ws6, #custom-ws7, #custom-ws8, #custom-ws9, #custom-ws10 {
+ min-width: 21px; padding: 0 2px; background: #10100f; margin: 2px 0; }
+#custom-ws1.active, #custom-ws2.active, #custom-ws3.active, #custom-ws4.active, #custom-ws5.active,
+#custom-ws6.active, #custom-ws7.active, #custom-ws8.active, #custom-ws9.active, #custom-ws10.active { color: #f4dfac; background: #26241b; }
+#custom-ticker { min-width: 122px; }
+#custom-ticker.stale, #custom-ticker.unavailable { color: #8d8675; }
+#custom-media-title, #clock, #custom-media-progress, #pulseaudio, #custom-ticker, #network,
+#custom-language, #cpu, #memory, #custom-temperature, #custom-power, #custom-cava,
+#custom-ws1, #custom-ws2, #custom-ws3, #custom-ws4, #custom-ws5, #custom-ws6, #custom-ws7, #custom-ws8, #custom-ws9, #custom-ws10 { transition: background-color 120ms ease-out, color 120ms ease-out; }
+#custom-media-title:hover, #clock:hover, #custom-media-progress:hover, #pulseaudio:hover, #custom-ticker:hover,
+#network:hover, #custom-language:hover, #cpu:hover, #memory:hover, #custom-temperature:hover, #custom-power:hover,
+#custom-cava:hover, #custom-ws1:hover, #custom-ws2:hover, #custom-ws3:hover, #custom-ws4:hover, #custom-ws5:hover,
+#custom-ws6:hover, #custom-ws7:hover, #custom-ws8:hover, #custom-ws9:hover, #custom-ws10:hover { background: #302b20; color: #f4e6c7; }
+tooltip { background: #15140f; border: 1px solid #514a38; border-radius: 4px; }
+tooltip label { color: #d5c4a1; padding: 6px; }

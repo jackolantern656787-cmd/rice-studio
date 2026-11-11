@@ -1,0 +1,53 @@
+{
+  "mode": "dock",
+  "position": "top",
+  "layer": "top",
+  "width": 0,
+  "height": 0,
+  "margin": 0,
+  "spacing": 0,
+  "reload_style_on_change": true,
+  "include": [
+    "@STUDIO_APP@/themes/bars/mechabar/modules/custom/*.jsonc",
+    "@STUDIO_APP@/themes/bars/mechabar/modules/hyprland/*.jsonc",
+    "@STUDIO_APP@/themes/bars/mechabar/modules/*.jsonc"
+  ],
+  "modules-left": [
+    "custom/user",
+    "custom/left#bg_1",
+    "ext/workspaces",
+    "custom/right#bg_1",
+    "hyprland/window"
+  ],
+  "modules-center": [
+    "custom/left#bg_1",
+    "custom/temperature",
+    "custom/left#bg_2",
+    "memory",
+    "custom/left#bg_3",
+    "cpu",
+    "custom/left_inverse#bg_3",
+    "custom/left#accent",
+    "custom/distro",
+    "custom/right#accent",
+    "custom/right_inverse#bg_3",
+    "idle_inhibitor",
+    "clock#time",
+    "custom/right#bg_3",
+    "clock#date",
+    "custom/right#bg_2",
+    "network",
+    "bluetooth",
+    "custom/right#bg_1"
+  ],
+  "modules-right": [
+    "mpris",
+    "custom/left#bg_1",
+    "group/pulseaudio",
+    "tray",
+    "custom/notifications",
+    "custom/right#bg_1",
+    "custom/power"
+  ],
+  "name": "mechabar-managed"
+}

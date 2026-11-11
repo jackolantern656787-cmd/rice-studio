@@ -1,0 +1,8 @@
+{
+  "custom/notifications": {
+    "format": "󰂚",
+    "tooltip-format": "Notifications",
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg toggle notifications",
+    "cursor": 68
+  }
+}

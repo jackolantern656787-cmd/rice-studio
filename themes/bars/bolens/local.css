@@ -1,0 +1,42 @@
+/* Serpantinum adaptation; upstream generated styles remain unchanged. */
+* { font-family: 'GoogleSansCode Nerd Font'; }
+window#waybar label { color: #c8f6ff; }
+#custom-launcher, #custom-power-menu, #network, #cpu, #memory,
+#custom-temperature, #workspaces button {
+  padding: 0 10px;
+  margin: 4px 2px;
+  border: 1px solid rgba(0,229,255,0.25);
+  border-radius: 6px;
+  background: rgba(0,229,255,0.06);
+}
+#network, #cpu, #memory, #custom-temperature, #custom-launcher,
+#custom-power-menu, #workspaces button, #clock, #pulseaudio,
+#bluetooth, #mpris, #idle_inhibitor, #custom-notifications, #tray > widget {
+  transition: background-color 140ms ease-out, border-color 140ms ease-out,
+              box-shadow 140ms ease-out;
+}
+#network:hover, #cpu:hover, #memory:hover, #custom-temperature:hover,
+#custom-launcher:hover, #custom-power-menu:hover, #workspaces button:hover,
+#clock:hover, #bluetooth:hover, #mpris:hover, #idle_inhibitor:hover,
+#custom-notifications:hover, #tray > widget:hover {
+  background-color: rgba(0,229,255,0.18);
+  border-color: #00e5ff;
+  box-shadow: 0 0 7px rgba(0,229,255,0.28);
+}
+#workspaces { background: transparent; }
+#workspaces button.active {
+  background: rgba(255,42,127,0.32);
+  border-color: #ff2a7f;
+  box-shadow: inset 0 -2px #ff2a7f;
+}
+#workspaces button.active:hover { background: rgba(255,42,127,0.48); }
+#custom-power-menu:hover { border-color: #ff2a7f; }
+#pulseaudio-slider { margin: 4px 6px; }
+#pulseaudio-slider trough {
+  min-width: 80px; min-height: 6px;
+  background: rgba(200,246,255,0.20); border-radius: 5px;
+}
+#pulseaudio-slider highlight { background: #2cffb0; border-radius: 5px; }
+#pulseaudio-slider slider {
+  min-width: 10px; min-height: 10px; background: #c8f6ff; border-radius: 5px;
+}

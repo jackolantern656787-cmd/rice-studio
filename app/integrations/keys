@@ -1,0 +1,41 @@
+#!/usr/bin/env python3
+"""Searchable, read-only shortcuts from the current Hyprland Lua config."""
+import os,re,subprocess,sys
+from pathlib import Path
+HOME=Path.home()
+if '--list'not in sys.argv and not sys.stdin.isatty():
+ os.execvp('kitty',['kitty','--class','shortcut-sheet','--title','Shortcut Sheet','-e',str(Path(__file__).resolve())])
+labels={'launcher':'App launcher','clipboard':'Clipboard history','music':'Music controls','system':'System panel','wallpaper':'Wallpaper picker','calendar':'Calendar','network':'Network controls','volume':'Volume controls','settings':'Settings','autohide':'Toggle bar autohide'}
+rows=[]
+for line in Path(__file__).with_name('main-pc-keybinds.lua').read_text().splitlines():
+ if not line.strip().startswith('bind('):continue
+ m=re.search(r'bind\((mainMod\s*\.\.\s*)?"([^"]+)"',line)
+ if not m:continue
+ key=('Super'+m[2]if m[1]else m[2]).replace('SUPER','Super').replace('SHIFT','Shift').replace('CTRL','Ctrl').replace('ALT','Alt').replace('RETURN','Enter').replace('SPACE','Space')
+ cmd=re.search(r'hl\.dsp\.exec_cmd\("([^"\n]+)"',line)
+ if cmd:
+  command=cmd[1]
+  if 'msg toggle 'in command:desc=labels.get(command.rsplit(' ',1)[-1],command)
+  elif 'zunder'in command:desc='Zunder launcher'
+  elif 'rice'in command:desc='Rice Control / theme picker'
+  elif 'keys'in command:desc='This shortcut sheet'
+  elif command=='firefox':desc='Firefox'
+  elif command=='nautilus':desc='File manager'
+  else:desc=command.replace(str(HOME),'~')
+ elif 'exec_cmd(terminal)'in line:desc='Open terminal'
+ elif 'window.close'in line:desc='Close focused window'
+ elif 'window.resize'in line:desc='Resize focused window'
+ elif 'window.move'in line:desc='Move focused window'
+ elif 'window.drag'in line:desc='Drag window with mouse'
+ elif 'window.fullscreen'in line:desc='Toggle maximized window'
+ elif 'window.float'in line:desc='Toggle floating window'
+ elif 'hl.dsp.focus'in line:desc='Focus window in that direction'
+ else:desc='Window action'
+ rows.append((key.strip(),desc))
+rows.extend([('Super + 1…9 / 0','Switch to workspace 1…10'),('Super + Shift + 1…9 / 0','Move window to workspace 1…10'),('rice-studio-bar','Choose a Waybar'),('rice-studio-recover','Restore Main desktop')])
+if '--list'in sys.argv:
+ for key,desc in rows:print(key+'\t'+desc)
+ raise SystemExit
+if not rows:raise SystemExit('No shortcuts found')
+env=os.environ.copy();env['FZF_DEFAULT_OPTS']='';env['FZF_DEFAULT_OPTS_FILE']='/dev/null'
+p=subprocess.run(['fzf','--layout=reverse','--height=90%','--border=sharp','--border-label= SHORTCUT SHEET ','--header=Type to search · Esc / Enter closes · read-only','--delimiter=\t','--with-nth=1,2','--info=inline','--color=fg:#cdd6f4,bg+:#313244,fg+:#f5e0dc,border:#6c7086,label:#e5c890'],input='\n'.join(f'{k:<31}\t{d}'for k,d in rows)+'\n',text=True,stdout=subprocess.PIPE,env=env)

@@ -1,0 +1,78 @@
+{
+  "version": 3,
+  "ref": {
+    "w": 1920,
+    "h": 1080
+  },
+  "panel": {
+    "w": 480,
+    "h": 470,
+    "x": -1,
+    "y": -1,
+    "opacity": 1
+  },
+  "screen": [
+    {
+      "iid": "picker-clock-750-288",
+      "itype": "clock",
+      "ivariant": "lockscreen",
+      "ix": 750,
+      "iy": 288,
+      "iw": 420,
+      "ih": 200,
+      "iopacity": 1,
+      "irotation": 0,
+      "iimage": ""
+    }
+  ],
+  "items": [
+    {
+      "iid": "picker-avatar-150-20",
+      "itype": "avatar",
+      "ivariant": "round",
+      "ix": 150,
+      "iy": 20,
+      "iw": 180,
+      "ih": 180,
+      "iopacity": 1,
+      "irotation": 0,
+      "iimage": ""
+    },
+    {
+      "iid": "picker-user-50-220",
+      "itype": "user",
+      "ivariant": "plain",
+      "ix": 50,
+      "iy": 220,
+      "iw": 380,
+      "ih": 44,
+      "iopacity": 1,
+      "irotation": 0,
+      "iimage": ""
+    },
+    {
+      "iid": "picker-password-50-288",
+      "itype": "password",
+      "ivariant": "glass",
+      "ix": 50,
+      "iy": 288,
+      "iw": 380,
+      "ih": 44,
+      "iopacity": 1,
+      "irotation": 0,
+      "iimage": ""
+    },
+    {
+      "iid": "picker-keyboard-220-365",
+      "itype": "keyboard",
+      "ivariant": "button",
+      "ix": 220,
+      "iy": 365,
+      "iw": 0,
+      "ih": 0,
+      "iopacity": 1,
+      "irotation": 0,
+      "iimage": ""
+    }
+  ]
+}

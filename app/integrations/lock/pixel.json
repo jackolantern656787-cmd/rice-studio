@@ -1,0 +1,42 @@
+{
+  "version": 3,
+  "ref": {
+    "w": 1920,
+    "h": 1080
+  },
+  "panel": {
+    "w": 480,
+    "h": 200,
+    "x": -1,
+    "y": -1,
+    "opacity": 1
+  },
+  "screen": [
+    {
+      "iid": "pixel-theme-clock",
+      "itype": "clock",
+      "ivariant": "lockscreen",
+      "ix": 0,
+      "iy": 145,
+      "iw": 300,
+      "ih": 140,
+      "iopacity": 1,
+      "irotation": 0,
+      "iimage": ""
+    }
+  ],
+  "items": [
+    {
+      "iid": "picker-password-50-90",
+      "itype": "password",
+      "ivariant": "glass",
+      "ix": 50,
+      "iy": 78,
+      "iw": 380,
+      "ih": 44,
+      "iopacity": 1,
+      "irotation": 0,
+      "iimage": ""
+    }
+  ]
+}

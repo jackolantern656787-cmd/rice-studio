@@ -1,0 +1,12 @@
+#!/usr/bin/env python3
+import os
+import sys
+from pathlib import Path
+app = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(app))
+import control
+from kitty_integration import atomic_text
+root = app / 'integrations/phosphor'
+config = control.STATE / 'phosphor-btop.conf'
+atomic_text(config,(root/'btop.conf').read_text().replace('@PHOSPHOR_THEME@',str(root/'phosphor.theme')))
+os.execvp('btop',['btop','--config',str(config),*sys.argv[1:]])

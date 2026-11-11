@@ -38,6 +38,10 @@ Alternatively download the source ZIP through GitHub, extract it, and run the la
 
 The dependency command includes Waybar, Wofi, Cava, Fastfetch, Starship and the fonts used by most themes. Check **Setup** for available commands and the Serpantinum bar hook.
 
+## Illogical Impulse bar switching
+
+Studio closes the Illogical Impulse bar after the selected theme bar appears. Returning to Main or reverting a preview restores the bar if Studio closed it. This uses the shell’s own bar controls, so its launcher, sidebars, notifications and other panels stay available. Older Illogical Impulse configs need to expose `bar close` and `bar open` through Quickshell IPC.
+
 ## Serpantinum bar switching
 
 If Setup shows the bar hook as connected, Studio hides the Serpantinum bar only after the theme bar appears and restores it when you go back to Main.
@@ -63,13 +67,34 @@ Restore the two original files with the same command using `--restore`.
 - Checkpoints, personal Main, and a terminal recovery command.
 - Reduced motion and rectangular controls with eased hover/pressed feedback.
 
-The preset bar opens its included launcher where available. Themes using the original machine's Zunder setup fall back to the recipient's existing Serpantinum launcher or Wofi. Studio applies the original frame colors and corner styles through Hyprland. The recipient's window behavior and keybindings control window placement. Some panel actions depend on local services such as NetworkManager, MPRIS, and Serpantinum. Fuji Dusk uses a system font fallback when Anurati is unavailable.
+The preset bar opens the included native launcher, Wofi style, or bundled Zunder style. Zunder uses a separate local socket and requires x86-64 plus GTK Layer Shell. If it cannot start, Studio uses the available Serpantinum or Wofi launcher. Studio applies the original frame colors and corner styles through Hyprland. Open **Edit → Window Mode** to choose Tiling, Floating or Scrolling for the current Hyprland session. The setting is shared by workspaces and separate from preset appearance. Floating requires the Hyprland Lua API and Scrolling requires the native scrolling layout. Some panel actions depend on local services such as NetworkManager, MPRIS, and Serpantinum. Fuji Dusk uses a system font fallback when Anurati is unavailable.
 
 New Kitty windows opened through your normal shortcut inherit the active preset. The installer appends one managed include to the existing Kitty config. Main clears the include’s contents, and uninstall removes the include block. Studio Terminal is also available for shortcuts that launch a different terminal app:
 
 ```bash
 ~/.local/bin/rice-studio-terminal
 ```
+
+## Main PC setup on another machine
+
+To bring over the main PC’s shortcuts, Hyprland animations and input preferences, LazyVim, Cava, Fastfetch, Starship, Qt settings and the Phosphor GTK theme, run this after the regular installer:
+
+```bash
+~/.local/bin/rice-studio-main-pc --install
+```
+
+This optional step requires a native Hyprland Lua config. It backs up files before writing and replaces overlapping keybindings. Use `--restore` to restore the original files. To enable just the Hyprland shortcuts and visuals, use `rice-studio-keys --install`. Serpantinum-specific lock layouts and shell panels require Serpantinum. They are separate from the Illogical Impulse bar integration.
+
+With those shortcuts, **Alt+Space** opens the themed launcher, **Super+F1** opens the shortcut sheet, **Super+[ / ]** place a terminal left or right, and **Super+Alt+R** returns it to the center. Tideglass opens new Kitty windows floating, centered and horizontal by default. The target is 1200×700, capped to the available screen area. The preset rule requires Hyprland’s Lua API.
+
+```bash
+~/.local/bin/rice-studio-bar                 # choose a standalone Waybar
+~/.local/bin/rice-studio-bar --list          # list the installed bars
+~/.local/bin/rice-studio-terminal --list     # list the standalone Kitty profiles
+~/.local/bin/rice-studio-dashboard tideglass # also phosphor, cyanframe, serashell
+```
+
+The companion bundle is an export of the portable desktop setup. Each machine supplies its own display configuration, installed applications, and Serpantinum or Illogical Impulse session. Personal state, account files, and machine-specific device settings are excluded.
 
 ## Main is yours
 
@@ -102,7 +127,7 @@ Uninstall restores Main first, stops **only this edition's explicitly scoped Qui
 | `~/.local/share/rice-studio-portable/` | Application code |
 | `~/.config/rice-studio-portable/` | Presets, generated wallpapers, terminal palettes |
 | `~/.local/state/rice-studio-portable/` | Main, history, captures, installation manifest |
-| `~/.local/bin/rice-studio*` | Three user-local commands |
+| `~/.local/bin/rice-studio*` | User-local launcher and setup commands |
 | `~/.local/share/applications/rice-studio.desktop` | Launcher entry |
 
 An existing unrelated `rice-studio` command or app directory is a collision: installation stops and preserves it. Do not run this installer on top of the author's personal edition. The installer leaves Hyprland, shell startup files, SSH, browser, and authentication files alone. The Kitty integration adds a marked include block to `~/.config/kitty/kitty.conf`.
@@ -120,4 +145,4 @@ The optional GitHub Actions configuration is stored as `docs/github-actions-temp
 
 Architecture and limits: [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
 
-Built with [Quickshell](https://quickshell.org/docs/v0.3.0/guide/install-setup/) and the [Hyprland configuration API](https://wiki.hypr.land/configuring/core/config-options/). Project code is MIT. The private theme bundle also contains existing theme art and upstream components. See [theme credits](docs/THEMES.md) for attribution and bundled licenses.
+Built with [Quickshell](https://quickshell.org/docs/v0.3.0/guide/install-setup/) and the [Hyprland configuration API](https://wiki.hypr.land/configuring/core/config-options/). Project code is MIT. The theme bundle also contains existing theme art and upstream components. See [theme credits](docs/THEMES.md) for attribution and bundled licenses.

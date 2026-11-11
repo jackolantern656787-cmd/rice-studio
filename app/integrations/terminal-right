@@ -1,0 +1,81 @@
+#!/usr/bin/env python3
+"""Place the focused Kitty terminal in its monitor's right half."""
+import json,subprocess,re,sys
+from pathlib import Path
+
+def query(name):
+ return json.loads(subprocess.check_output(['hyprctl',name,'-j'],text=True))
+def geometry(m,side="right"):
+ w,h=m['width'],m['height']
+ if m.get('transform',0)%2:w,h=h,w
+ scale=m.get('scale',1);w=round(w/scale);h=round(h/scale)
+ left,top,right,bottom=m.get('reserved',[0,0,0,0])
+ usable=w-left-right;gap=8
+ target_w=max(100,round(usable/2-gap*1.5))
+ target_h=max(100,h-top-bottom-gap*2)
+ return (round(m['x']+left+(gap if side=='left' else usable/2+gap/2)),
+         round(m['y']+top+(h-top-bottom-target_h)/2),target_w,target_h)
+
+def above_spectrum(rect, c, clients):
+ # Reserve the live dashboard spectrum's actual position on this workspace.
+ x,y,w,h=rect
+ for other in clients:
+  if other.get('address')==c.get('address') or other.get('class')!='tideglass-dashboard-spectrum':continue
+  if not other.get('mapped',True) or other.get('hidden'):continue
+  if other.get('monitor')!=c.get('monitor'):continue
+  if not other.get('pinned') and other.get('workspace',{}).get('id')!=c.get('workspace',{}).get('id'):continue
+  ox,oy=other.get('at',[0,0]);ow,oh=other.get('size',[0,0])
+  if ow>0 and oh>0 and x<ox+ow and x+w>ox and y<oy<y+h:
+   h=min(h,max(100,oy-y-8))
+ return x,y,w,h
+
+def tiled_peers(c,clients):
+ return [o for o in clients if o['address']!=c['address'] and o.get('mapped',True) and not o.get('hidden') and not o.get('floating') and not o.get('pinned') and o.get('monitor')==c.get('monitor') and o.get('workspace',{}).get('id')==c.get('workspace',{}).get('id')]
+
+def main():
+ c=query('activewindow')
+ if not c:return
+ cls=c.get('initialClass',c.get('class','')).lower()
+ if cls not in ("kitty","tideglass-demo") and not cls.startswith("tideglass-dashboard-"):return
+ if c.get('fullscreen') or c.get('pinned'):return
+ address=c['address']
+ if not re.fullmatch('0x[0-9a-fA-F]+',address):return
+ m=next((m for m in query('monitors') if m['id']==c['monitor']),None)
+ if not m:return
+ side="center" if sys.argv[1:]==["center"] else "left" if sys.argv[1:]==["left"] else "right"
+ selector=json.dumps('address:'+address)
+ try:mode=json.loads((Path.home()/'.local/state/rice-studio-portable/window-mode.json').read_text()).get('mode')
+ except (OSError,ValueError):mode='tiling'
+ clients=query('clients')
+ peers=tiled_peers(c,clients)
+ if side!='center' and mode!='floating' and peers:
+  # A side placement among other windows belongs in the native layout.
+  # Never float over the other columns: they must reserve room for this one.
+  code=f'hl.dispatch(hl.dsp.window.float({{window={selector},action="unset"}}));' if c.get('floating') else ''
+  if mode=='scrolling':code+='hl.dispatch(hl.dsp.layout("colresize 0.5"));'
+  if code:subprocess.run(['hyprctl','eval',code],check=True,timeout=8)
+  if mode=='scrolling':
+   group=[o for o in query('clients') if (o['address']==address or o['address'] in {v['address'] for v in peers}) and not o.get('floating')]
+   group.sort(key=lambda o:o.get('at',[0,0])[0])
+   index=next((i for i,o in enumerate(group) if o['address']==address),0)
+   count=index if side=='left' else len(group)-1-index
+   direction='l' if side=='left' else 'r'
+   code=''.join(f'hl.dispatch(hl.dsp.layout("swapcol {direction}"));' for _ in range(max(0,count)))
+   code+='hl.dispatch(hl.dsp.layout("fit visible"))'
+   subprocess.run(['hyprctl','eval',code],check=True,timeout=8)
+  return
+ x,y,w,h=above_spectrum(geometry(m,side),c,clients)
+ if side=='center':
+  mw,mh=m['width'],m['height']
+  if m.get('transform',0)%2:mw,mh=mh,mw
+  scale=m.get('scale',1);mw=round(mw/scale);mh=round(mh/scale)
+  left,top,right,bottom=m.get('reserved',[0,0,0,0])
+  w=min(1200,max(100,mw-left-right-16));h=min(700,max(100,mh-top-bottom-16))
+  x=round(m['x']+left+(mw-left-right-w)/2)
+  y=round(m['y']+top+(mh-top-bottom-h)/2)
+ code=('' if c.get("floating") else f'hl.dispatch(hl.dsp.window.float({{window={selector},action="set"}}));')
+ code+=(
+       f'hl.dispatch(hl.dsp.window.resize({{window={selector},x={w},y={h},relative=false}}));'
+       f'hl.dispatch(hl.dsp.window.move({{window={selector},x={x},y={y},relative=false}}))')
+ subprocess.run(['hyprctl','eval',code],check=True,timeout=8)
+if __name__=='__main__':main()

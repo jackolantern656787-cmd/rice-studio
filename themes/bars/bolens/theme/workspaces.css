@@ -1,0 +1,10 @@
+/* Workspace strip chrome — slot layout from workspaces.generated.css */
+
+#desk-hypr {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    margin: 4px 2px;
+    /* Let slots size to their glyphs — do not force a fixed strip width */
+    min-width: 0;
+}

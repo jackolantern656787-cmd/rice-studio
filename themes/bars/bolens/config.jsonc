@@ -1,0 +1,192 @@
+{
+  "name": "bolens-managed",
+  "layer": "top",
+  "position": "top",
+  "height": 40,
+  "spacing": 4,
+  "reload_style_on_change": true,
+  "modules-left": [
+    "group/desk-controls",
+    "group/devices",
+    "group/media",
+    "group/net"
+  ],
+  "modules-center": [
+    "ext/workspaces"
+  ],
+  "modules-right": [
+    "group/hardware",
+    "clock",
+    "tray",
+    "custom/power-menu"
+  ],
+  "group/desk-controls": {
+    "orientation": "horizontal",
+    "modules": [
+      "custom/launcher",
+      "custom/notifications",
+      "idle_inhibitor"
+    ]
+  },
+  "group/devices": {
+    "orientation": "horizontal",
+    "modules": [
+      "bluetooth"
+    ]
+  },
+  "group/media": {
+    "orientation": "horizontal",
+    "modules": [
+      "pulseaudio",
+      "mpris",
+      "pulseaudio/slider",
+      "pulseaudio#input"
+    ],
+    "drawer": {
+      "transition-duration": 250,
+      "transition-left-to-right": true
+    }
+  },
+  "group/net": {
+    "orientation": "horizontal",
+    "modules": [
+      "network"
+    ]
+  },
+  "group/hardware": {
+    "orientation": "horizontal",
+    "modules": [
+      "cpu",
+      "memory",
+      "custom/temperature"
+    ]
+  },
+  "ext/workspaces": {
+    "format": "{name}",
+    "on-click": "activate",
+    "sort-by-name": true,
+    "all-outputs": true,
+    "ignore-hidden": false,
+    "cursor": 68
+  },
+  "custom/launcher": {
+    "format": "\uf303",
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg toggle launcher",
+    "on-click-right": "@STUDIO_APP@/commands/serpantinum settings",
+    "tooltip-format": "Launcher \u2022 right-click: settings",
+    "cursor": 68
+  },
+  "custom/notifications": {
+    "format": "\udb80\udc9a",
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg toggle notifications",
+    "on-click-right": "@STUDIO_APP@/commands/serpantinum settings",
+    "tooltip-format": "Notifications \u2022 right-click: settings",
+    "cursor": 68
+  },
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+      "activated": "\udb80\udd76",
+      "deactivated": "\udb83\udfaa"
+    },
+    "tooltip-format-activated": "Keep awake: on",
+    "tooltip-format-deactivated": "Keep awake: off",
+    "cursor": 68
+  },
+  "bluetooth": {
+    "format": "\uf293",
+    "format-disabled": "\udb80\udcb2",
+    "format-connected": "\udb80\udcb1",
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg open network bluetooth",
+    "tooltip-format": "Bluetooth: {status}",
+    "cursor": 68
+  },
+  "mpris": {
+    "format": "\uf001 {title}",
+    "format-paused": "\uf04c {title}",
+    "max-length": 25,
+    "tooltip-format": "{artist} \u2014 {title}\nHover to reveal audio controls",
+    "cursor": 68
+  },
+  "pulseaudio": {
+    "format": "{icon} {volume}%",
+    "format-muted": "\udb81\udf5f muted",
+    "format-icons": {
+      "default": [
+        "\uf026",
+        "\uf027",
+        "\uf028"
+      ]
+    },
+    "max-volume": 100,
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg toggle volume",
+    "on-click-right": "@STUDIO_APP@/themes/bars/bolens/volume output mute",
+    "on-scroll-up": "@STUDIO_APP@/themes/bars/bolens/volume output up",
+    "on-scroll-down": "@STUDIO_APP@/themes/bars/bolens/volume output down",
+    "cursor": 68
+  },
+  "pulseaudio#input": {
+    "format": "{format_source}",
+    "format-source": "\uf130 {volume}%",
+    "format-source-muted": "\uf131 muted",
+    "max-volume": 100,
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg toggle volume",
+    "on-click-right": "@STUDIO_APP@/themes/bars/bolens/volume input mute",
+    "on-scroll-up": "@STUDIO_APP@/themes/bars/bolens/volume input up",
+    "on-scroll-down": "@STUDIO_APP@/themes/bars/bolens/volume input down",
+    "cursor": 68
+  },
+  "pulseaudio/slider": {
+    "min": 0,
+    "max": 100,
+    "orientation": "horizontal",
+    "cursor": 68
+  },
+  "network": {
+    "format-wifi": "\uf1eb {signalStrength}%",
+    "format-ethernet": "\udb80\ude00",
+    "format-disconnected": "\udb82\udd2e",
+    "tooltip-format-wifi": "{essid}\n\u2193 {bandwidthDownBytes} \u2191 {bandwidthUpBytes}",
+    "tooltip-format-ethernet": "\u2193 {bandwidthDownBytes} \u2191 {bandwidthUpBytes}",
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg toggle network",
+    "on-click-right": "@STUDIO_APP@/commands/serpantinum msg toggle network",
+    "cursor": 68
+  },
+  "cpu": {
+    "format": "\uf2db {usage}%",
+    "interval": 3,
+    "on-click": "kitty -e btop",
+    "on-click-right": "kitty -e nvtop",
+    "cursor": 68
+  },
+  "memory": {
+    "format": "\uefc5 {used:.1f}G",
+    "interval": 3,
+    "on-click": "kitty -e btop",
+    "cursor": 68
+  },
+  "custom/temperature": {
+    "exec": "@STUDIO_APP@/themes/bars/bolens/actions.py temperature",
+    "return-type": "json",
+    "interval": 5,
+    "on-click": "kitty -e btop",
+    "cursor": 68
+  },
+  "clock": {
+    "format": "{:%H:%M  %a %d}",
+    "tooltip-format": "<tt>{calendar}</tt>",
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg toggle calendar",
+    "cursor": 68
+  },
+  "tray": {
+    "icon-size": 16,
+    "spacing": 8,
+    "cursor": 68
+  },
+  "custom/power-menu": {
+    "format": "\u23fb",
+    "on-click": "kitty --class bolens-power -e @STUDIO_APP@/themes/bars/bolens/actions.py power",
+    "tooltip-format": "Power menu \u2022 confirmation required",
+    "cursor": 68
+  }
+}

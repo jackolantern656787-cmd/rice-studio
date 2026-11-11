@@ -9,7 +9,14 @@ def uninstall(home,restore=True):
  if restore:
   sys.path.insert(0,str(app));import core
   core.finish_preview(False)
-  core.control().apply_desktop('main')
+  adapter=core.control()
+  adapter.apply_desktop('main')
+  from window_mode import restore as restore_window_mode
+  restore_window_mode(adapter)
+  from launcher import stop
+  from main_pc import apply as apply_main_pc
+  stop(app)
+  apply_main_pc(False)
   if (state/'serpantinum-bar-hook.json').exists():
    from serpantinum_hook import restore_hook
    restore_hook()

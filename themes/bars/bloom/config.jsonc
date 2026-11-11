@@ -1,0 +1,368 @@
+{
+  "name": "bloom-managed",
+  "layer": "top",
+  "position": "top",
+  "height": 36,
+  "margin-top": 6,
+  "margin-left": 10,
+  "margin-right": 10,
+  "spacing": 6,
+  "reload_style_on_change": true,
+  "modules-left": [
+    "group/bloom-launcher",
+    "group/bloom-workspaces"
+  ],
+  "modules-center": [
+    "group/bloom-clock"
+  ],
+  "modules-right": [
+    "group/bloom-media",
+    "group/bloom-system",
+    "group/bloom-connections",
+    "group/bloom-sound",
+    "group/bloom-session"
+  ],
+  "group/bloom-launcher": {
+    "orientation": "horizontal",
+    "modules": [
+      "custom/cat",
+      "custom/terminal",
+      "custom/files",
+      "custom/browser",
+      "custom/rice"
+    ],
+    "drawer": {
+      "transition-duration": 280,
+      "transition-left-to-right": true,
+      "reveal-delay": 120,
+      "children-class": "bloom-revealed"
+    }
+  },
+  "custom/cat": {
+    "format": "\udb80\udd1b",
+    "on-click": "@STUDIO_APP@/commands/rice-launch",
+    "tooltip-format": "Zunder \u2022 hover for apps",
+    "cursor": 68
+  },
+  "custom/terminal": {
+    "format": "\uf489",
+    "on-click": "kitty",
+    "tooltip-format": "Terminal",
+    "cursor": 68
+  },
+  "custom/files": {
+    "format": "\udb80\ude4b",
+    "on-click": "nautilus",
+    "tooltip-format": "Files",
+    "cursor": 68
+  },
+  "custom/browser": {
+    "format": "\udb81\udd9f",
+    "on-click": "firefox",
+    "tooltip-format": "Firefox",
+    "cursor": 68
+  },
+  "custom/rice": {
+    "format": "\udb80\udfd8",
+    "on-click": "@STUDIO_APP@/commands/studio",
+    "tooltip-format": "Rice Control",
+    "cursor": 68
+  },
+  "group/bloom-workspaces": {
+    "orientation": "horizontal",
+    "modules": [
+      "custom/ws1",
+      "custom/ws2",
+      "custom/ws3",
+      "custom/ws4",
+      "custom/ws5"
+    ]
+  },
+  "custom/ws1": {
+    "exec": "@STUDIO_APP@/themes/bars/bloom/workspace.py 1",
+    "return-type": "json",
+    "interval": 1,
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg workspace 1",
+    "cursor": 68
+  },
+  "custom/ws2": {
+    "exec": "@STUDIO_APP@/themes/bars/bloom/workspace.py 2",
+    "return-type": "json",
+    "interval": 1,
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg workspace 2",
+    "cursor": 68
+  },
+  "custom/ws3": {
+    "exec": "@STUDIO_APP@/themes/bars/bloom/workspace.py 3",
+    "return-type": "json",
+    "interval": 1,
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg workspace 3",
+    "cursor": 68
+  },
+  "custom/ws4": {
+    "exec": "@STUDIO_APP@/themes/bars/bloom/workspace.py 4",
+    "return-type": "json",
+    "interval": 1,
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg workspace 4",
+    "cursor": 68
+  },
+  "custom/ws5": {
+    "exec": "@STUDIO_APP@/themes/bars/bloom/workspace.py 5",
+    "return-type": "json",
+    "interval": 1,
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg workspace 5",
+    "cursor": 68
+  },
+  "group/bloom-clock": {
+    "orientation": "horizontal",
+    "modules": [
+      "clock#compact",
+      "clock#date"
+    ],
+    "drawer": {
+      "transition-duration": 280,
+      "transition-left-to-right": true,
+      "reveal-delay": 120,
+      "children-class": "bloom-revealed"
+    }
+  },
+  "clock#compact": {
+    "format": "\udb82\udd54  {:%H:%M}",
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg toggle calendar",
+    "tooltip-format": "Hover for date \u2022 click: calendar",
+    "cursor": 68
+  },
+  "clock#date": {
+    "format": "{:%a, %d %b}",
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg toggle calendar",
+    "tooltip-format": "<tt>{calendar}</tt>",
+    "cursor": 68
+  },
+  "group/bloom-media": {
+    "orientation": "horizontal",
+    "modules": [
+      "custom/music",
+      "custom/previous",
+      "mpris",
+      "custom/next",
+      "custom/cava"
+    ],
+    "drawer": {
+      "transition-duration": 280,
+      "transition-left-to-right": true,
+      "reveal-delay": 120,
+      "children-class": "bloom-revealed"
+    }
+  },
+  "custom/music": {
+    "format": "\udb80\udf86",
+    "on-click": "playerctl play-pause",
+    "tooltip-format": "Media \u2022 click: play/pause \u2022 hover for controls",
+    "cursor": 68
+  },
+  "custom/previous": {
+    "format": "\udb81\udcae",
+    "on-click": "playerctl previous",
+    "tooltip-format": "Previous track",
+    "cursor": 68
+  },
+  "custom/next": {
+    "format": "\udb81\udcad",
+    "on-click": "playerctl next",
+    "tooltip-format": "Next track",
+    "cursor": 68
+  },
+  "mpris": {
+    "format": "{title}",
+    "format-paused": "\uf04c {title}",
+    "max-length": 22,
+    "tooltip-format": "{artist} \u2014 {title}\nLeft: play/pause \u2022 middle: previous \u2022 right: next",
+    "cursor": 68
+  },
+  "custom/cava": {
+    "exec": "@STUDIO_APP@/themes/bars/bloom/visualizer.py",
+    "return-type": "json",
+    "restart-interval": 3,
+    "cursor": 68
+  },
+  "group/bloom-system": {
+    "orientation": "horizontal",
+    "modules": [
+      "cpu",
+      "memory",
+      "custom/temperature",
+      "custom/gpu"
+    ],
+    "drawer": {
+      "transition-duration": 280,
+      "transition-left-to-right": true,
+      "reveal-delay": 120,
+      "children-class": "bloom-revealed"
+    }
+  },
+  "cpu": {
+    "format": "\uf4bc",
+    "interval": 3,
+    "tooltip-format": "CPU: {usage}% \u2022 hover for more stats",
+    "on-click": "kitty -e btop",
+    "cursor": 68
+  },
+  "memory": {
+    "format": "\udb80\udf5b {used:.1f}G",
+    "interval": 4,
+    "tooltip-format": "RAM: {percentage}%",
+    "on-click": "kitty -e btop",
+    "cursor": 68
+  },
+  "custom/temperature": {
+    "exec": "@STUDIO_APP@/themes/bars/bloom/actions.py temperature",
+    "return-type": "json",
+    "interval": 5,
+    "on-click": "kitty -e btop",
+    "cursor": 68
+  },
+  "custom/gpu": {
+    "exec": "@STUDIO_APP@/themes/bars/bloom/gpu.py",
+    "return-type": "json",
+    "interval": 5,
+    "format": "\udb82\udcae {}",
+    "on-click": "kitty -e nvtop",
+    "cursor": 68
+  },
+  "group/bloom-connections": {
+    "orientation": "horizontal",
+    "modules": [
+      "network",
+      "custom/network-title",
+      "bluetooth"
+    ],
+    "drawer": {
+      "transition-duration": 280,
+      "transition-left-to-right": true,
+      "reveal-delay": 120,
+      "children-class": "bloom-revealed"
+    }
+  },
+  "network": {
+    "format-wifi": "\uf1eb",
+    "format-ethernet": "\udb80\ude00",
+    "format-disconnected": "\udb82\udd2e",
+    "tooltip-format-wifi": "{essid} ({signalStrength}%)",
+    "tooltip-format-ethernet": "Ethernet \u2022 hover for controls",
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg toggle network",
+    "cursor": 68
+  },
+  "custom/network-title": {
+    "format": "Connections",
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg toggle network",
+    "tooltip-format": "Network panel",
+    "cursor": 68
+  },
+  "bluetooth": {
+    "format": "\udb80\udcaf",
+    "format-connected": "\udb80\udcb1",
+    "format-disabled": "\udb80\udcb2",
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg open network bluetooth",
+    "tooltip-format": "Bluetooth: {status}",
+    "cursor": 68
+  },
+  "group/bloom-sound": {
+    "orientation": "horizontal",
+    "modules": [
+      "pulseaudio",
+      "pulseaudio/slider",
+      "pulseaudio#microphone"
+    ],
+    "drawer": {
+      "transition-duration": 280,
+      "transition-left-to-right": true,
+      "reveal-delay": 120,
+      "children-class": "bloom-revealed"
+    }
+  },
+  "pulseaudio": {
+    "format": "{icon} {volume}%",
+    "format-muted": "\udb81\udf5f muted",
+    "format-icons": {
+      "default": [
+        "\uf026",
+        "\uf027",
+        "\uf028"
+      ]
+    },
+    "max-volume": 100,
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg toggle volume",
+    "tooltip-format": "Hover for slider and microphone \u2022 right-click: mute",
+    "on-click-right": "@STUDIO_APP@/themes/bars/bloom/volume output mute",
+    "on-scroll-up": "@STUDIO_APP@/themes/bars/bloom/volume output up",
+    "on-scroll-down": "@STUDIO_APP@/themes/bars/bloom/volume output down",
+    "cursor": 68
+  },
+  "pulseaudio/slider": {
+    "min": 0,
+    "max": 100,
+    "orientation": "horizontal",
+    "cursor": 68
+  },
+  "pulseaudio#microphone": {
+    "format": "{format_source}",
+    "format-source": "\uf130",
+    "format-source-muted": "\uf131",
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg toggle volume",
+    "tooltip-format": "Microphone controls",
+    "on-click-right": "@STUDIO_APP@/themes/bars/bloom/volume input mute",
+    "on-scroll-up": "@STUDIO_APP@/themes/bars/bloom/volume input up",
+    "on-scroll-down": "@STUDIO_APP@/themes/bars/bloom/volume input down",
+    "max-volume": 100,
+    "cursor": 68
+  },
+  "group/bloom-session": {
+    "orientation": "horizontal",
+    "modules": [
+      "custom/session",
+      "custom/notifications",
+      "idle_inhibitor",
+      "tray",
+      "custom/power"
+    ],
+    "drawer": {
+      "transition-duration": 280,
+      "transition-left-to-right": true,
+      "reveal-delay": 120,
+      "children-class": "bloom-revealed"
+    }
+  },
+  "custom/session": {
+    "format": "\udb80\udf5c",
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg toggle system",
+    "tooltip-format": "Session \u2022 hover for controls",
+    "cursor": 68
+  },
+  "custom/notifications": {
+    "format": "\udb80\udc9a",
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg toggle notifications",
+    "tooltip-format": "Notifications",
+    "cursor": 68
+  },
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+      "activated": "\udb80\udd76",
+      "deactivated": "\udb83\udfaa"
+    },
+    "tooltip-format-activated": "Keep awake: on",
+    "tooltip-format-deactivated": "Keep awake: off",
+    "cursor": 68
+  },
+  "tray": {
+    "icon-size": 15,
+    "spacing": 6,
+    "cursor": 68
+  },
+  "custom/power": {
+    "format": "\u23fb",
+    "on-click": "kitty --class bloom-power -e @STUDIO_APP@/themes/bars/bloom/actions.py power",
+    "tooltip-format": "Power menu \u2022 confirmation required",
+    "cursor": 68
+  }
+}

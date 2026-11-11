@@ -44,6 +44,7 @@ def install(home,check=False,check_deps=True):
      profiles[key]=item
   generated={'profiles.json':profiles,'widgets.json':{},'main.json':{'theme':profiles['main']['theme']}}
   for name,value in generated.items():(stage/'config'/name).write_text(json.dumps(value,indent=2)+'\n')
+  shutil.copytree(ROOT/'app/integrations/lock',stage/'config/lock-layouts')
   for source in (stage/'app').rglob('*'):
    if source.is_file():written.append((source,app/source.relative_to(stage/'app')))
   for source in (stage/'config').rglob('*'):
@@ -79,12 +80,13 @@ def install(home,check=False,check_deps=True):
    files[relative]=hashlib.sha256(dest.read_bytes()).hexdigest()
   current=state/'current'
   if not current.exists():current.write_text('main\n')
+  if not (state/'bar-override.json').exists():control.atomic(state/'bar-override.json',{})
   kitty=load(ROOT/'app/kitty_integration.py','install_kitty')
   kitty_path=kitty.kitty_config(home)
   kitty_previous=(kitty_path,kitty_path.read_text() if kitty_path.exists() else None)
   kitty.sync(current.read_text().strip(),profiles,config,state,app)
   kitty.install(home)
-  control.atomic(manifest,{'schema':1,'version':'0.3.1-beta.1','files':files})
+  control.atomic(manifest,{'schema':1,'version':'0.3.2-beta.1','files':files})
  except Exception:
   if kitty_previous:
    path,previous=kitty_previous

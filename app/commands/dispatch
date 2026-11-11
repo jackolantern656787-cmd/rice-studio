@@ -16,11 +16,35 @@ profiles = json.loads((config / 'profiles.json').read_text())
 key = (state / 'current').read_text().strip()
 rice = profiles.get(key, {}).get('rice', key)
 action, *args = sys.argv[1:]
+sys.path.insert(0,str(app))
 
 
 def serp(*arguments):
     binary = shutil.which('serpantinum') or home / '.local/bin/serpantinum'
-    return subprocess.call([str(binary), *arguments])
+    if Path(binary).is_file():
+        return subprocess.call([str(binary), *arguments])
+    if arguments == ('lock',):
+        return subprocess.call(['loginctl','lock-session'])
+    if arguments[:1] == ('volume',):
+        options = {
+            'lower': ['set-volume','@DEFAULT_AUDIO_SINK@','5%-'],
+            'raise': ['set-volume','@DEFAULT_AUDIO_SINK@','5%+'],
+            'mute-toggle': ['set-mute','@DEFAULT_AUDIO_SINK@','toggle'],
+            'mic-toggle': ['set-mute','@DEFAULT_AUDIO_SOURCE@','toggle'],
+        }
+        if len(arguments)>1 and arguments[1] in options:
+            return subprocess.call(['wpctl',*options[arguments[1]]])
+    if arguments[:1] == ('brightness',):
+        return subprocess.call(['brightnessctl','set','5%-' if arguments[1]=='lower' else '+5%'])
+    if arguments[:1] == ('screenshot',):
+        return subprocess.call(['hyprshot','-m','output' if '--full' in arguments else 'region'])
+    if arguments[:2] == ('msg','toggle') and arguments[-1] == 'volume':
+        return subprocess.call(['pavucontrol'])
+    if arguments[:2] == ('msg','toggle') and arguments[-1] == 'network':
+        return subprocess.call(['nm-connection-editor'])
+    if arguments[:2] == ('msg','toggle') and arguments[-1] in {'launcher','clipboard','music','system','wallpaper','calendar','settings'}:
+        return subprocess.call([str(home / '.local/bin/rice-studio')])
+    return 1
 
 
 def ipc(theme, target, method='toggle', *arguments):
@@ -37,19 +61,31 @@ def launch():
     if (directory / 'wofi.css').is_file():
         return subprocess.call(['wofi', '--show', 'drun', '--conf', str(directory / 'wofi.conf'),
                                 '--style', str(directory / 'wofi.css')])
+    from launcher import launch as launch_zunder
+    selected = profiles.get(key, {})
+    theme = selected.get('launcher_theme', 'graphite')
+    if theme in {'saved Main','original'}:
+        theme = 'graphite'
+    if launch_zunder(app,state,theme,selected.get('launcher_accent') or '#bca6da'):
+        return 0
     if shutil.which('serpantinum') or (home / '.local/bin/serpantinum').is_file():
         return serp('msg', 'toggle', 'launcher')
     return subprocess.call(['wofi', '--show', 'drun'])
 
 
-if action in {'studio', 'bar-switch'}:
+if action == 'bar-switch':
+    command = [str(home / '.local/bin/rice-studio-bar'), *args]
+    result = subprocess.call(command if args else ['kitty','--class','rice-studio-bar-picker',*command])
+elif action == 'studio':
     result = subprocess.call([str(home / '.local/bin/rice-studio')])
 elif action == 'rice-launch':
     result = launch()
 elif action == 'serpantinum':
     result = serp(*args)
 elif action in {'rice-panel', 'rice-popup'} and args:
-    if rice == 'tideglass' and args[0] in {'volume', 'network'}:
+    if args[0] == 'launcher':
+        result = launch()
+    elif rice == 'tideglass' and args[0] in {'volume', 'network'}:
         result = ipc(rice, args[0])
     elif rice == 'serashell' and args[0] in {'volume', 'network'}:
         result = ipc(rice, 'controlCenter')
@@ -89,7 +125,7 @@ elif action == 'honeyveil' and args and args[0] in {'help', 'info', 'cava'}:
     }
     result = subprocess.call(['kitty', '--config', str(terminal / 'honeyveil.conf'), *commands[args[0]]])
 elif action == 'phosphor-audio':
-    result = subprocess.call(['pavucontrol'])
+    result = subprocess.call(['pavucontrol'],env=dict(os.environ,GTK_THEME='Phosphor'))
 elif action in {'honeyveil', 'teigu', 'tideglass', 'viegphunt', 'cyanframe'} and args:
     if args[0] == 'launcher':
         result = launch()

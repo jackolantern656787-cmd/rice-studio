@@ -1,0 +1,78 @@
+/* Parchment: one filled surface, square geometry and restrained ink. */
+@define-color paper #d9c6a3;
+@define-color ink #352f27;
+@define-color muted #77654c;
+@define-color hover #cbb58e;
+* { font-family: 'JetBrainsMono Nerd Font Mono'; font-size: 11px; font-weight: 500;
+ border: none; border-radius: 0; min-height: 0; padding: 0; margin: 0; box-shadow: none; text-shadow: none; }
+window#waybar { background: @paper; color: @ink; border-top: 1px solid #eddec3; border-bottom: 2px solid #9c8868; }
+#clock.day { color: @muted; font-size: 10px; padding: 0 10px 0 16px; }
+#clock.time { font-size: 13px; font-weight: 700; padding: 0 10px 0 2px; min-width: 48px; }
+#custom-divider { color: #ac9673; padding: 0 10px; }
+#mpris { color: #65543d; padding: 0 10px; font-size: 10px; }
+#custom-ws1, #custom-ws2, #custom-ws3, #custom-ws4, #custom-ws5, #custom-ws6 {
+ min-width: 28px; padding: 0 2px; margin: 0 1px; color: #827055;
+ transition: background-color 160ms ease-out, color 160ms ease-out, box-shadow 160ms ease-out; }
+#custom-ws1.active, #custom-ws2.active, #custom-ws3.active, #custom-ws4.active, #custom-ws5.active, #custom-ws6.active {
+ background: #5a4b36; color: #f4e7cd; box-shadow: inset 0 -2px #352f27; }
+#custom-arch { min-width: 48px; margin: 0 9px; background: #352f27; color: #ead8b5; font-size: 21px; }
+#cpu, #memory { color: #65543d; font-size: 10px; padding: 0 9px; }
+#pulseaudio { padding: 0 11px; min-width: 58px; }
+#network, #custom-notifications { padding: 0 10px; font-size: 14px; }
+#custom-power { color: #765244; border-left: 1px solid #b7a17e; padding: 0 14px; font-size: 15px; margin-left: 5px; }
+#clock, #mpris, #custom-arch, #cpu, #memory, #pulseaudio, #network, #custom-notifications, #custom-power {
+ transition: background-color 160ms ease-out, color 160ms ease-out; }
+#clock:hover, #mpris:hover, #cpu:hover, #memory:hover, #pulseaudio:hover,
+#network:hover, #custom-notifications:hover { background: @hover; color: #241e17; }
+#custom-ws1:hover, #custom-ws2:hover, #custom-ws3:hover, #custom-ws4:hover, #custom-ws5:hover, #custom-ws6:hover { background: #bfa57b; color: #241e17; }
+#custom-arch:hover { background: #5a4b36; color: #fff0ce; }
+#custom-power:hover { background: #bda17e; color: #633e34; }
+#pulseaudio.muted, #network.disconnected { color: #8d6958; }
+tooltip { background: #352f27; border: 1px solid #7b674b; border-radius: 0; }
+tooltip label { color: #ead8b5; padding: 7px 9px; }
+
+/* Neutral dusk surface with beige edges; no purple or solid tan fill. */
+@define-color paper #252a2b;
+@define-color ink #dce1df;
+@define-color muted #a7b1ad;
+@define-color hover #343c3b;
+window#waybar {
+ background: #252a2b;
+ color: #dce1df;
+ border-top: 1px solid #d6c3a1;
+ border-bottom: 1px solid #d6c3a1;
+}
+#clock.day, #mpris, #cpu, #memory { color: #a7b1ad; }
+#clock.time { color: #e2e7e3; }
+#custom-divider { color: #746d60; }
+#custom-ws1, #custom-ws2, #custom-ws3, #custom-ws4, #custom-ws5, #custom-ws6 { color: #8f9c95; }
+#custom-ws1.active, #custom-ws2.active, #custom-ws3.active,
+#custom-ws4.active, #custom-ws5.active, #custom-ws6.active {
+ background: #39443f;
+ color: #eedfc4;
+ box-shadow: inset 0 -2px #d6c3a1;
+}
+#custom-arch {
+ background: #2e3733;
+ color: #e4d2af;
+ border-left: 1px solid #746d60;
+ border-right: 1px solid #746d60;
+}
+#custom-power { color: #cfbba0; border-left-color: #746d60; }
+#clock:hover, #mpris:hover, #cpu:hover, #memory:hover, #pulseaudio:hover,
+#network:hover, #custom-notifications:hover { background: #343c3b; color: #f0e8da; }
+#custom-ws1:hover, #custom-ws2:hover, #custom-ws3:hover,
+#custom-ws4:hover, #custom-ws5:hover, #custom-ws6:hover { background: #465047; color: #f0e8da; }
+#custom-arch:hover { background: #424b40; color: #f5e4c3; }
+#custom-power:hover { background: #46413a; color: #f0d6b6; }
+#pulseaudio.muted, #network.disconnected { color: #bca99b; }
+tooltip { background: #252a2b; border-color: #b7a587; }
+tooltip label { color: #e5dfd2; }
+
+/* Slimmer bar proportions. */
+* { font-size: 10px; }
+#clock.time { font-size: 11px; }
+#custom-arch { font-size: 17px; min-width: 40px; margin: 0 7px; }
+#custom-ws1, #custom-ws2, #custom-ws3, #custom-ws4, #custom-ws5, #custom-ws6 { min-width: 24px; }
+#network, #custom-notifications { font-size: 12px; padding: 0 8px; }
+#custom-power { font-size: 13px; padding: 0 11px; }

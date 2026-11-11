@@ -1,0 +1,10 @@
+#!/usr/bin/env python3
+import json
+import re
+import subprocess
+import sys
+if len(sys.argv) not in (2, 3) or not re.fullmatch(r'10|[1-9]', sys.argv[1]):
+    raise SystemExit('Choose workspace 1–10.')
+number = int(sys.argv[1])
+command = f'hl.dsp.window.move({{workspace={number}}})' if len(sys.argv) == 3 else f'hl.dsp.workspace({number})'
+subprocess.run(['hyprctl', 'eval', f'hl.dispatch({command})'], check=True)

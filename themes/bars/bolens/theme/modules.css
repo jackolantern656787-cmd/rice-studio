@@ -1,0 +1,83 @@
+/* Shared module layout overrides — shared pill chrome: module-pills.generated.css
+ * Colors: semantic-colors.generated.css
+ */
+
+/* Wider tracking helps cava bars read as discrete columns */
+#custom-cava {
+    letter-spacing: 0.12em;
+}
+
+/* Compact privacy chips */
+#custom-privacy-screenshare,
+#custom-privacy-webcam,
+#custom-privacy-audio-in,
+#custom-privacy-audio-out,
+#custom-privacy-location {
+    padding: 0 6px;
+    min-width: 18px;
+}
+
+#taskbar button {
+    padding: 0 8px;
+    margin: 0 2px;
+    border-radius: 6px;
+}
+
+#tray > .active,
+#tray > .needs-attention,
+#tray > .passive {
+    border-radius: 4px;
+}
+
+#custom-keyboard-layout {
+    font-weight: 700;
+    min-width: 28px;
+}
+
+#network.bandwidthUpBytes,
+#network.bandwidthDownBytes {
+    font-size: 12px;
+    padding: 0 8px;
+}
+
+#network.wlan0,
+#custom-wlan0 {
+    padding-right: 14px;
+}
+
+/* Size comes from album-art.generated.css; this owns cover + spacing */
+#custom-album-art {
+    padding: 0;
+    margin: 4px 2px;
+    border-radius: 4px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+#custom-hyprnotify.hidden,
+#custom-hyprlight.hidden,
+#custom-brightness.hidden,
+#custom-hyprwhspr.hidden,
+#custom-keybindhint.hidden,
+#custom-gamemode.hidden,
+#custom-touchpad.hidden,
+#custom-active-window.hidden,
+#custom-cava.hidden,
+#custom-homelab.hidden,
+#custom-album-art.hidden,
+#custom-systemd.hidden,
+#custom-asusctl.disconnected,
+#custom-liquidctl.disconnected,
+#custom-coolercontrol.disconnected,
+#custom-nvme.disconnected,
+#custom-openlinkhub.disconnected,
+#custom-rgb.disconnected,
+#custom-device-battery.none {
+    min-width: 0;
+    padding: 0;
+    margin: 0;
+    border: none;
+    background: transparent;
+    box-shadow: none;
+}

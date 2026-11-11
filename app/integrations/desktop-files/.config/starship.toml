@@ -1,0 +1,37 @@
+add_newline = true
+
+format = """
+[╭─](#cba6f7)$directory$git_branch$git_status$python$nodejs$rust$cmd_duration
+[╰─❯](#cba6f7) """
+
+[directory]
+format = " [$path]($style)"
+style = "bold #89b4fa"
+truncation_length = 3
+truncation_symbol = "…/"
+
+[git_branch]
+symbol = " "
+format = " [$symbol$branch]($style)"
+style = "#a6e3a1"
+
+[git_status]
+format = " [$all_status$ahead_behind]($style)"
+style = "#f5c2e7"
+
+[python]
+format = " [󰌠 $version]($style)"
+style = "#f9e2af"
+
+[nodejs]
+format = " [󰎙 $version]($style)"
+style = "#a6e3a1"
+
+[rust]
+format = " [󱘗 $version]($style)"
+style = "#f38ba8"
+
+[cmd_duration]
+min_time = 1000
+format = " [󰔛 $duration]($style)"
+style = "#94e2d5"

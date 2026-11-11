@@ -1,0 +1,174 @@
+{
+  "version": 3,
+  "ref": {
+    "w": 1920,
+    "h": 1080
+  },
+  "panel": {
+    "w": 1280,
+    "h": 566,
+    "x": -1,
+    "y": -1,
+    "opacity": 1
+  },
+  "screen": [
+    {
+      "iid": "picker-clock-750-288",
+      "itype": "clock",
+      "ivariant": "lockscreen",
+      "ix": 750,
+      "iy": 288,
+      "iw": 420,
+      "ih": 200,
+      "iopacity": 1,
+      "irotation": 0,
+      "iimage": ""
+    }
+  ],
+  "items": [
+    {
+      "iid": "picker-widget:weather-20-20",
+      "itype": "widget:weather",
+      "ivariant": "full",
+      "ix": 20,
+      "iy": 20,
+      "iw": 380,
+      "ih": 190,
+      "iopacity": 1,
+      "irotation": 0,
+      "iimage": ""
+    },
+    {
+      "iid": "picker-widget:cpu-20-218",
+      "itype": "widget:cpu",
+      "ivariant": "default",
+      "ix": 20,
+      "iy": 218,
+      "iw": 186,
+      "ih": 160,
+      "iopacity": 1,
+      "irotation": 0,
+      "iimage": ""
+    },
+    {
+      "iid": "picker-widget:ram-214-218",
+      "itype": "widget:ram",
+      "ivariant": "default",
+      "ix": 214,
+      "iy": 218,
+      "iw": 186,
+      "ih": 160,
+      "iopacity": 1,
+      "irotation": 0,
+      "iimage": ""
+    },
+    {
+      "iid": "picker-widget:temp-20-386",
+      "itype": "widget:temp",
+      "ivariant": "default",
+      "ix": 20,
+      "iy": 386,
+      "iw": 186,
+      "ih": 160,
+      "iopacity": 1,
+      "irotation": 0,
+      "iimage": ""
+    },
+    {
+      "iid": "picker-widget:disk-214-386",
+      "itype": "widget:disk",
+      "ivariant": "default",
+      "ix": 214,
+      "iy": 386,
+      "iw": 186,
+      "ih": 160,
+      "iopacity": 1,
+      "irotation": 0,
+      "iimage": ""
+    },
+    {
+      "iid": "picker-avatar-540-89",
+      "itype": "avatar",
+      "ivariant": "round",
+      "ix": 540,
+      "iy": 89,
+      "iw": 200,
+      "ih": 200,
+      "iopacity": 1,
+      "irotation": 0,
+      "iimage": ""
+    },
+    {
+      "iid": "picker-user-450-305",
+      "itype": "user",
+      "ivariant": "filled",
+      "ix": 450,
+      "iy": 305,
+      "iw": 185,
+      "ih": 44,
+      "iopacity": 1,
+      "irotation": 0,
+      "iimage": ""
+    },
+    {
+      "iid": "picker-lockstatus-645-305",
+      "itype": "lockstatus",
+      "ivariant": "filled",
+      "ix": 645,
+      "iy": 305,
+      "iw": 185,
+      "ih": 44,
+      "iopacity": 1,
+      "irotation": 0,
+      "iimage": ""
+    },
+    {
+      "iid": "picker-password-450-357",
+      "itype": "password",
+      "ivariant": "filled",
+      "ix": 450,
+      "iy": 357,
+      "iw": 380,
+      "ih": 44,
+      "iopacity": 1,
+      "irotation": 0,
+      "iimage": ""
+    },
+    {
+      "iid": "picker-keyboard-620-433",
+      "itype": "keyboard",
+      "ivariant": "button",
+      "ix": 620,
+      "iy": 433,
+      "iw": 0,
+      "ih": 0,
+      "iopacity": 1,
+      "irotation": 0,
+      "iimage": ""
+    },
+    {
+      "iid": "picker-notifications-860-20",
+      "itype": "notifications",
+      "ivariant": "card",
+      "ix": 860,
+      "iy": 20,
+      "iw": 400,
+      "ih": 422,
+      "iopacity": 1,
+      "irotation": 0,
+      "iimage": ""
+    },
+    {
+      "iid": "picker-widget:music-860-450",
+      "itype": "widget:music",
+      "ivariant": "full",
+      "ix": 860,
+      "iy": 450,
+      "iw": 400,
+      "ih": 96,
+      "iopacity": 1,
+      "irotation": 0,
+      "iimage": ""
+    }
+  ]
+}

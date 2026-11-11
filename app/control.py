@@ -1,6 +1,9 @@
 """Isolated Hyprland adapter. Original desktop daemons/configs are never replaced."""
 from pathlib import Path
-import os,json,subprocess,shutil,time,tempfile,fcntl,re
+import os,json,subprocess,shutil,time,tempfile,fcntl,re,sys
+sys.path.insert(0,str(Path(__file__).resolve().parent))
+import impulse_bar
+import preset_windows
 HOME=Path(os.environ.get('RICE_STUDIO_HOME',str(Path.home())))
 CONFIG=HOME/'.config/rice-studio-portable';STATE=HOME/'.local/state/rice-studio-portable';APP=HOME/'.local/share/rice-studio-portable'
 OPTIONS=('general:gaps_in','general:gaps_out','decoration:rounding','general:border_size','general:col.active_border')
@@ -68,9 +71,9 @@ def serp_bar(value=None):
 
 def wait_for_bar(profile):
  bar = profile.get('bar')
- if not profile.get('rice') or bar in ('studio', 'main', None):
+ if not profile.get('rice') or bar in ('main', None):
   return
- config = APP / ('themes/extras/serashell/shell.qml' if bar == 'serashell' else f'themes/bars/{bar}/config.jsonc')
+ config = APP / ('desktop.qml' if bar=='studio' else 'themes/extras/serashell/shell.qml' if bar=='serashell' else f'themes/bars/{bar}/config.jsonc')
  deadline = time.monotonic() + 8
  while time.monotonic() < deadline:
   layers = json.loads(run(['hyprctl', 'layers', '-j']))
@@ -84,7 +87,7 @@ def wait_for_bar(profile):
        command = Path('/proc', str(item['pid']), 'cmdline').read_bytes().split(b'\0')
       except (OSError, KeyError):
        continue
-      if os.fsencode(config) in command:
+      if os.fsencode(config) in command and (bar!='studio' or item.get('namespace')=='rice-studio-portable-bar'):
        ready = True
        break
     found.append(ready)
@@ -96,6 +99,8 @@ def snapshot():
  # Read exact runtime values for timed rollback, including an intermediate Studio theme.
  data=capture_original();data['desktop']=(STATE/'current').read_text().strip() if (STATE/'current').exists() else 'main'
  data['serp_bar']=serp_bar()
+ data['impulse_bar']=bool(impulse_bar.owner(STATE))
+ data['bar_override']=read(STATE/'bar-override.json').get('bar')
  return data
 
 def set_options(options):
@@ -141,6 +146,31 @@ def write_current(key):
   os.replace(tmp,path)
  finally:
   if os.path.exists(tmp):os.unlink(tmp)
+def update_bar_visibility(bar, original):
+ if bar == 'main':
+  serp_bar(original.get('serp_bar') == 'hidden')
+  impulse_bar.restore(HOME,STATE,run)
+ else:
+  wait_for_bar({'rice':True,'bar':bar})
+  if serp_bar() == 'main':
+   serp_bar(True)
+  impulse_bar.hide(HOME,STATE,run)
+
+
+def apply_bar(key):
+ if key not in registry():
+  raise ValueError('Unknown bar preset')
+ main=ensure_main()
+ before=snapshot()
+ try:
+  atomic(STATE/'bar-override.json',{'bar':key})
+  start_components()
+  update_bar_visibility(key,main)
+ except Exception:
+  restore_snapshot(before)
+  raise
+
+
 def apply_desktop(key):
  main=ensure_main();profiles=read(CONFIG/'profiles.json')
  if key not in profiles:raise ValueError('Unknown preset')
@@ -170,19 +200,23 @@ def apply_desktop(key):
    set_options({'general:gaps_in':gaps_in,'general:gaps_out':gaps_out,
                 'decoration:rounding':rounding,'general:border_size':border,
                 'general:col.active_border':'rgba('+color+')'})
+  atomic(STATE/'bar-override.json',{})
+  preset_windows.apply(run, profiles[key].get('rice',key))
   write_current(key);start_components()
-  if key == 'main' or profiles[key].get('bar') == 'main':
-   serp_bar(main.get('serp_bar') == 'hidden')
-  else:
-   wait_for_bar(profiles[key])
-   if serp_bar() == 'main':
-    serp_bar(True)
+  update_bar_visibility('main' if key=='main' else profiles[key].get('bar','studio'),main)
  except Exception:
   restore_snapshot(before);raise
 
 def restore_snapshot(data):
  if not isinstance(data.get('options'),dict):raise ValueError('Missing compositor snapshot')
  set_options(data['options'])
- write_current(data.get('desktop','main'))
+ key=data.get('desktop','main')
+ atomic(STATE/'bar-override.json',{'bar':data.get('bar_override')})
+ preset_windows.apply(run,read(CONFIG/'profiles.json').get(key,{}).get('rice',key))
+ write_current(key)
  serp_bar(data.get('serp_bar') == 'hidden')
  start_components()
+ if data.get('impulse_bar'):
+  impulse_bar.hide(HOME,STATE,run)
+ else:
+  impulse_bar.restore(HOME,STATE,run)

@@ -1,0 +1,8 @@
+{
+  "custom/power": {
+    "format": "󰐥",
+    "tooltip-format": "Power menu — confirmation required",
+    "on-click": "kitty --class mechabar-power --title \"Power menu\" -e @STUDIO_APP@/themes/bars/mechabar/scripts/actions.py power",
+    "cursor": 68
+  }
+}

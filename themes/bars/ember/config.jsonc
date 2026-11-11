@@ -1,0 +1,186 @@
+{
+  "name": "ember-managed",
+  "position": "top",
+  "layer": "top",
+  "height": 26,
+  "spacing": 2,
+  "reload_style_on_change": true,
+  "modules-left": [
+    "custom/launcher",
+    "custom/ws1",
+    "custom/ws2",
+    "custom/ws3",
+    "custom/ws4",
+    "custom/aspect",
+    "custom/mic",
+    "custom/clipboard"
+  ],
+  "modules-center": [
+    "clock"
+  ],
+  "modules-right": [
+    "pulseaudio#input",
+    "pulseaudio",
+    "network",
+    "disk",
+    "group/cpu",
+    "memory",
+    "custom/gpu",
+    "idle_inhibitor",
+    "custom/power"
+  ],
+  "custom/launcher": {
+    "format": "\uf303",
+    "on-click": "@STUDIO_APP@/commands/rice-launch",
+    "on-click-right": "@STUDIO_APP@/commands/serpantinum settings",
+    "tooltip-format": "Zunder \u2022 right-click: settings",
+    "cursor": 68
+  },
+  "custom/aspect": {
+    "format": "\udb80\udf79 16:9",
+    "tooltip-format": "1920\u00d71080 monitor \u2022 16:9",
+    "on-click": "@STUDIO_APP@/commands/serpantinum settings",
+    "cursor": 68
+  },
+  "custom/mic": {
+    "format": "\uf130",
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg toggle volume",
+    "tooltip-format": "Audio controls",
+    "cursor": 68
+  },
+  "custom/clipboard": {
+    "format": "\udb80\udd4d",
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg toggle clipboard",
+    "tooltip-format": "Clipboard",
+    "cursor": 68
+  },
+  "clock": {
+    "format": "\uf073 {:%A %H:%M}",
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg toggle calendar",
+    "tooltip-format": "{:%d %B %Y}\n<tt>{calendar}</tt>",
+    "cursor": 68
+  },
+  "pulseaudio#input": {
+    "format": "{format_source}",
+    "format-source": "\uf130 {volume}%",
+    "format-source-muted": "\uf131 muted",
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg toggle volume",
+    "max-volume": 100,
+    "on-click-right": "@STUDIO_APP@/themes/bars/ember/volume input mute",
+    "on-scroll-up": "@STUDIO_APP@/themes/bars/ember/volume input up",
+    "on-scroll-down": "@STUDIO_APP@/themes/bars/ember/volume input down",
+    "cursor": 68
+  },
+  "pulseaudio": {
+    "format": "{icon} {volume}%",
+    "format-muted": "\udb81\udf5f muted",
+    "format-icons": {
+      "default": [
+        "\uf026",
+        "\uf027",
+        "\uf028"
+      ]
+    },
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg toggle volume",
+    "max-volume": 100,
+    "on-click-right": "@STUDIO_APP@/themes/bars/ember/volume output mute",
+    "on-scroll-up": "@STUDIO_APP@/themes/bars/ember/volume output up",
+    "on-scroll-down": "@STUDIO_APP@/themes/bars/ember/volume output down",
+    "cursor": 68
+  },
+  "network": {
+    "format-ethernet": "\udb80\ude00 {ipaddr}",
+    "format-wifi": "\uf1eb {ipaddr}",
+    "format-disconnected": "\udb82\udd2e offline",
+    "tooltip-format-ethernet": "Ethernet\n\u2193 {bandwidthDownBytes} \u2191 {bandwidthUpBytes}",
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg toggle network",
+    "cursor": 68
+  },
+  "disk": {
+    "format": "\udb80\udeca {percentage_used}%",
+    "path": "/",
+    "interval": 60,
+    "tooltip-format": "Disk: {used} / {total}",
+    "on-click": "kitty -e yazi",
+    "cursor": 68
+  },
+  "group/cpu": {
+    "orientation": "horizontal",
+    "modules": [
+      "cpu",
+      "custom/temperature"
+    ]
+  },
+  "cpu": {
+    "format": "\uf2db {usage}%",
+    "interval": 4,
+    "on-click": "kitty -e btop",
+    "cursor": 68
+  },
+  "custom/temperature": {
+    "exec": "@STUDIO_APP@/themes/bars/ember/actions.py temperature",
+    "return-type": "json",
+    "interval": 5,
+    "on-click": "kitty -e btop",
+    "cursor": 68
+  },
+  "memory": {
+    "format": "\udb80\udf5b {percentage}%",
+    "interval": 4,
+    "tooltip-format": "RAM: {used:.1f}/{total:.1f} GiB",
+    "on-click": "kitty -e btop",
+    "cursor": 68
+  },
+  "custom/gpu": {
+    "exec": "@STUDIO_APP@/themes/bars/ember/gpu.py",
+    "return-type": "json",
+    "interval": 5,
+    "on-click": "kitty -e nvtop",
+    "format": "\udb82\udcae {}",
+    "cursor": 68
+  },
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+      "activated": "\udb80\udd76",
+      "deactivated": "\udb81\udcb2"
+    },
+    "tooltip-format-activated": "Keep awake: on",
+    "tooltip-format-deactivated": "Keep awake: off",
+    "cursor": 68
+  },
+  "custom/power": {
+    "format": "\u23fb",
+    "on-click": "kitty --class ember-power -e @STUDIO_APP@/themes/bars/ember/actions.py power",
+    "tooltip-format": "Power menu \u2022 confirmation required",
+    "cursor": 68
+  },
+  "custom/ws1": {
+    "exec": "@STUDIO_APP@/themes/bars/ember/workspace.py 1",
+    "return-type": "json",
+    "interval": 1,
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg workspace 1",
+    "cursor": 68
+  },
+  "custom/ws2": {
+    "exec": "@STUDIO_APP@/themes/bars/ember/workspace.py 2",
+    "return-type": "json",
+    "interval": 1,
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg workspace 2",
+    "cursor": 68
+  },
+  "custom/ws3": {
+    "exec": "@STUDIO_APP@/themes/bars/ember/workspace.py 3",
+    "return-type": "json",
+    "interval": 1,
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg workspace 3",
+    "cursor": 68
+  },
+  "custom/ws4": {
+    "exec": "@STUDIO_APP@/themes/bars/ember/workspace.py 4",
+    "return-type": "json",
+    "interval": 1,
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg workspace 4",
+    "cursor": 68
+  }
+}

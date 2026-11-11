@@ -1,0 +1,18 @@
+{
+  "memory": {
+    "interval": 10,
+    "format": "󰘚 {percentage}%",
+    "states": {
+      "warning": 75,
+      "critical": 90
+    },
+    "format-warning": "󰀧 {percentage}%",
+    "format-critical": "󰀧 {percentage}%",
+    "min-length": 8,
+    "max-length": 8,
+    "tooltip-format": "RAM: {used:0.2f} / {total:0.2f} GiB\nClick: system monitor • right-click: GPU monitor",
+    "on-click": "kitty --class mechabar-monitor --title \"System monitor\" -e btop",
+    "on-click-right": "kitty --class mechabar-monitor --title \"GPU monitor\" -e nvtop",
+    "cursor": 68
+  }
+}

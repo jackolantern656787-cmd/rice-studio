@@ -1,0 +1,28 @@
+
+/* Scoped launcher motion; existing theme colors remain in control. */
+@keyframes zunder-panel-enter {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0px); }
+}
+window.zunder .panel,
+window.zunder .switcher {
+  animation: zunder-panel-enter 200ms ease-out;
+}
+window.zunder list.results > row {
+  transition: background-color 110ms ease-out;
+}
+window.zunder list.results > row .item {
+  transition: transform 110ms ease-out;
+}
+window.zunder list.results > row:hover .item,
+window.zunder list.results > row:selected .item {
+  transform: translateX(3px);
+}
+window.zunder .marker,
+window.zunder .glyph,
+window.zunder .hint {
+  transition: color 110ms ease-out, opacity 110ms ease-out;
+}
+
+/* Reserve the list + preview width, even when results hide the preview. */
+window.zunder .panel { min-width: 1240px; }

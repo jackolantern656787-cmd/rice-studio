@@ -1,0 +1,129 @@
+{
+  "layer": "top",
+  "position": "top",
+  "margin-bottom": 0,
+  "spacing": 0,
+  "modules-left": [
+    "ext/workspaces",
+    "custom/uptime",
+    "cpu"
+  ],
+  "modules-center": [
+    "clock"
+  ],
+  "modules-right": [
+    "custom/pomodoro",
+    "bluetooth",
+    "network",
+    "pulseaudio",
+    "custom/lock"
+  ],
+  "bluetooth": {
+    "format": "\udb80\udcb2",
+    "format-on": "{icon}",
+    "format-off": "{icon}",
+    "format-connected": "{icon}",
+    "format-icons": {
+      "on": "\udb80\udcaf",
+      "off": "\udb80\udcb2",
+      "connected": "\udb80\udcb1"
+    },
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg open network bluetooth",
+    "tooltip-format-connected": "{device_enumerate}",
+    "cursor": 68
+  },
+  "clock": {
+    "tooltip": true,
+    "format": "{:%H:%M:%S  -  %A, %d}",
+    "interval": 1,
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg toggle calendar",
+    "tooltip-format": "<tt>{calendar}</tt>",
+    "cursor": 68
+  },
+  "network": {
+    "format-wifi": "\udb82\udd22",
+    "format-ethernet": "\udb80\ude00 ",
+    "format-disconnected": "\udb82\udd20 ",
+    "interval": 5,
+    "tooltip-format": "{essid} ({signalStrength}%)",
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg toggle network",
+    "tooltip-format-ethernet": "Ethernet\n\u2193 {bandwidthDownBytes} \u2191 {bandwidthUpBytes}",
+    "cursor": 68
+  },
+  "cpu": {
+    "interval": 1,
+    "format": "\uf2db  {icon0}{icon1}{icon2}{icon3} {usage:>2}%",
+    "format-icons": [
+      "\u2581",
+      "\u2582",
+      "\u2583",
+      "\u2584",
+      "\u2585",
+      "\u2586",
+      "\u2587",
+      "\u2588"
+    ],
+    "on-click": "kitty -e btop",
+    "on-click-right": "kitty -e nvtop",
+    "cursor": 68
+  },
+  "custom/uptime": {
+    "format": "{}",
+    "format-icon": [
+      "\uf062"
+    ],
+    "tooltip": true,
+    "interval": 60,
+    "exec": "@STUDIO_APP@/themes/bars/prateek/widgets.py uptime",
+    "return-type": "json",
+    "cursor": 68
+  },
+  "pulseaudio": {
+    "format": "{icon}  {volume}%",
+    "format-muted": "\uf466",
+    "format-icons": {
+      "default": [
+        "\uf026",
+        "\uf027",
+        "\uf028 "
+      ]
+    },
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg toggle volume",
+    "on-click-right": "@STUDIO_APP@/themes/bars/prateek/volume output mute",
+    "on-scroll-up": "@STUDIO_APP@/themes/bars/prateek/volume output up",
+    "on-scroll-down": "@STUDIO_APP@/themes/bars/prateek/volume output down",
+    "max-volume": 100,
+    "cursor": 68
+  },
+  "custom/lock": {
+    "format": "\uf023",
+    "on-click": "@STUDIO_APP@/commands/serpantinum lock",
+    "on-click-right": "@STUDIO_APP@/commands/serpantinum settings",
+    "tooltip-format": "Lock \u2022 right-click: settings",
+    "cursor": 68
+  },
+  "custom/pomodoro": {
+    "format": "{}",
+    "return-type": "json",
+    "exec": "@STUDIO_APP@/themes/bars/prateek/widgets.py show",
+    "on-click": "@STUDIO_APP@/themes/bars/prateek/widgets.py toggle",
+    "on-click-right": "@STUDIO_APP@/themes/bars/prateek/widgets.py reset",
+    "interval": 1,
+    "cursor": 68
+  },
+  "name": "prateek-managed",
+  "height": 40,
+  "reload_style_on_change": true,
+  "ext/workspaces": {
+    "format": "{name}: {icon}",
+    "format-icons": {
+      "active": "\uf192",
+      "default": "\uf111"
+    },
+    "on-click": "activate",
+    "sort-by-name": true,
+    "all-outputs": true,
+    "ignore-hidden": false,
+    "cursor": 68
+  }
+}

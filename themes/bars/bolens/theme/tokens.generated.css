@@ -1,0 +1,33 @@
+/* Generated from data/waybar-settings.json theme — do not edit by hand */
+/* GTK3/Waybar: no CSS custom properties / :root — colors are baked below and in semantic-colors.generated.css */
+
+* {
+    font-family: "JetBrainsMono Nerd Font", monospace;
+    font-size: 13px;
+    min-height: 0;
+}
+
+window#waybar {
+    background: rgba(6, 7, 14, 0.92);
+    border-bottom: 1px solid rgba(0, 229, 255, 0.25);
+    color: #c8f6ff;
+}
+
+window#waybar.bottom {
+    border-bottom: none;
+    border-top: 1px solid rgba(0, 229, 255, 0.25);
+}
+
+tooltip, #tooltip {
+    background: #06070e;
+    border: 1px solid #005c66;
+    border-radius: 8px;
+}
+
+tooltip label, #tooltip label {
+    color: #c8f6ff;
+    background: transparent;
+    padding: 8px 10px;
+    font-family: "JetBrainsMono Nerd Font", monospace;
+    font-size: 12px;
+}
