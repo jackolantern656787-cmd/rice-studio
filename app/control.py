@@ -57,26 +57,27 @@ def registry():
  return result
 
 
-def serp_shell():
- for directory in ('serpantinum','serpantium'):
-  root=HOME/'.local/share'/directory/'src/quickshell'
-  for filename in ('Shell.qml','shell.qml'):
-   path=root/filename
-   if path.is_file():
-    return path
+def serp_shell(running_only=False):
  try:
   instances=json.loads(run(['quickshell','list','-a','-j']))
  except (OSError,ValueError,RuntimeError,subprocess.SubprocessError):
-  return None
+  instances=[]
  for instance in instances:
   path=Path(instance.get('config_path',''))
   if path.is_file() and any(part.lower() in ('serpantinum','serpantium') for part in path.parts):
    return path
+ if not running_only:
+  for directory in ('serpantinum','serpantium'):
+   root=HOME/'.local/share'/directory/'src/quickshell'
+   for filename in ('Shell.qml','shell.qml'):
+    path=root/filename
+    if path.is_file():
+     return path
  return None
 
 
-def serp_bar(value=None):
- shell=serp_shell()
+def serp_bar(value=None,shell=None):
+ shell=shell or serp_shell()
  if shell is None:
   return None
  args = ['quickshell', '-p', str(shell), 'ipc', 'call', 'barSwitcher']
@@ -164,14 +165,35 @@ def write_current(key):
   os.replace(tmp,path)
  finally:
   if os.path.exists(tmp):os.unlink(tmp)
+def hide_serp_bar():
+ shell=serp_shell(running_only=True)
+ if shell is None:
+  return
+ status=serp_bar(shell=shell)
+ if status not in ('main','hidden'):
+  from serpantinum_hook import install_hook
+  install_hook(shell)
+  deadline=time.monotonic()+6
+  while time.monotonic()<deadline:
+   status=serp_bar(shell=shell)
+   if status in ('main','hidden'):
+    break
+   time.sleep(.2)
+  else:
+   raise RuntimeError('Serpantinum saved the bar hook but has not loaded it. Restart Serpantinum and try the theme again.')
+ if status=='main':
+  serp_bar(True,shell=shell)
+  if serp_bar(shell=shell)!='hidden':
+   raise RuntimeError('Serpantinum did not hide its bar.')
+
+
 def update_bar_visibility(bar, original):
  if bar == 'main':
   serp_bar(original.get('serp_bar') == 'hidden')
   impulse_bar.restore(HOME,STATE,run)
  else:
   wait_for_bar({'rice':True,'bar':bar})
-  if serp_bar() == 'main':
-   serp_bar(True)
+  hide_serp_bar()
   impulse_bar.hide(HOME,STATE,run)
 
 

@@ -32,8 +32,8 @@ def digest(text):
     return hashlib.sha256(text.encode()).hexdigest()
 
 
-def install_hook():
-    shell = control.serp_shell()
+def install_hook(shell=None):
+    shell = shell or control.serp_shell()
     if shell is None:
         raise ValueError('No Serpantinum shell found. Start Serpantinum first.')
     root = shell.parent

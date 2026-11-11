@@ -32,7 +32,7 @@ cd rice-studio
 ~/.local/bin/rice-studio
 ```
 
-Alternatively download the source ZIP through GitHub, extract it, and run the last four commands from that directory.
+For a file-manager install or update, download the release ZIP, extract it, and choose **Run as Program** on **Install Rice Studio.sh**. It opens the installed app when done. The installer checks required packages. Recording and dashboard tools are optional and listed in Setup.
 
 `--deps` explicitly invokes **sudo pacman -Syu --needed** for the documented package set. It performs a full Arch system upgrade; inspect the transaction before accepting. The installer itself runs **without sudo**, downloads nothing, does not run third-party installers, and leaves your current desktop active.
 
@@ -44,17 +44,7 @@ Studio closes the Illogical Impulse bar after the selected theme bar appears. Re
 
 ## Serpantinum bar switching
 
-If Setup shows the bar hook as connected, Studio hides the Serpantinum bar only after the theme bar appears and restores it when you go back to Main.
-
-For a compatible stock Serpantinum installation without the hook, run this after installing Studio:
-
-```bash
-python3 ~/.local/share/rice-studio-portable/serpantinum_hook.py --install
-```
-
-This optional hook backs up and edits only Serpantinum's `Shell.qml` and `bar/Bar.qml`. It checks for the expected layout before writing. Reopen Studio and check Setup after Quickshell reloads. Add `--hide` to the hook command to close the running Serpantinum bar immediately. Without the hook the original panel can remain visible alongside the theme bar.
-
-Restore the two original files with the same command using `--restore`.
+When a theme bar appears, Studio automatically hides the running Serpantinum bar. On supported stock versions it installs the bar hook on first use and saves backups of the two affected QML files. Main and preview rollback restore the original bar. If the running shell has a different QML layout, Studio reports the error and reverts the preview.
 
 ## What you get
 

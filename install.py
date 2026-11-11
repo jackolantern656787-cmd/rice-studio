@@ -3,7 +3,7 @@
 from pathlib import Path
 import argparse,datetime,hashlib,importlib.util,json,os,shutil,sys,tempfile
 ROOT=Path(__file__).resolve().parent
-REQUIRED=('hyprctl','quickshell','kitty','ffmpeg','grim','wf-recorder','xdg-open','waybar')
+REQUIRED=('hyprctl','quickshell','kitty','waybar')
 def load(path,name):
  spec=importlib.util.spec_from_file_location(name,path);m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m);return m
 
@@ -86,7 +86,7 @@ def install(home,check=False,check_deps=True):
   kitty_previous=(kitty_path,kitty_path.read_text() if kitty_path.exists() else None)
   kitty.sync(current.read_text().strip(),profiles,config,state,app)
   kitty.install(home)
-  control.atomic(manifest,{'schema':1,'version':'0.3.2-beta.1','files':files})
+  control.atomic(manifest,{'schema':1,'version':'0.3.3-beta.1','files':files})
  except Exception:
   if kitty_previous:
    path,previous=kitty_previous
