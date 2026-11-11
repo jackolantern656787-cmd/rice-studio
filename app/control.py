@@ -130,6 +130,11 @@ def start_components():
  subprocess.run(['quickshell','-n','-d','-p',str(APP/'widgets.qml')],capture_output=True,check=True,timeout=10)
 
 def write_current(key):
+ import sys
+ if str(APP) not in sys.path:
+  sys.path.insert(0,str(APP))
+ from kitty_integration import sync
+ sync(key,read(CONFIG/'profiles.json'),CONFIG,STATE,APP)
  path=STATE/'current';fd,tmp=tempfile.mkstemp(dir=STATE)
  try:
   with os.fdopen(fd,'w') as f:f.write(key+'\n')

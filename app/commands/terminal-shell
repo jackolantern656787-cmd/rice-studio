@@ -1,0 +1,12 @@
+#!/bin/sh
+preset=$1
+directory="$HOME/.config/rice-studio-portable/terminals"
+fetch="$directory/$preset-fastfetch.jsonc"
+prompt="$directory/$preset-starship.toml"
+if [ -f "$prompt" ]; then
+  export STARSHIP_CONFIG="$prompt"
+fi
+if [ -f "$fetch" ] && command -v fastfetch >/dev/null 2>&1; then
+  fastfetch --config "$fetch"
+fi
+exec "${SHELL:-/bin/sh}" -i

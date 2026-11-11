@@ -15,6 +15,9 @@ def uninstall(home,restore=True):
    restore_hook()
   for config in (app/'qt/shell.qml',app/'desktop.qml',app/'widgets.qml'):
    subprocess.run(['quickshell','-p',str(config),'kill'],capture_output=True,timeout=10)
+ sys.path.insert(0,str(app))
+ from kitty_integration import uninstall as remove_kitty_include
+ remove_kitty_include(home)
  data=json.loads(manifest.read_text());kept=[]
  for name,digest in data['files'].items():
   path=home/name

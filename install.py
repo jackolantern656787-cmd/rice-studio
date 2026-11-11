@@ -29,7 +29,7 @@ def install(home,check=False,check_deps=True):
   if old is None:os.environ.pop('RICE_STUDIO_HOME',None)
   else:os.environ['RICE_STUDIO_HOME']=old
  state.mkdir(parents=True,exist_ok=True,mode=0o700)
- stage=Path(tempfile.mkdtemp(prefix='stage-',dir=state));written=[];prior={}
+ stage=Path(tempfile.mkdtemp(prefix='stage-',dir=state));written=[];prior={};kitty_previous=None
  try:
   shutil.copytree(ROOT/'app',stage/'app',ignore=shutil.ignore_patterns('__pycache__','*.pyc'))
   p=load(ROOT/'presets.py','install_presets');profiles=p.create(stage/'config')
@@ -77,10 +77,19 @@ def install(home,check=False,check_deps=True):
    if dest.name=='profiles.json' and previous and files.get(relative)!=hashlib.sha256(previous.read_bytes()).hexdigest():
     continue
    files[relative]=hashlib.sha256(dest.read_bytes()).hexdigest()
-  control.atomic(manifest,{'schema':1,'version':'0.3.0-beta.1','files':files})
   current=state/'current'
   if not current.exists():current.write_text('main\n')
+  kitty=load(ROOT/'app/kitty_integration.py','install_kitty')
+  kitty_path=kitty.kitty_config(home)
+  kitty_previous=(kitty_path,kitty_path.read_text() if kitty_path.exists() else None)
+  kitty.sync(current.read_text().strip(),profiles,config,state,app)
+  kitty.install(home)
+  control.atomic(manifest,{'schema':1,'version':'0.3.1-beta.1','files':files})
  except Exception:
+  if kitty_previous:
+   path,previous=kitty_previous
+   if previous is None:path.unlink(missing_ok=True)
+   else:kitty.atomic_text(path,previous)
   for dest,prev in reversed(list(prior.items())):
    if prev is None:dest.unlink(missing_ok=True)
    else:shutil.copy2(prev,dest)

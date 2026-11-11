@@ -21,10 +21,10 @@ Tested on Arch, Hyprland 0.57.0 (Lua), Quickshell 0.3.2, Qt 6.12. Older config p
 
 ## Install
 
-Private repository: the owner must grant your GitHub account access first. With GitHub CLI authenticated:
+From a terminal in Hyprland:
 
 ```bash
-gh repo clone jackolantern656787-cmd/rice-studio
+git clone https://github.com/jackolantern656787-cmd/rice-studio.git
 cd rice-studio
 ./install.sh --deps
 ./install.sh --check
@@ -65,7 +65,7 @@ Restore the two original files with the same command using `--restore`.
 
 The preset bar opens its included launcher where available. Themes using the original machine's Zunder setup fall back to the recipient's existing Serpantinum launcher or Wofi. Studio applies the original frame colors and corner styles through Hyprland. The recipient's window behavior and keybindings control window placement. Some panel actions depend on local services such as NetworkManager, MPRIS, and Serpantinum. Fuji Dusk uses a system font fallback when Anurati is unavailable.
 
-Terminal profiles apply through:
+New Kitty windows opened through your normal shortcut inherit the active preset. The installer appends one managed include to the existing Kitty config. Main clears the include’s contents, and uninstall removes the include block. Studio Terminal is also available for shortcuts that launch a different terminal app:
 
 ```bash
 ~/.local/bin/rice-studio-terminal
@@ -105,7 +105,7 @@ Uninstall restores Main first, stops **only this edition's explicitly scoped Qui
 | `~/.local/bin/rice-studio*` | Three user-local commands |
 | `~/.local/share/applications/rice-studio.desktop` | Launcher entry |
 
-An existing unrelated `rice-studio` command or app directory is a collision: installation stops and preserves it. Do not run this installer on top of the author's personal edition. No `~/.config/hypr`, `~/.config/kitty`, `.bashrc`, SSH, browser or authentication files are copied or edited.
+An existing unrelated `rice-studio` command or app directory is a collision: installation stops and preserves it. Do not run this installer on top of the author's personal edition. The installer leaves Hyprland, shell startup files, SSH, browser, and authentication files alone. The Kitty integration adds a marked include block to `~/.config/kitty/kitty.conf`.
 
 ## Development
 

@@ -34,6 +34,29 @@ else:print('ok')
   self.assertEqual(original.read_text(),'MY MONITORS AND BINDS')
   uninstall.uninstall(self.home,restore=False)
   self.assertTrue(profiles.exists());self.assertTrue(notes.exists());self.assertTrue(baseline.exists());self.assertFalse((self.home/'.local/bin/rice-studio').exists())
+ def test_kitty_follows_presets_and_restores_main(self):
+  kitty=self.home/'.config/kitty/kitty.conf'
+  kitty.parent.mkdir(parents=True)
+  original='background #123456'
+  kitty.write_text(original)
+  install.install(self.home,check_deps=False)
+  app=self.home/'.local/share/rice-studio-portable'
+  state=self.home/'.local/state/rice-studio-portable'
+  config=state/'kitty-active.conf'
+  self.assertEqual(config.read_text(),'')
+  adapter=install.load(app/'control.py','kitty_test_control')
+  adapter.write_current('tideglass')
+  self.assertIn('/terminals/tideglass.conf',config.read_text())
+  self.assertIn('terminal-shell tideglass',config.read_text())
+  adapter.set_options=lambda _:None
+  adapter.start_components=lambda:None
+  adapter.restore_snapshot(adapter.ensure_main())
+  self.assertEqual(config.read_text(),'')
+  install.install(self.home,check_deps=False)
+  self.assertEqual(kitty.read_text().count('include '+str(config)),1)
+  uninstall.uninstall(self.home,restore=False)
+  self.assertEqual(kitty.read_text(),original)
+
  def test_collision_does_not_overwrite(self):
   p=self.home/'.local/bin/rice-studio';p.parent.mkdir(parents=True);p.write_text('original')
   with self.assertRaises(RuntimeError):install.install(self.home,check_deps=False)
