@@ -1,0 +1,11 @@
+add_newline = true
+format = "$directory$git_branch$git_status$line_break$character"
+[directory]
+style = "blue"
+format = "[$path]($style) "
+[git_branch]
+style = "#cba6f7"
+format = "[$branch](#cba6f7) "
+[character]
+success_symbol = "[>](#a6e3a1)"
+error_symbol = "[>](#f38ba8)"

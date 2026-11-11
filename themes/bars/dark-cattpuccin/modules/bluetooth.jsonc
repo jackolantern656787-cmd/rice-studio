@@ -1,0 +1,22 @@
+{
+  "bluetooth": {
+    "format": "\udb80\udcaf",
+    "format-on": "\udb80\udcb0",
+    "format-connected": "\udb80\udcb1",
+    "format-off": "\udb80\udcb2",
+    "format-disabled": "\udb80\udcb2",
+    "min-length": 2,
+    "max-length": 2,
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg open network bluetooth",
+    "on-click-right": "@STUDIO_APP@/commands/serpantinum msg open network bluetooth",
+    "tooltip-format": "Device Addr: {device_address}",
+    "tooltip-format-on": "Bluetooth Disconnected",
+    "tooltip-format-connected": "Device: {device_alias}",
+    "tooltip-format-off": "Bluetooth Off",
+    "tooltip-format-disabled": "Bluetooth Disabled",
+    "tooltip-format-connected-battery": " Device: {device_alias}\nBattery: {device_battery_percentage}%",
+    "tooltip-format-enumerate-connected": "Device: {device_alias}",
+    "tooltip-format-enumerate-connected-battery": " Device: {device_alias}\nBattery: {device_battery_percentage}%",
+    "cursor": 60
+  }
+}

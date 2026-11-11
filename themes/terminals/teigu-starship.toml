@@ -1,0 +1,24 @@
+add_newline = true
+format = """
+[╭─](#68656b)[](#68656b)$os[](fg:#68656b bg:#969196)$directory[](#969196)$git_branch$git_status$cmd_duration
+[╰─](#68656b)[❯](#c3c0c6) """
+[os]
+disabled = false
+format = "[ $symbol ]($style)"
+style = "fg:#101112 bg:#68656b"
+[os.symbols]
+Arch = ""
+Linux = ""
+[directory]
+format = "[ 󰋜 $path ]($style)"
+style = "fg:#101112 bg:#969196"
+truncation_length = 3
+[git_branch]
+format = " [$symbol$branch]($style)"
+style = "#c3c0c6"
+[git_status]
+style = "#c3c0c6"
+[cmd_duration]
+min_time = 1000
+format = " [$duration]($style)"
+style = "#969196"

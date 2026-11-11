@@ -1,0 +1,19 @@
+{
+  "cpu": {
+    "interval": 10,
+    "format": "\udb80\udf5b {usage}%",
+    "states": {
+      "warning": 75,
+      "critical": 90
+    },
+    "format-warning": "\udb80\udc28 {usage}%",
+    "format-critical": "\udb80\udc28 {usage}%",
+    "min-length": 8,
+    "max-length": 8,
+    "tooltip": true,
+    "on-click": "kitty --class mechabar-monitor --title \"System monitor\" -e btop",
+    "on-click-right": "kitty --class mechabar-monitor --title \"GPU monitor\" -e nvtop",
+    "tooltip-format": "CPU usage: {usage}%\nClick: system monitor \u2022 right-click: GPU monitor",
+    "cursor": 60
+  }
+}

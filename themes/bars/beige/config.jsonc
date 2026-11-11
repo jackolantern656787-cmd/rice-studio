@@ -1,0 +1,150 @@
+{
+  "name": "beige-managed",
+  "position": "top",
+  "layer": "top",
+  "height": 26,
+  "spacing": 0,
+  "reload_style_on_change": true,
+  "modules-left": [
+    "cpu",
+    "memory",
+    "custom/weather",
+    "custom/cava"
+  ],
+  "modules-center": [
+    "custom/ws1",
+    "custom/ws2",
+    "custom/ws3",
+    "custom/ws4"
+  ],
+  "modules-right": [
+    "custom/lock",
+    "custom/divider",
+    "pulseaudio",
+    "idle_inhibitor",
+    "network",
+    "custom/notifications",
+    "clock",
+    "custom/power"
+  ],
+  "cpu": {
+    "format": "\udb83\udee0 {usage}% \u258f",
+    "interval": 3,
+    "on-click": "kitty -e btop",
+    "tooltip-format": "CPU usage: {usage}%",
+    "cursor": 68
+  },
+  "memory": {
+    "format": "\udb80\udf5b {used:.2f}G \u258f",
+    "interval": 3,
+    "on-click": "kitty -e btop",
+    "tooltip-format": "RAM: {used:.2f}/{total:.2f} GiB",
+    "cursor": 68
+  },
+  "custom/weather": {
+    "exec": "@STUDIO_APP@/themes/bars/beige/weather.py",
+    "return-type": "json",
+    "interval": 60,
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg toggle calendar",
+    "cursor": 68
+  },
+  "custom/cava": {
+    "exec": "@STUDIO_APP@/themes/bars/beige/visualizer.py",
+    "return-type": "json",
+    "restart-interval": 3,
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg toggle volume",
+    "cursor": 68
+  },
+  "custom/lock": {
+    "format": "\uf023",
+    "tooltip-format": "Lock screen",
+    "on-click": "@STUDIO_APP@/commands/serpantinum lock",
+    "cursor": 68
+  },
+  "custom/divider": {
+    "format": "\u2502",
+    "tooltip": false,
+    "cursor": 68
+  },
+  "pulseaudio": {
+    "format": "{icon} {volume}%",
+    "format-muted": "\udb81\udf5f muted",
+    "format-icons": {
+      "default": [
+        "\uf026",
+        "\uf027",
+        "\uf028"
+      ]
+    },
+    "max-volume": 100,
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg toggle volume",
+    "on-click-right": "@STUDIO_APP@/themes/bars/beige/volume output mute",
+    "on-scroll-up": "@STUDIO_APP@/themes/bars/beige/volume output up",
+    "on-scroll-down": "@STUDIO_APP@/themes/bars/beige/volume output down",
+    "cursor": 68
+  },
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+      "activated": "\udb81\udee8",
+      "deactivated": "\udb80\udf79"
+    },
+    "tooltip-format-activated": "Keep awake: on",
+    "tooltip-format-deactivated": "Keep awake: off",
+    "cursor": 68
+  },
+  "network": {
+    "format-wifi": "\uf1eb",
+    "format-ethernet": "\udb80\ude00",
+    "format-disconnected": "\udb82\udd2e",
+    "tooltip-format-ethernet": "Ethernet\n\u2193 {bandwidthDownBytes} \u2191 {bandwidthUpBytes}",
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg toggle network",
+    "cursor": 68
+  },
+  "custom/notifications": {
+    "format": "\uf0f3",
+    "tooltip-format": "Notifications",
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg toggle notifications",
+    "cursor": 68
+  },
+  "clock": {
+    "format": "{:%H:%M}",
+    "tooltip-format": "{:%A %d %B}\n<tt>{calendar}</tt>",
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg toggle calendar",
+    "cursor": 68
+  },
+  "custom/power": {
+    "format": "\u23fb",
+    "tooltip-format": "Power menu \u2022 confirmation required",
+    "on-click": "kitty --class beige-power -e @STUDIO_APP@/themes/bars/beige/actions.py power",
+    "cursor": 68
+  },
+  "custom/ws1": {
+    "exec": "@STUDIO_APP@/themes/bars/beige/workspace.py 1",
+    "return-type": "json",
+    "interval": 1,
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg workspace 1",
+    "cursor": 68
+  },
+  "custom/ws2": {
+    "exec": "@STUDIO_APP@/themes/bars/beige/workspace.py 2",
+    "return-type": "json",
+    "interval": 1,
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg workspace 2",
+    "cursor": 68
+  },
+  "custom/ws3": {
+    "exec": "@STUDIO_APP@/themes/bars/beige/workspace.py 3",
+    "return-type": "json",
+    "interval": 1,
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg workspace 3",
+    "cursor": 68
+  },
+  "custom/ws4": {
+    "exec": "@STUDIO_APP@/themes/bars/beige/workspace.py 4",
+    "return-type": "json",
+    "interval": 1,
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg workspace 4",
+    "cursor": 68
+  }
+}

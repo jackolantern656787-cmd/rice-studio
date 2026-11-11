@@ -1,0 +1,48 @@
+{
+  "logo": {
+    "type": "builtin",
+    "source": "arch_small",
+    "padding": {
+      "top": 0,
+      "right": 2
+    },
+    "color": {
+      "1": "#a6bdd8",
+      "2": "#bca6da",
+      "3": "#d6c1f2"
+    }
+  },
+  "display": {
+    "separator": "  ",
+    "color": {
+      "keys": "#bca6da",
+      "output": "#d9dce8",
+      "title": "#c2d5f0",
+      "separator": "#66738b"
+    }
+  },
+  "modules": [
+    "title",
+    "separator",
+    {
+      "type": "os",
+      "key": "OS"
+    },
+    {
+      "type": "kernel",
+      "key": "Kernel"
+    },
+    {
+      "type": "shell",
+      "key": "Shell"
+    },
+    {
+      "type": "uptime",
+      "key": "Uptime"
+    },
+    {
+      "type": "memory",
+      "key": "Memory"
+    }
+  ]
+}

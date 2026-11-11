@@ -1,0 +1,9 @@
+* {font-family:"Iosevka Nerd Font";font-size:12px;border:none;border-radius:0;min-height:0;padding:0;margin:0;box-shadow:none;text-shadow:none;}
+window#waybar {background:#181818;color:#b7bcb7;border-bottom:1px solid #424843;}
+#custom-arch {padding:0 9px;font-size:17px;color:#858c86;}
+#custom-ws2,#custom-ws3,#custom-ws4 {min-width:23px;margin:1px;border:1px solid #757b75;background:#3e413d;color:#d1d4cc;}
+#custom-ws2.active,#custom-ws3.active,#custom-ws4.active {background:#7b8277;color:#161917;}
+#cpu,#memory,#mpris,#pulseaudio,#custom-notifications {padding:0 10px;}
+#clock {padding:0 10px;}
+#custom-arch:hover,#mpris:hover,#pulseaudio:hover,#custom-notifications:hover {background:#303730;color:#d1d4cc;}
+tooltip {background:#202826;border:1px solid #87938c;} tooltip label {padding:8px;color:#d1d8d1;}

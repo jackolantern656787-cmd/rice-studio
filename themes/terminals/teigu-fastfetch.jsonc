@@ -1,0 +1,117 @@
+{
+  "logo": {
+    "type": "file",
+    "source": "@STUDIO_CONFIG@/terminals/arch-logo.txt",
+    "padding": {
+      "top": 3,
+      "right": 4
+    },
+    "color": {
+      "1": "#68656b",
+      "2": "#969196",
+      "3": "#c3c0c6"
+    }
+  },
+  "display": {
+    "separator": " \u279c  ",
+    "color": {
+      "output": "#c3c0c6",
+      "separator": "#969196"
+    }
+  },
+  "modules": [
+    "break",
+    "break",
+    "break",
+    {
+      "type": "os",
+      "key": "OS   ",
+      "keyColor": "#969196"
+    },
+    {
+      "type": "kernel",
+      "key": " \u251c \uf013 ",
+      "keyColor": "#969196"
+    },
+    {
+      "type": "packages",
+      "key": " \u251c \udb80\udfd6 ",
+      "keyColor": "#969196"
+    },
+    {
+      "type": "shell",
+      "key": " \u2514 \uf489 ",
+      "keyColor": "#969196"
+    },
+    "break",
+    {
+      "type": "wm",
+      "key": "WM   ",
+      "keyColor": "#969196"
+    },
+    {
+      "type": "wmtheme",
+      "key": " \u251c \udb80\ude7c ",
+      "keyColor": "#969196"
+    },
+    {
+      "type": "icons",
+      "key": " \u251c \udb80\udc3b ",
+      "keyColor": "#969196"
+    },
+    {
+      "type": "cursor",
+      "key": " \u251c \ue623 ",
+      "keyColor": "#969196"
+    },
+    {
+      "type": "terminal",
+      "key": " \u251c \ue795 ",
+      "keyColor": "#969196"
+    },
+    {
+      "type": "terminalfont",
+      "key": " \u2514 \uf031 ",
+      "keyColor": "#969196"
+    },
+    "break",
+    {
+      "type": "board",
+      "key": "PC   ",
+      "keyColor": "#969196"
+    },
+    {
+      "type": "cpu",
+      "key": " \u251c \uf4bc ",
+      "keyColor": "#969196"
+    },
+    {
+      "type": "gpu",
+      "key": " \u251c \udb82\udcae ",
+      "keyColor": "#969196"
+    },
+    {
+      "type": "memory",
+      "key": " \u251c \uf2db ",
+      "keyColor": "#969196"
+    },
+    {
+      "type": "swap",
+      "key": " \u251c \udb81\udce1 ",
+      "keyColor": "#969196"
+    },
+    {
+      "type": "disk",
+      "key": " \u251c \udb80\udeca ",
+      "keyColor": "#969196",
+      "folders": "/"
+    },
+    {
+      "type": "monitor",
+      "key": " \u2514 \uf108 ",
+      "keyColor": "#969196"
+    },
+    "break",
+    "break"
+  ]
+}

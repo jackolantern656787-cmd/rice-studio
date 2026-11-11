@@ -3,7 +3,7 @@
 from pathlib import Path
 import argparse,datetime,hashlib,importlib.util,json,os,shutil,sys,tempfile
 ROOT=Path(__file__).resolve().parent
-REQUIRED=('hyprctl','quickshell','kitty','ffmpeg','grim','wf-recorder','xdg-open')
+REQUIRED=('hyprctl','quickshell','kitty','ffmpeg','grim','wf-recorder','xdg-open','waybar')
 def load(path,name):
  spec=importlib.util.spec_from_file_location(name,path);m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m);return m
 
@@ -34,6 +34,14 @@ def install(home,check=False,check_deps=True):
   shutil.copytree(ROOT/'app',stage/'app',ignore=shutil.ignore_patterns('__pycache__','*.pyc'))
   p=load(ROOT/'presets.py','install_presets');profiles=p.create(stage/'config')
   for item in profiles.values():item['wallpaper']=str(config/'wallpapers'/Path(item['wallpaper']).name)
+  previous_defaults=json.loads(json.dumps(profiles))
+  pack=load(ROOT/'theme_pack.py','install_theme_pack')
+  pack.prepare(stage,app,config,state,profiles)
+  previous_profiles=config/'profiles.json'
+  if previous_profiles.exists():
+   for key, item in json.loads(previous_profiles.read_text()).items():
+    if item != previous_defaults.get(key):
+     profiles[key]=item
   generated={'profiles.json':profiles,'widgets.json':{},'main.json':{'theme':profiles['main']['theme']}}
   for name,value in generated.items():(stage/'config'/name).write_text(json.dumps(value,indent=2)+'\n')
   for source in (stage/'app').rglob('*'):
@@ -41,7 +49,10 @@ def install(home,check=False,check_deps=True):
   for source in (stage/'config').rglob('*'):
    if source.is_file():
     dest=config/source.relative_to(stage/'config')
-    if not dest.exists():written.append((source,dest))
+    relative=str(dest.relative_to(home))
+    unchanged=dest.is_file() and owned['files'].get(relative)==hashlib.sha256(dest.read_bytes()).hexdigest()
+    if not dest.exists() or (dest.name=='profiles.json' and relative in owned['files']) or (unchanged and dest.parent==config/'terminals'):
+     written.append((source,dest))
   for source in (ROOT/'bin').iterdir():
    if source.is_file():written.append((source,home/'.local/bin'/source.name))
   entry=stage/'rice-studio.desktop';entry.write_text('[Desktop Entry]\nType=Application\nName=Rice Studio\nComment=Local desktop workshop for Hyprland\nExec="'+str(home/'.local/bin/rice-studio')+'"\nIcon=preferences-desktop-theme\nTerminal=false\nCategories=Settings;DesktopSettings;\n')
@@ -56,12 +67,17 @@ def install(home,check=False,check_deps=True):
    fd,temp=tempfile.mkstemp(dir=dest.parent)
    try:
     with os.fdopen(fd,'wb') as out,source.open('rb') as src:shutil.copyfileobj(src,out)
-    os.chmod(temp,0o755 if source.parent==ROOT/'bin' else 0o600);os.replace(temp,dest)
+    os.chmod(temp,0o700 if source.stat().st_mode & 0o111 else 0o600);os.replace(temp,dest)
    finally:
     if os.path.exists(temp):os.unlink(temp)
   files=dict(owned['files'])
-  for _,dest in written:files[str(dest.relative_to(home))]=hashlib.sha256(dest.read_bytes()).hexdigest()
-  control.atomic(manifest,{'schema':1,'version':'0.2.0-beta.1','files':files})
+  for _,dest in written:
+   relative=str(dest.relative_to(home))
+   previous=prior[dest]
+   if dest.name=='profiles.json' and previous and files.get(relative)!=hashlib.sha256(previous.read_bytes()).hexdigest():
+    continue
+   files[relative]=hashlib.sha256(dest.read_bytes()).hexdigest()
+  control.atomic(manifest,{'schema':1,'version':'0.3.0-beta.1','files':files})
   current=state/'current'
   if not current.exists():current.write_text('main\n')
  except Exception:

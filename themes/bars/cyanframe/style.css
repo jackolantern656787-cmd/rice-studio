@@ -1,0 +1,14 @@
+* {font-family:"JetBrainsMono Nerd Font Mono";font-size:11px;border:none;min-height:0;margin:0;padding:0;box-shadow:none;text-shadow:none;}
+window#waybar {background:transparent;color:#d8e5e3;border:none;}
+.modules-left,.modules-center,.modules-right {background:transparent;border:none;}
+#custom-launcher,#cpu,#memory,#disk,#workspaces,#group-workspaces,#clock,#mpris,#tray,#network,#pulseaudio,#custom-dashboard,#custom-power {background:rgba(28,44,51,.68);border:1px solid rgba(153,204,213,.25);border-radius:7px;margin:0 3px;}
+#custom-launcher {font-size:17px;color:#8fd8e2;padding:0 10px;}
+#cpu,#memory,#disk,#clock,#mpris,#tray,#network,#pulseaudio,#custom-dashboard,#custom-power {padding:0 9px;}
+#cpu,#memory,#disk {color:#bbd8dc;}
+#clock {color:#d9e7e6;}
+#workspaces,#group-workspaces {padding:0 6px;}
+#custom-ws1,#custom-ws2,#custom-ws3,#custom-ws4,#custom-ws5,#custom-ws6 {color:#a4b9be;min-width:18px;padding:0 3px;margin:4px 1px;border-radius:7px;}
+#custom-ws1.active,#custom-ws2.active,#custom-ws3.active,#custom-ws4.active,#custom-ws5.active,#custom-ws6.active {background:#77cbd6;color:#17242b;}
+#custom-launcher:hover,#custom-ws1:hover,#custom-ws2:hover,#custom-ws3:hover,#custom-ws4:hover,#custom-ws5:hover,#custom-ws6:hover,#clock:hover,#cpu:hover,#memory:hover,#disk:hover,#network:hover,#pulseaudio:hover,#mpris:hover,#custom-dashboard:hover,#custom-power:hover {background:rgba(119,203,214,.23);transition:background 160ms ease;}
+#custom-power {color:#c5dce0;}
+tooltip {background:#202b30;color:#d8e5e3;border:1px solid #77cbd6;border-radius:6px;} tooltip label {padding:7px;}

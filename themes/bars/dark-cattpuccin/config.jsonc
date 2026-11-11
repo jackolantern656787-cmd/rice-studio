@@ -1,0 +1,111 @@
+{
+  "mode": "dock",
+  "position": "top",
+  "layer": "top",
+  "width": 0,
+  "height": 34,
+  "margin": 0,
+  "spacing": 0,
+  "reload_style_on_change": true,
+  "include": [
+    "@STUDIO_APP@/themes/bars/dark-cattpuccin/modules/custom/*.jsonc",
+    "@STUDIO_APP@/themes/bars/dark-cattpuccin/modules/hyprland/*.jsonc",
+    "@STUDIO_APP@/themes/bars/dark-cattpuccin/modules/*.jsonc"
+  ],
+  "modules-left": [
+    "custom/user",
+    "custom/left#bg_1",
+    "custom/ws1",
+    "custom/ws2",
+    "custom/ws3",
+    "custom/ws4",
+    "custom/ws5",
+    "custom/right#bg_1",
+    "custom/window"
+  ],
+  "modules-center": [
+    "custom/left#bg_1",
+    "custom/temperature",
+    "custom/left#bg_2",
+    "memory",
+    "custom/left#bg_3",
+    "cpu",
+    "custom/left_inverse#bg_3",
+    "custom/left#accent",
+    "custom/distro",
+    "custom/right#accent",
+    "custom/right_inverse#bg_3",
+    "idle_inhibitor",
+    "clock#time",
+    "custom/right#bg_3",
+    "clock#date",
+    "custom/right#bg_2",
+    "network",
+    "bluetooth",
+    "custom/right#bg_1"
+  ],
+  "modules-right": [
+    "mpris",
+    "custom/left#bg_1",
+    "group/pulseaudio",
+    "tray",
+    "custom/notifications",
+    "custom/right#bg_1",
+    "disk",
+    "custom/power"
+  ],
+  "name": "dark-cattpuccin-managed",
+  "custom/ws1": {
+    "exec": "@STUDIO_APP@/themes/bars/beige/workspace.py 1",
+    "return-type": "json",
+    "interval": 1,
+    "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = 1 })'",
+    "cursor": 60,
+    "tooltip": false
+  },
+  "custom/ws2": {
+    "exec": "@STUDIO_APP@/themes/bars/beige/workspace.py 2",
+    "return-type": "json",
+    "interval": 1,
+    "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = 2 })'",
+    "cursor": 60,
+    "tooltip": false
+  },
+  "custom/ws3": {
+    "exec": "@STUDIO_APP@/themes/bars/beige/workspace.py 3",
+    "return-type": "json",
+    "interval": 1,
+    "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = 3 })'",
+    "cursor": 60,
+    "tooltip": false
+  },
+  "custom/ws4": {
+    "exec": "@STUDIO_APP@/themes/bars/beige/workspace.py 4",
+    "return-type": "json",
+    "interval": 1,
+    "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = 4 })'",
+    "cursor": 60,
+    "tooltip": false
+  },
+  "custom/ws5": {
+    "exec": "@STUDIO_APP@/themes/bars/beige/workspace.py 5",
+    "return-type": "json",
+    "interval": 1,
+    "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = 5 })'",
+    "cursor": 60,
+    "tooltip": false
+  },
+  "custom/window": {
+    "exec": "python3 @STUDIO_APP@/themes/bars/dark-cattpuccin/window.py",
+    "return-type": "json",
+    "interval": 1,
+    "max-length": 32,
+    "on-click": "@STUDIO_APP@/commands/rice-launch"
+  },
+  "disk": {
+    "format": "\udb80\udeca {percentage_used}%",
+    "interval": 30,
+    "path": "/",
+    "tooltip-format": "Root filesystem: {used} / {total}"
+  }
+}

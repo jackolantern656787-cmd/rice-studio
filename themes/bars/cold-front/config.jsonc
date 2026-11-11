@@ -1,0 +1,151 @@
+{
+  "name": "cold-front-managed",
+  "position": "top",
+  "layer": "top",
+  "height": 38,
+  "margin-top": 7,
+  "margin-left": 8,
+  "margin-right": 8,
+  "spacing": 0,
+  "reload_style_on_change": true,
+  "modules-left": [
+    "custom/ws1",
+    "custom/ws2",
+    "custom/ws3",
+    "custom/ws4",
+    "custom/ws5"
+  ],
+  "modules-center": [
+    "mpris",
+    "custom/previous",
+    "custom/play",
+    "custom/next"
+  ],
+  "modules-right": [
+    "pulseaudio",
+    "bluetooth",
+    "custom/settings",
+    "network",
+    "tray",
+    "clock"
+  ],
+  "custom/ws1": {
+    "exec": "@STUDIO_APP@/themes/bars/beige/workspace.py 1",
+    "return-type": "json",
+    "interval": 1,
+    "format": "\u25cf",
+    "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = 1 })'",
+    "cursor": 60,
+    "tooltip-format": "Workspace 1"
+  },
+  "custom/ws2": {
+    "exec": "@STUDIO_APP@/themes/bars/beige/workspace.py 2",
+    "return-type": "json",
+    "interval": 1,
+    "format": "\u25cf",
+    "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = 2 })'",
+    "cursor": 60,
+    "tooltip-format": "Workspace 2"
+  },
+  "custom/ws3": {
+    "exec": "@STUDIO_APP@/themes/bars/beige/workspace.py 3",
+    "return-type": "json",
+    "interval": 1,
+    "format": "\u25cf",
+    "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = 3 })'",
+    "cursor": 60,
+    "tooltip-format": "Workspace 3"
+  },
+  "custom/ws4": {
+    "exec": "@STUDIO_APP@/themes/bars/beige/workspace.py 4",
+    "return-type": "json",
+    "interval": 1,
+    "format": "\u25cf",
+    "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = 4 })'",
+    "cursor": 60,
+    "tooltip-format": "Workspace 4"
+  },
+  "custom/ws5": {
+    "exec": "@STUDIO_APP@/themes/bars/beige/workspace.py 5",
+    "return-type": "json",
+    "interval": 1,
+    "format": "\u25cf",
+    "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = 5 })'",
+    "cursor": 60,
+    "tooltip-format": "Workspace 5"
+  },
+  "mpris": {
+    "format": "\uf001  {artist} - {title}",
+    "format-paused": "\uf001  {artist} - {title}",
+    "max-length": 50,
+    "on-click": "playerctl play-pause",
+    "cursor": 60
+  },
+  "custom/previous": {
+    "format": "\udb81\udcae",
+    "on-click": "playerctl previous",
+    "cursor": 60,
+    "tooltip": false
+  },
+  "custom/play": {
+    "format": "\udb80\udfe4",
+    "on-click": "playerctl play-pause",
+    "cursor": 60,
+    "tooltip": false
+  },
+  "custom/next": {
+    "format": "\udb81\udcad",
+    "on-click": "playerctl next",
+    "cursor": 60,
+    "tooltip": false
+  },
+  "pulseaudio": {
+    "format": "{icon}",
+    "format-muted": "\udb81\udf5f",
+    "format-icons": {
+      "default": [
+        "\uf026",
+        "\uf027",
+        "\uf028"
+      ]
+    },
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg toggle volume",
+    "on-scroll-up": "@STUDIO_APP@/themes/bars/beige/volume output up",
+    "on-scroll-down": "@STUDIO_APP@/themes/bars/beige/volume output down",
+    "tooltip-format": "Volume: {volume}%",
+    "cursor": 60
+  },
+  "bluetooth": {
+    "format": "\uf294",
+    "format-disabled": "\udb80\udcb2",
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg toggle bluetooth",
+    "tooltip-format": "Bluetooth: {status}",
+    "cursor": 60
+  },
+  "custom/settings": {
+    "format": "\uf013",
+    "on-click": "@STUDIO_APP@/commands/serpantinum settings",
+    "on-click-right": "@STUDIO_APP@/commands/rice-launch",
+    "tooltip-format": "Settings \u00b7 right-click applications",
+    "cursor": 60
+  },
+  "network": {
+    "format-wifi": "\uf1eb",
+    "format-ethernet": "\udb80\ude00",
+    "format-disconnected": "\udb81\uddaa",
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg toggle network",
+    "tooltip-format": "{ifname}",
+    "cursor": 60
+  },
+  "tray": {
+    "icon-size": 13,
+    "spacing": 9
+  },
+  "clock": {
+    "format": "{:%I:%M %p\n%m/%d/%y}",
+    "interval": 30,
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg toggle calendar",
+    "tooltip-format": "{:%A, %d %B %Y}",
+    "cursor": 60
+  }
+}

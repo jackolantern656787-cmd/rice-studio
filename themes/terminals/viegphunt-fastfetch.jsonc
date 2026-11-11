@@ -1,0 +1,37 @@
+{
+  "logo": {
+    "source": "arch",
+    "color": {
+      "1": "#89b4fa",
+      "2": "#b4befe"
+    },
+    "padding": {
+      "right": 3
+    }
+  },
+  "modules": [
+    "title",
+    "separator",
+    "os",
+    "host",
+    "kernel",
+    "uptime",
+    "packages",
+    "shell",
+    "display",
+    "wm",
+    "theme",
+    "icons",
+    "terminal",
+    "terminalfont",
+    "cpu",
+    "gpu",
+    "memory",
+    {
+      "type": "disk",
+      "folders": "/"
+    },
+    "break",
+    "colors"
+  ]
+}

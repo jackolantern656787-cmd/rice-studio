@@ -1,0 +1,12 @@
+* {font-family:"Iosevka Nerd Font";font-size:11px;border:none;border-radius:0;min-height:0;padding:0;margin:0;box-shadow:none;text-shadow:none;}
+window#waybar {background:rgba(49,68,84,0.83);color:#c9d7e1;border:2px solid #4ba8e9;border-radius:4px;}
+#custom-ws1,#custom-ws2,#custom-ws3,#custom-ws4,#custom-ws5 {font-size:8px;min-width:9px;color:#6d8da7;padding:0 1px;}
+#custom-ws1 {margin-left:8px;}
+#custom-ws1.active,#custom-ws2.active,#custom-ws3.active,#custom-ws4.active,#custom-ws5.active {min-width:29px;font-size:0;background:#789dbb;border-radius:4px;margin:11px 2px;}
+#mpris {padding:0 9px;font-size:11px;}
+#custom-previous,#custom-play,#custom-next {padding:0 5px;}
+#pulseaudio,#bluetooth,#network,#custom-settings {padding:0 7px;font-size:14px;}
+#tray {padding:0 8px;}
+#clock {padding:0 10px;font-size:12px;}
+#custom-previous:hover,#custom-play:hover,#custom-next:hover,#pulseaudio:hover,#bluetooth:hover,#network:hover,#custom-settings:hover {background:rgba(114,173,216,0.17);}
+tooltip {background:#273b4b;border:1px solid #4ba8e9;border-radius:2px;} tooltip label {padding:7px;color:#d1dde5;}

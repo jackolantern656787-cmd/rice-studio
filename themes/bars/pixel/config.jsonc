@@ -1,0 +1,136 @@
+{
+  "name": "pixel-managed",
+  "position": "top",
+  "layer": "top",
+  "height": 26,
+  "spacing": 0,
+  "reload_style_on_change": true,
+  "modules-left": [
+    "custom/launcher",
+    "custom/ws1",
+    "custom/ws2"
+  ],
+  "modules-right": [
+    "custom/network",
+    "custom/separator",
+    "custom/language",
+    "custom/separator",
+    "custom/cpu",
+    "custom/memory",
+    "custom/separator",
+    "clock",
+    "custom/separator",
+    "idle_inhibitor",
+    "pulseaudio",
+    "custom/separator",
+    "custom/display",
+    "custom/notifications",
+    "custom/power"
+  ],
+  "custom/launcher": {
+    "format": "\udb80\udc3b",
+    "tooltip-format": "Zunder",
+    "on-click": "@STUDIO_APP@/commands/rice-launch",
+    "on-click-right": "@STUDIO_APP@/commands/serpantinum settings",
+    "cursor": 68
+  },
+  "custom/network": {
+    "format": "\udb81\udc83",
+    "tooltip-format": "Network controls",
+    "on-click": "quickshell -p @STUDIO_APP@/themes/extras/pixel/shell.qml ipc call pixel toggle network",
+    "cursor": 68
+  },
+  "custom/separator": {
+    "format": "\u2502",
+    "tooltip": false,
+    "cursor": 68
+  },
+  "custom/language": {
+    "exec": "@STUDIO_APP@/themes/bars/pixel/status.py language",
+    "return-type": "json",
+    "interval": 3,
+    "on-click": "@STUDIO_APP@/commands/serpantinum settings",
+    "cursor": 68
+  },
+  "custom/cpu": {
+    "exec": "@STUDIO_APP@/themes/bars/pixel/status.py cpu",
+    "return-type": "json",
+    "interval": 2,
+    "on-click": "quickshell -p @STUDIO_APP@/themes/extras/pixel/shell.qml ipc call pixel toggle system",
+    "on-click-right": "kitty -e nvtop",
+    "cursor": 68
+  },
+  "custom/memory": {
+    "exec": "@STUDIO_APP@/themes/bars/pixel/status.py ram",
+    "return-type": "json",
+    "interval": 2,
+    "on-click": "quickshell -p @STUDIO_APP@/themes/extras/pixel/shell.qml ipc call pixel toggle ram",
+    "cursor": 68
+  },
+  "clock": {
+    "format": "{:%H:%M %a %d.%m}",
+    "tooltip-format": "Calendar \u00b7 click to open / close",
+    "on-click": "quickshell -p @STUDIO_APP@/themes/extras/pixel/shell.qml ipc call pixel toggle calendar",
+    "cursor": 68
+  },
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+      "activated": "\u03df",
+      "deactivated": "\udb81\udcb2"
+    },
+    "tooltip-format-activated": "Keep awake: on",
+    "tooltip-format-deactivated": "Keep awake: off",
+    "cursor": 68
+  },
+  "pulseaudio": {
+    "format": "{icon} {volume}",
+    "format-muted": "\udb81\udf5f muted",
+    "format-icons": {
+      "default": [
+        "\uf026",
+        "\uf027",
+        "\uf028"
+      ]
+    },
+    "max-volume": 100,
+    "on-click": "quickshell -p @STUDIO_APP@/themes/extras/pixel/shell.qml ipc call pixel toggle audio",
+    "on-click-right": "@STUDIO_APP@/themes/bars/pixel/volume output mute",
+    "on-scroll-up": "@STUDIO_APP@/themes/bars/pixel/volume output up",
+    "on-scroll-down": "@STUDIO_APP@/themes/bars/pixel/volume output down",
+    "tooltip-format": "Volume: {volume}% \u2022 right-click: mute",
+    "cursor": 68
+  },
+  "custom/display": {
+    "format": "\udb80\udf79",
+    "tooltip-format": "Desktop settings",
+    "on-click": "quickshell -p @STUDIO_APP@/themes/extras/pixel/shell.qml ipc call pixel toggle system",
+    "cursor": 68
+  },
+  "custom/power": {
+    "format": "\u23fb",
+    "tooltip-format": "Power menu \u2022 confirmation required",
+    "on-click": "kitty --class graphite-power -e @STUDIO_APP@/themes/bars/pixel/actions.py power",
+    "cursor": 68
+  },
+  "custom/ws1": {
+    "exec": "@STUDIO_APP@/themes/bars/pixel/workspace.py 1",
+    "return-type": "json",
+    "interval": 1,
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg workspace 1",
+    "cursor": 68
+  },
+  "custom/ws2": {
+    "exec": "@STUDIO_APP@/themes/bars/pixel/workspace.py 2",
+    "return-type": "json",
+    "interval": 1,
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg workspace 2",
+    "cursor": 68
+  },
+  "custom/notifications": {
+    "format": "\udb80\udc9a",
+    "tooltip-format": "Pixel notifications",
+    "on-click": "quickshell -p @STUDIO_APP@/themes/extras/pixel/shell.qml ipc call pixel toggle notifications",
+    "cursor": 68
+  }
+}

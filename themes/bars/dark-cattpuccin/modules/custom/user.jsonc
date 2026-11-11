@@ -1,0 +1,9 @@
+{
+  "custom/user": {
+    "format": "\udb81\udd70",
+    "tooltip-format": "App launcher \u2022 right-click settings",
+    "on-click": "@STUDIO_APP@/commands/rice-launch",
+    "on-click-right": "@STUDIO_APP@/commands/serpantinum settings",
+    "cursor": 60
+  }
+}

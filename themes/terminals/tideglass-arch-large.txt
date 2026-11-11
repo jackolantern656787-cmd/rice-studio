@@ -1,0 +1,26 @@
+$1
+$1                        `/
+$1                       `++/
+$1                      `++++/
+$1                     `++++++/
+$1                    `++++++++/
+$1                   `++++++++++/
+$1                   ++++++++++++/
+$1                   +++++++++++++/
+$1                    +++++++++++++/
+$1                     +++++++++++++/
+$1              `++++++++++++++++++++/
+$1             `++++++++++++++++++++++/
+$1            `oooooooooooooooooooooooo/
+$1           `oooooooooooooooooooooooooo/
+$1          `oooooooooooooooooooooooooooo/
+$1         `ooooooooooooo    ooooooooooooo/
+$1        `oooooooooooo        oooooooooooo/
+$1       `oooooooooooo          oooooooooooo/
+$1      `ooooooooooooo          ooooooooooooo/
+$1     `oooooooooooooo          oooooooooooooo/
+$1    `ooooooooooooooo          ooooooooooooooo/
+$1   ``ooooooooooooooo          ooooooooooooooo//
+$1  ``oooooooooooooooo          oooooooooooooooo//
+$1 ``ooooooooooooooooo          ooooooooooooooooo//
+$1 `oooooooooooooooooo          oooooooooooooooooo/

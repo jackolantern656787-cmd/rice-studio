@@ -1,0 +1,70 @@
+add_newline = true
+
+format = """
+[](#e5c890)$os$time[](fg:#e5c890 bg:#45475a)$hostname[](fg:#45475a bg:#89b4fa)$directory[](#89b4fa)$git_branch$git_status$python$nodejs$rust$cmd_duration$status
+[╰─](#e5c890)[❯](bold #a6e3a1) """
+
+[directory]
+format = " [󰉋 $path ]($style)"
+style = "bold fg:#1e1e2e bg:#89b4fa"
+truncation_length = 3
+truncation_symbol = "…/"
+
+[git_branch]
+symbol = " "
+format = " [$symbol$branch]($style)"
+style = "#a6e3a1"
+
+[git_status]
+format = " [$all_status$ahead_behind]($style)"
+style = "#f9e2af"
+
+[python]
+format = " [󰌠 $version]($style)"
+style = "#f5c2e7"
+
+[nodejs]
+format = " [󰎙 $version]($style)"
+style = "#a6e3a1"
+
+[rust]
+format = " [󱘗 $version]($style)"
+style = "#fab387"
+
+[cmd_duration]
+min_time = 1000
+format = " [󰔛 $duration]($style)"
+style = "#f9e2af"
+
+[os]
+disabled = false
+format = " [$symbol ]($style)"
+style = "bold fg:#1e1e2e bg:#e5c890"
+
+[os.symbols]
+Arch = ""
+Linux = ""
+
+[directory.substitutions]
+"Documents" = "󰈙 Documents"
+"Downloads" = " Downloads"
+"Music" = " Music"
+"Pictures" = " Pictures"
+"Videos" = " Videos"
+
+[status]
+disabled = false
+format = " [✘ $status]($style)"
+style = "bold #f38ba8"
+
+[time]
+disabled = false
+time_format = "%I:%M %p"
+format = "[$time ]($style)"
+style = "fg:#1e1e2e bg:#e5c890"
+
+[hostname]
+ssh_only = false
+format = "[ $hostname ]($style)"
+style = "bold fg:#cdd6f4 bg:#45475a"
+trim_at = "."

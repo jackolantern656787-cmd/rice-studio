@@ -10,6 +10,9 @@ def uninstall(home,restore=True):
   sys.path.insert(0,str(app));import core
   core.finish_preview(False)
   core.control().apply_desktop('main')
+  if (state/'serpantinum-bar-hook.json').exists():
+   from serpantinum_hook import restore_hook
+   restore_hook()
   for config in (app/'qt/shell.qml',app/'desktop.qml',app/'widgets.qml'):
    subprocess.run(['quickshell','-p',str(config),'kill'],capture_output=True,timeout=10)
  data=json.loads(manifest.read_text());kept=[]

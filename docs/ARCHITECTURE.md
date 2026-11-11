@@ -12,8 +12,8 @@ Media actions are explicit. Screenshots/recordings capture the focused monitor, 
 
 Limits:
 
-- Studio is a portable beta with one native panel and palette variations, not the entire personal Serpantinum collection.
-- Original panel and wallpaper processes keep running underneath. Some desktops' layer ordering may require manual integration; the app does not kill them to win stacking order.
+- Studio bundles 15 Waybar configurations and the Serashell native panel. Theme launchers and actions depend on available local applications and services.
+- Original panel and wallpaper processes stay running. The optional Serpantinum hook makes its bar yield while the theme bar is visible.
 - Keep persists the selection in Studio's state, not Hyprland autostart. Reapply deliberately after a new login.
 - Border/rounding window-specific rules can override global compositor values.
 - A background process that constantly rewrites compositor options can conflict with global themes.

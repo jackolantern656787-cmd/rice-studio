@@ -1,0 +1,21 @@
+add_newline = true
+format = "[](#b9b8d0)[  ](fg:#293441 bg:#b9b8d0)$directory[](#b9b8d0)$fill[](#b9b8d0)$time[](#b9b8d0)$line_break$character"
+
+[directory]
+format = "[$path ]($style)"
+style = "fg:#293441 bg:#b9b8d0"
+truncation_length = 3
+truncation_symbol = "…/"
+
+[fill]
+symbol = " "
+
+[time]
+disabled = false
+time_format = "%H:%M:%S"
+format = "[ at $time ]($style)"
+style = "fg:#293441 bg:#b9b8d0"
+
+[character]
+success_symbol = "[❯](#d4d7df)"
+error_symbol = "[❯](#df9dad)"

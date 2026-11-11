@@ -1,0 +1,8 @@
+{
+  "custom/power": {
+    "format": "\udb81\udc25",
+    "tooltip-format": "Power menu \u2014 confirmation required",
+    "on-click": "kitty --class mechabar-power --title \"Power menu\" -e @STUDIO_APP@/themes/bars/dark-cattpuccin/scripts/actions.py power",
+    "cursor": 60
+  }
+}

@@ -1,0 +1,180 @@
+{
+  "name": "cyanframe-managed",
+  "layer": "top",
+  "position": "top",
+  "height": 28,
+  "margin-top": 4,
+  "margin-left": 6,
+  "margin-right": 6,
+  "fixed-center": true,
+  "spacing": 0,
+  "reload_style_on_change": true,
+  "modules-left": [
+    "custom/launcher",
+    "cpu",
+    "memory",
+    "disk",
+    "group/workspaces"
+  ],
+  "modules-center": [
+    "clock"
+  ],
+  "modules-right": [
+    "mpris",
+    "tray",
+    "network",
+    "pulseaudio",
+    "custom/dashboard",
+    "custom/power"
+  ],
+  "custom/launcher": {
+    "format": "\uf303",
+    "on-click": "@STUDIO_APP@/commands/rice-launch",
+    "on-click-right": "@STUDIO_APP@/commands/cyanframe dashboard",
+    "cursor": 60,
+    "tooltip-format": "Applications \u00b7 right-click Cyanframe Dashboard"
+  },
+  "group/workspaces": {
+    "orientation": "horizontal",
+    "modules": [
+      "custom/ws1",
+      "custom/ws2",
+      "custom/ws3",
+      "custom/ws4",
+      "custom/ws5",
+      "custom/ws6"
+    ]
+  },
+  "custom/ws1": {
+    "exec": "@STUDIO_APP@/themes/bars/beige/workspace.py 1",
+    "return-type": "json",
+    "interval": 1,
+    "cursor": 60,
+    "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = 1 })'",
+    "tooltip": true
+  },
+  "custom/ws2": {
+    "exec": "@STUDIO_APP@/themes/bars/beige/workspace.py 2",
+    "return-type": "json",
+    "interval": 1,
+    "cursor": 60,
+    "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = 2 })'",
+    "tooltip": true
+  },
+  "custom/ws3": {
+    "exec": "@STUDIO_APP@/themes/bars/beige/workspace.py 3",
+    "return-type": "json",
+    "interval": 1,
+    "cursor": 60,
+    "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = 3 })'",
+    "tooltip": true
+  },
+  "custom/ws4": {
+    "exec": "@STUDIO_APP@/themes/bars/beige/workspace.py 4",
+    "return-type": "json",
+    "interval": 1,
+    "cursor": 60,
+    "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = 4 })'",
+    "tooltip": true
+  },
+  "custom/ws5": {
+    "exec": "@STUDIO_APP@/themes/bars/beige/workspace.py 5",
+    "return-type": "json",
+    "interval": 1,
+    "cursor": 60,
+    "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = 5 })'",
+    "tooltip": true
+  },
+  "custom/ws6": {
+    "exec": "@STUDIO_APP@/themes/bars/beige/workspace.py 6",
+    "return-type": "json",
+    "interval": 1,
+    "cursor": 60,
+    "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = 6 })'",
+    "tooltip": true
+  },
+  "hyprland/window": {
+    "format": "{}",
+    "max-length": 22,
+    "separate-outputs": true
+  },
+  "clock": {
+    "format": "{:%A \u00b7 %d %B \u00b7 %H:%M}",
+    "interval": 1,
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg toggle calendar",
+    "cursor": 60,
+    "tooltip-format": "{:%A, %d %B %Y}"
+  },
+  "mpris": {
+    "format": "\uf001 {title}",
+    "format-paused": "\udb80\udfe4 {title}",
+    "max-length": 18,
+    "on-click": "playerctl play-pause",
+    "on-click-right": "playerctl next",
+    "cursor": 60
+  },
+  "cpu": {
+    "format": "\uf4bc {usage}%",
+    "interval": 3,
+    "on-click": "kitty btop",
+    "cursor": 60
+  },
+  "memory": {
+    "format": "\udb80\udf5b {used:0.1f}G",
+    "interval": 3,
+    "on-click": "kitty btop",
+    "cursor": 60
+  },
+  "pulseaudio": {
+    "format": "{icon} {volume}%",
+    "format-muted": "\udb81\udf5f",
+    "format-icons": {
+      "default": [
+        "\uf026",
+        "\uf027",
+        "\uf028"
+      ]
+    },
+    "on-click": "@STUDIO_APP@/commands/rice-panel volume",
+    "on-scroll-up": "@STUDIO_APP@/themes/bars/beige/volume output up",
+    "on-scroll-down": "@STUDIO_APP@/themes/bars/beige/volume output down",
+    "cursor": 60
+  },
+  "network": {
+    "format-wifi": "\uf1eb",
+    "format-ethernet": "\udb80\ude00",
+    "format-disconnected": "\udb81\uddaa",
+    "tooltip-format": "{ifname}",
+    "on-click": "@STUDIO_APP@/commands/rice-panel network",
+    "cursor": 60
+  },
+  "custom/notification": {
+    "format": "\udb80\udc9a",
+    "on-click": "@STUDIO_APP@/commands/tideglass notifications",
+    "cursor": 60,
+    "tooltip": false
+  },
+  "custom/power": {
+    "format": "\u23fb",
+    "on-click": "kitty --class cyanframe-power -e @STUDIO_APP@/themes/bars/beige/actions.py power",
+    "cursor": 60,
+    "tooltip-format": "Session controls"
+  },
+  "disk": {
+    "format": "\udb80\udeca {percentage_used}%",
+    "path": "/",
+    "interval": 30,
+    "cursor": 60,
+    "on-click": "nautilus"
+  },
+  "custom/dashboard": {
+    "format": "\udb81\udd6e",
+    "on-click": "@STUDIO_APP@/commands/cyanframe dashboard",
+    "cursor": 60,
+    "tooltip-format": "Cyanframe Dashboard"
+  },
+  "tray": {
+    "icon-size": 14,
+    "spacing": 8
+  }
+}

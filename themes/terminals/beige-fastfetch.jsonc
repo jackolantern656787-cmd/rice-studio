@@ -1,0 +1,129 @@
+{
+  "logo": {
+    "type": "file",
+    "source": "@STUDIO_CONFIG@/terminals/cat-logo.txt",
+    "padding": {
+      "top": 1,
+      "left": 0,
+      "right": 4
+    },
+    "color": {
+      "1": "#e5c890",
+      "2": "#aaa98a",
+      "3": "#d1b19c"
+    }
+  },
+  "display": {
+    "separator": ": ",
+    "color": {
+      "keys": "#e5c890",
+      "title": "#e7d8b8",
+      "output": "#d1c1a0",
+      "separator": "#6c5e45"
+    },
+    "percent": {
+      "type": 1
+    }
+  },
+  "modules": [
+    {
+      "type": "title",
+      "format": "{user-name}@{host-name}",
+      "key": "\udb80\udc04 User",
+      "keyColor": "#e5c890",
+      "outputColor": "#d1c1a0"
+    },
+    "separator",
+    {
+      "type": "os",
+      "key": "\uf303 OS",
+      "keyColor": "#e5c890",
+      "outputColor": "#d1c1a0"
+    },
+    {
+      "type": "board",
+      "key": "\udb80\udf22 Host",
+      "keyColor": "#e5c890",
+      "outputColor": "#d1c1a0"
+    },
+    {
+      "type": "kernel",
+      "key": "\uf013 Kernel",
+      "keyColor": "#e5c890",
+      "outputColor": "#d1c1a0"
+    },
+    {
+      "type": "display",
+      "key": "\udb80\udf79 Display",
+      "keyColor": "#e5c890",
+      "outputColor": "#d1c1a0"
+    },
+    {
+      "type": "wm",
+      "key": "\uf488 WM",
+      "keyColor": "#e5c890",
+      "outputColor": "#d1c1a0"
+    },
+    {
+      "type": "theme",
+      "key": "\udb80\udfd8 Theme",
+      "keyColor": "#e5c890",
+      "outputColor": "#d1c1a0"
+    },
+    {
+      "type": "icons",
+      "key": "\udb80\udc3b Icons",
+      "keyColor": "#e5c890",
+      "outputColor": "#d1c1a0"
+    },
+    {
+      "type": "font",
+      "key": "\uf031 Font",
+      "keyColor": "#e5c890",
+      "outputColor": "#d1c1a0"
+    },
+    {
+      "type": "terminal",
+      "key": "\uf489 Terminal",
+      "keyColor": "#e5c890",
+      "outputColor": "#d1c1a0"
+    },
+    {
+      "type": "terminalfont",
+      "key": "\udb81\uded6 Term font",
+      "keyColor": "#e5c890",
+      "outputColor": "#d1c1a0"
+    },
+    {
+      "type": "cpu",
+      "key": "\uf4bc CPU",
+      "keyColor": "#e5c890",
+      "outputColor": "#d1c1a0"
+    },
+    {
+      "type": "gpu",
+      "key": "\udb82\udcae GPU",
+      "keyColor": "#e5c890",
+      "outputColor": "#d1c1a0"
+    },
+    {
+      "type": "memory",
+      "key": "\udb80\udf5b RAM",
+      "keyColor": "#e5c890",
+      "outputColor": "#d1c1a0"
+    },
+    {
+      "type": "swap",
+      "key": "\udb81\udce1 Swap",
+      "keyColor": "#e5c890",
+      "outputColor": "#d1c1a0"
+    },
+    {
+      "type": "disk",
+      "folders": "/",
+      "key": "\udb80\udeca Disk",
+      "keyColor": "#e5c890",
+      "outputColor": "#d1c1a0"
+    }
+  ]
+}

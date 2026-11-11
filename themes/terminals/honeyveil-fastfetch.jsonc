@@ -1,0 +1,104 @@
+{
+  "logo": {
+    "type": "file",
+    "source": "@STUDIO_APP@/themes/extras/honeyveil/ghost.txt",
+    "color": {
+      "1": "#f9e2af",
+      "2": "#cdd6f4",
+      "3": "#1e1e2e"
+    },
+    "padding": {
+      "top": 2,
+      "right": 4
+    }
+  },
+  "display": {
+    "separator": " : ",
+    "color": {
+      "keys": "#f9e2af",
+      "output": "#cdd6f4",
+      "title": "#f5c2e7",
+      "separator": "#cdd6f4"
+    }
+  },
+  "modules": [
+    {
+      "type": "custom",
+      "format": "\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510"
+    },
+    {
+      "type": "board",
+      "key": "\udb80\udf22 Device"
+    },
+    {
+      "type": "os",
+      "key": "\uf303 OS"
+    },
+    {
+      "type": "kernel",
+      "key": "\uf2db Kernel"
+    },
+    {
+      "type": "packages",
+      "key": "\udb80\udfd6 Packages"
+    },
+    {
+      "type": "display",
+      "key": "\udb80\udf79 Display"
+    },
+    {
+      "type": "terminal",
+      "key": "\uf489 Terminal"
+    },
+    {
+      "type": "wm",
+      "key": "\udb81\uddb2 WM"
+    },
+    {
+      "type": "custom",
+      "format": "\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518"
+    },
+    "break",
+    "title",
+    "break",
+    {
+      "type": "custom",
+      "format": "\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510"
+    },
+    {
+      "type": "cpu",
+      "key": "\uf4bc CPU"
+    },
+    {
+      "type": "gpu",
+      "key": "\udb80\udf5b GPU"
+    },
+    {
+      "type": "command",
+      "key": "\udb82\udcae Driver",
+      "text": "nvidia-smi --query-gpu=driver_version --format=csv,noheader 2>/dev/null | head -n 1"
+    },
+    {
+      "type": "memory",
+      "key": "\udb81\ude1a Memory"
+    },
+    {
+      "type": "disk",
+      "key": "\udb80\udeca Disk"
+    },
+    {
+      "type": "shell",
+      "key": "\uf489 Shell"
+    },
+    {
+      "type": "uptime",
+      "key": "\udb80\udd50 Uptime"
+    },
+    {
+      "type": "custom",
+      "format": "\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518"
+    },
+    "break",
+    "colors"
+  ]
+}

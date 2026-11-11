@@ -1,0 +1,133 @@
+{
+  "logo": {
+    "type": "builtin",
+    "source": "bedrock",
+    "padding": {
+      "top": 0,
+      "right": 3
+    },
+    "color": {
+      "1": "#aab3c4",
+      "2": "#aab3c4",
+      "3": "#aab3c4"
+    }
+  },
+  "display": {
+    "separator": " : ",
+    "color": {
+      "keys": "#d0d4df",
+      "output": "#c5ccda",
+      "title": "#d2d1e4",
+      "separator": "#8e9aaa"
+    }
+  },
+  "modules": [
+    {
+      "type": "custom",
+      "format": "\u250cSystem"
+    },
+    {
+      "type": "datetime",
+      "key": "\u2502 Date"
+    },
+    {
+      "type": "os",
+      "key": "\u2502 OS"
+    },
+    {
+      "type": "kernel",
+      "key": "\u2502 Kernel"
+    },
+    {
+      "type": "packages",
+      "key": "\u2502 Packages"
+    },
+    {
+      "type": "shell",
+      "key": "\u2502 Shell"
+    },
+    {
+      "type": "font",
+      "key": "\u2502 Font"
+    },
+    {
+      "type": "terminal",
+      "key": "\u2502 Terminal"
+    },
+    {
+      "type": "terminalfont",
+      "key": "\u2502 Terminal font"
+    },
+    {
+      "type": "wm",
+      "key": "\u2502 WM"
+    },
+    "break",
+    {
+      "type": "custom",
+      "format": "\u250cHardware"
+    },
+    {
+      "type": "cpu",
+      "key": "\u2502 CPU",
+      "temp": true
+    },
+    {
+      "type": "memory",
+      "key": "\u2502 Memory"
+    },
+    {
+      "type": "gpu",
+      "key": "\u2502 GPU",
+      "temp": true
+    },
+    {
+      "type": "swap",
+      "key": "\u2502 Swap"
+    },
+    {
+      "type": "disk",
+      "key": "\u2502 Root",
+      "folders": "/"
+    },
+    {
+      "type": "board",
+      "key": "\u2502 Board"
+    },
+    {
+      "type": "display",
+      "key": "\u2502 Monitor"
+    },
+    {
+      "type": "sound",
+      "key": "\u2502 Audio"
+    },
+    "break",
+    {
+      "type": "custom",
+      "format": "\u250cOther"
+    },
+    {
+      "type": "media",
+      "key": "\u2502 Music"
+    },
+    {
+      "type": "uptime",
+      "key": "\u2502 Uptime"
+    },
+    {
+      "type": "command",
+      "key": "\u2502 OS age",
+      "text": "python3 @STUDIO_APP@/themes/extras/tideglass/install-age.py"
+    },
+    {
+      "type": "version",
+      "key": "\u2502 Version"
+    },
+    "break",
+    {
+      "type": "colors",
+      "symbol": "block"
+    }
+  ]
+}

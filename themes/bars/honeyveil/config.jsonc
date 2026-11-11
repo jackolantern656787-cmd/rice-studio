@@ -1,0 +1,175 @@
+{
+  "name": "honeyveil-managed",
+  "position": "top",
+  "layer": "top",
+  "height": 32,
+  "spacing": 0,
+  "fixed-center": true,
+  "modules-left": [
+    "custom/arch",
+    "cpu",
+    "memory",
+    "disk",
+    "network",
+    "battery"
+  ],
+  "modules-center": [
+    "custom/prev",
+    "custom/pac1",
+    "custom/pac2",
+    "custom/pac3",
+    "custom/pac4",
+    "custom/next"
+  ],
+  "modules-right": [
+    "custom/previous",
+    "custom/play",
+    "custom/skip",
+    "mpris",
+    "pulseaudio",
+    "custom/updates",
+    "tray",
+    "custom/notifications",
+    "custom/power"
+  ],
+  "custom/pac1": {
+    "exec": "@STUDIO_APP@/themes/extras/honeyveil/pacman.py 1",
+    "return-type": "json",
+    "interval": 1,
+    "cursor": 60,
+    "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = 1 })'",
+    "tooltip": true
+  },
+  "custom/pac2": {
+    "exec": "@STUDIO_APP@/themes/extras/honeyveil/pacman.py 2",
+    "return-type": "json",
+    "interval": 1,
+    "cursor": 60,
+    "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = 2 })'",
+    "tooltip": true
+  },
+  "custom/pac3": {
+    "exec": "@STUDIO_APP@/themes/extras/honeyveil/pacman.py 3",
+    "return-type": "json",
+    "interval": 1,
+    "cursor": 60,
+    "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = 3 })'",
+    "tooltip": true
+  },
+  "custom/pac4": {
+    "exec": "@STUDIO_APP@/themes/extras/honeyveil/pacman.py 4",
+    "return-type": "json",
+    "interval": 1,
+    "cursor": 60,
+    "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = 4 })'",
+    "tooltip": true
+  },
+  "custom/prev": {
+    "format": "\u00ab",
+    "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = \"-1\" })'",
+    "cursor": 60,
+    "tooltip": false
+  },
+  "custom/next": {
+    "format": "\u00bb",
+    "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = \"+1\" })'",
+    "cursor": 60,
+    "tooltip": false
+  },
+  "custom/arch": {
+    "format": "\uf303",
+    "on-click": "@STUDIO_APP@/commands/rice-launch",
+    "cursor": 60,
+    "tooltip": false,
+    "on-click-right": "@STUDIO_APP@/commands/honeyveil help"
+  },
+  "custom/previous": {
+    "format": "\udb81\udcae",
+    "on-click": "playerctl previous",
+    "cursor": 60,
+    "tooltip": false
+  },
+  "custom/play": {
+    "format": "\udb80\udfe4",
+    "on-click": "playerctl play-pause",
+    "cursor": 60,
+    "tooltip": false
+  },
+  "custom/skip": {
+    "format": "\udb81\udcad",
+    "on-click": "playerctl next",
+    "cursor": 60,
+    "tooltip": false
+  },
+  "custom/notifications": {
+    "format": "\u2304",
+    "on-click": "@STUDIO_APP@/commands/honeyveil notifications",
+    "cursor": 60,
+    "tooltip": false
+  },
+  "custom/power": {
+    "format": "\u23fb",
+    "on-click": "@STUDIO_APP@/themes/bars/beige/actions.py power",
+    "cursor": 60,
+    "tooltip": false
+  },
+  "cpu": {
+    "format": "\uf4bc {usage}%",
+    "interval": 2,
+    "on-click": "kitty btop",
+    "cursor": 60,
+    "on-click-right": "@STUDIO_APP@/commands/honeyveil info"
+  },
+  "memory": {
+    "format": "\udb80\udf5b {used:0.2f} GiB",
+    "interval": 3,
+    "on-click": "kitty btop",
+    "cursor": 60
+  },
+  "disk": {
+    "format": "\u25d5 {used}",
+    "path": "/",
+    "interval": 60,
+    "tooltip-format": "Root: {used} used / {total}"
+  },
+  "network": {
+    "format-wifi": "\uf1eb {essid}",
+    "format-ethernet": "\udb80\ude00 {ifname}",
+    "format-disconnected": "\udb81\uddaa Offline",
+    "max-length": 18,
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg toggle network",
+    "cursor": 60,
+    "tooltip-format": "{ifname}"
+  },
+  "battery": {
+    "format": "\uf240 {capacity}%",
+    "tooltip-format": "{status}"
+  },
+  "mpris": {
+    "format": "[ {title} ]",
+    "max-length": 23,
+    "on-click": "playerctl play-pause",
+    "cursor": 60
+  },
+  "pulseaudio": {
+    "format": "\uf028 {volume}",
+    "format-muted": "\udb81\udf5f Muted",
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg toggle volume",
+    "on-scroll-up": "@STUDIO_APP@/themes/bars/beige/volume output up",
+    "on-scroll-down": "@STUDIO_APP@/themes/bars/beige/volume output down",
+    "cursor": 60
+  },
+  "custom/updates": {
+    "exec": "@STUDIO_APP@/themes/extras/honeyveil/updates.py",
+    "return-type": "json",
+    "interval": 1800,
+    "tooltip": true
+  },
+  "tray": {
+    "icon-size": 15,
+    "spacing": 10
+  },
+  "margin-top": 0,
+  "margin-left": 8,
+  "margin-right": 8
+}

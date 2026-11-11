@@ -1,0 +1,41 @@
+{
+  "group/wireplumber": {
+    "modules": [
+      "wireplumber#output",
+      "wireplumber#input"
+    ],
+    "orientation": "horizontal",
+    "drawer": {
+      "transition-left-to-right": false
+    }
+  },
+  "wireplumber#output": {
+    "node-type": "Audio/Sink",
+    "format": "{icon} {volume}%",
+    "format-icons": [
+      "\udb81\udd7f",
+      "\udb81\udd80",
+      "\udb81\udd7e"
+    ],
+    "format-muted": "\udb81\udf5f {volume}%",
+    "min-length": 8,
+    "max-length": 8,
+    "on-click": "@STUDIO_APP@/themes/bars/dark-cattpuccin/scripts/volume output mute",
+    "on-scroll-up": "@STUDIO_APP@/themes/bars/dark-cattpuccin/scripts/volume output up",
+    "on-scroll-down": "@STUDIO_APP@/themes/bars/dark-cattpuccin/scripts/volume output down",
+    "tooltip-format": "Device: {node_name}",
+    "cursor": 60
+  },
+  "wireplumber#input": {
+    "node-type": "Audio/Source",
+    "format": "\udb80\udf6c {volume}%",
+    "format-muted": "\udb80\udf6d {volume}%",
+    "min-length": 8,
+    "max-length": 8,
+    "on-click": "@STUDIO_APP@/themes/bars/dark-cattpuccin/scripts/volume input mute",
+    "on-scroll-up": "@STUDIO_APP@/themes/bars/dark-cattpuccin/scripts/volume input up",
+    "on-scroll-down": "@STUDIO_APP@/themes/bars/dark-cattpuccin/scripts/volume input down",
+    "tooltip-format": "Device: {node_name}",
+    "cursor": 60
+  }
+}

@@ -1,0 +1,27 @@
+@define-color beige #e5c890;
+* { font-family: 'GoogleSansCode Nerd Font'; font-size: 11px; font-weight: 700;
+ border: none; border-radius: 0; min-height: 0; padding: 0; margin: 0;
+ box-shadow: none; text-shadow: none; }
+window#waybar { background: #111111; color: @beige; border-top: 1px solid #51432e; border-bottom: 1px solid @beige; }
+#cpu, #memory, #custom-weather { padding: 0 8px; }
+#custom-cava { padding: 0 10px; color: @beige; font-size: 12px; }
+#custom-ws1, #custom-ws2, #custom-ws3, #custom-ws4 {
+ min-width: 25px; margin: 4px 3px; background: #242424; color: #a89b82;
+ border-radius: 1px; }
+#custom-ws1.active, #custom-ws2.active, #custom-ws3.active, #custom-ws4.active {
+ background: @beige; color: #17130d; box-shadow: inset 0 0 0 1px #f2deb7; }
+#custom-lock { color: #eeeeee; padding: 0 14px; }
+#custom-divider { color: #57442a; padding: 0 10px; }
+#pulseaudio { background: #262626; padding: 0 8px; margin: 3px 8px; border-radius: 2px; }
+#idle_inhibitor, #network, #custom-notifications { padding: 0 13px; }
+#clock { padding: 0 15px; }
+#custom-power { color: #e06b60; background: #2b1d19; margin: 3px; padding: 0 7px; }
+#cpu, #memory, #custom-weather, #custom-cava, #custom-ws1, #custom-ws2, #custom-ws3, #custom-ws4,
+#custom-lock, #pulseaudio, #idle_inhibitor, #network, #custom-notifications, #clock, #custom-power {
+ transition: background-color 120ms ease-out, color 120ms ease-out; }
+#cpu:hover, #memory:hover, #custom-weather:hover, #custom-cava:hover, #custom-ws1:hover, #custom-ws2:hover,
+#custom-ws3:hover, #custom-ws4:hover, #custom-lock:hover, #pulseaudio:hover, #idle_inhibitor:hover,
+#network:hover, #custom-notifications:hover, #clock:hover { background: #3d3426; color: #fff1d5; }
+#custom-power:hover { background: #59302a; }
+tooltip { background: #171510; border: 1px solid #786344; border-radius: 3px; }
+tooltip label { color: #e5c890; padding: 7px; }

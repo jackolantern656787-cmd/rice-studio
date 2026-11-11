@@ -1,0 +1,83 @@
+{
+  "name": "slim-managed",
+  "layer": "top",
+  "position": "top",
+  "height": 26,
+  "spacing": 0,
+  "reload_style_on_change": true,
+  "modules-left": [
+    "custom/launcher"
+  ],
+  "modules-center": [
+    "clock",
+    "custom/weather"
+  ],
+  "modules-right": [
+    "tray",
+    "pulseaudio",
+    "cpu",
+    "network"
+  ],
+  "custom/launcher": {
+    "format": "\uf303",
+    "on-click": "@STUDIO_APP@/commands/rice-launch",
+    "on-click-right": "@STUDIO_APP@/commands/serpantinum settings",
+    "tooltip-format": "Zunder \u2022 right-click: settings",
+    "cursor": 68
+  },
+  "clock": {
+    "format": "{:%H:%M:%S}",
+    "interval": 1,
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg toggle calendar",
+    "tooltip-format": "{:%A, %d %B %Y}\n<tt>{calendar}</tt>",
+    "cursor": 68
+  },
+  "custom/weather": {
+    "exec": "@STUDIO_APP@/themes/bars/slim/weather.py",
+    "return-type": "json",
+    "interval": 60,
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg toggle calendar",
+    "cursor": 68
+  },
+  "tray": {
+    "icon-size": 14,
+    "spacing": 8,
+    "cursor": 68
+  },
+  "pulseaudio": {
+    "format": "{icon} {volume}%",
+    "format-muted": "\udb81\udf5f muted",
+    "format-icons": {
+      "default": [
+        "\uf026",
+        "\uf027",
+        "\uf028"
+      ]
+    },
+    "max-volume": 100,
+    "tooltip-format": "Output: {volume}%\nClick: audio panel \u2022 right-click: mute",
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg toggle volume",
+    "on-click-right": "@STUDIO_APP@/themes/bars/slim/volume output mute",
+    "on-scroll-up": "@STUDIO_APP@/themes/bars/slim/volume output up",
+    "on-scroll-down": "@STUDIO_APP@/themes/bars/slim/volume output down",
+    "cursor": 68
+  },
+  "cpu": {
+    "format": "\u03df {usage}%",
+    "interval": 3,
+    "tooltip-format": "CPU usage: {usage}%\nClick: system monitor \u2022 right-click: GPU monitor",
+    "on-click": "kitty -e btop",
+    "on-click-right": "kitty -e nvtop",
+    "cursor": 68
+  },
+  "network": {
+    "format-ethernet": "\udb81\udef3",
+    "format-wifi": "\uf1eb",
+    "format-disconnected": "\udb82\udd2e",
+    "tooltip-format-ethernet": "Ethernet\n\u2193 {bandwidthDownBytes} \u2191 {bandwidthUpBytes}",
+    "tooltip-format-wifi": "{essid} ({signalStrength}%)\n\u2193 {bandwidthDownBytes} \u2191 {bandwidthUpBytes}",
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg toggle network",
+    "on-click-right": "@STUDIO_APP@/commands/serpantinum msg open network bluetooth",
+    "cursor": 68
+  }
+}

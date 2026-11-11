@@ -1,0 +1,17 @@
+add_newline = true
+format = "[](#77cbd6)$os$directory[](#77cbd6)$git_branch$git_status\n[❯](bold #9ec8b2) "
+[os]
+disabled = false
+format = "[$symbol](fg:#17242b bg:#77cbd6)"
+[os.symbols]
+Arch = " "
+[directory]
+format = "[ $path ]($style)"
+style = "fg:#17242b bg:#77cbd6"
+truncation_length = 3
+[git_branch]
+format = " [$symbol$branch]($style)"
+style = "#b7e3e7"
+[git_status]
+format = " [$all_status$ahead_behind]($style)"
+style = "#d4dbbf"

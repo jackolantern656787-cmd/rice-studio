@@ -1,0 +1,148 @@
+{
+  "layer": "top",
+  "position": "top",
+  "margin-top": 5,
+  "margin-left": 10,
+  "margin-right": 10,
+  "spacing": 0,
+  "modules-left": [
+    "custom/backlight_down",
+    "custom/backlight_up",
+    "clock",
+    "network",
+    "custom/temperature"
+  ],
+  "modules-center": [
+    "group/workspaces"
+  ],
+  "modules-right": [
+    "pulseaudio",
+    "memory",
+    "cpu",
+    "bluetooth",
+    "custom/notification",
+    "custom/power"
+  ],
+  "custom/backlight_down": {
+    "format": "\udb80\udcde",
+    "on-click": "@STUDIO_APP@/commands/rice-launch",
+    "tooltip": true,
+    "tooltip-format": "Applications (Alt+Space)"
+  },
+  "custom/backlight_up": {
+    "format": "\udb80\udce0",
+    "on-click": "@STUDIO_APP@/commands/studio",
+    "tooltip": true,
+    "tooltip-format": "Rice Studio"
+  },
+  "network": {
+    "format-wifi": "\uf1eb {essid}",
+    "format-ethernet": "\udb80\ude00 {ifname}",
+    "format-disconnected": "\udb81\uddaa off",
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg toggle network",
+    "cursor": 60,
+    "max-length": 18
+  },
+  "pulseaudio": {
+    "format": "{icon} {volume}%",
+    "format-icons": {
+      "default": [
+        "\uf026",
+        "\uf027",
+        "\uf028"
+      ]
+    },
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg toggle volume",
+    "cursor": 60,
+    "on-scroll-up": "@STUDIO_APP@/themes/bars/beige/volume output up",
+    "on-scroll-down": "@STUDIO_APP@/themes/bars/beige/volume output down"
+  },
+  "bluetooth": {
+    "format": "\uf293 {status}",
+    "format-disabled": "\uf293 off",
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg toggle bluetooth",
+    "cursor": 60
+  },
+  "clock": {
+    "format": "{:%H:%M  |  %d %b}",
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg toggle calendar",
+    "cursor": 60
+  },
+  "custom/power": {
+    "format": "\uf011",
+    "on-click": "@STUDIO_APP@/themes/bars/beige/actions.py power",
+    "cursor": 60
+  },
+  "name": "teigu-managed",
+  "height": 48,
+  "fixed-center": true,
+  "reload_style_on_change": true,
+  "group/workspaces": {
+    "orientation": "horizontal",
+    "modules": [
+      "custom/ws1",
+      "custom/ws2",
+      "custom/ws3",
+      "custom/ws4"
+    ]
+  },
+  "custom/ws1": {
+    "exec": "@STUDIO_APP@/themes/bars/beige/workspace.py 1",
+    "return-type": "json",
+    "interval": 1,
+    "cursor": 60,
+    "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = 1 })'",
+    "tooltip": true
+  },
+  "custom/ws2": {
+    "exec": "@STUDIO_APP@/themes/bars/beige/workspace.py 2",
+    "return-type": "json",
+    "interval": 1,
+    "cursor": 60,
+    "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = 2 })'",
+    "tooltip": true
+  },
+  "custom/ws3": {
+    "exec": "@STUDIO_APP@/themes/bars/beige/workspace.py 3",
+    "return-type": "json",
+    "interval": 1,
+    "cursor": 60,
+    "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = 3 })'",
+    "tooltip": true
+  },
+  "custom/ws4": {
+    "exec": "@STUDIO_APP@/themes/bars/beige/workspace.py 4",
+    "return-type": "json",
+    "interval": 1,
+    "cursor": 60,
+    "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = 4 })'",
+    "tooltip": true
+  },
+  "custom/temperature": {
+    "exec": "@STUDIO_APP@/themes/bars/beige/actions.py temperature",
+    "return-type": "json",
+    "interval": 3,
+    "on-click": "kitty btop",
+    "cursor": 60
+  },
+  "memory": {
+    "format": "\udb80\udf5b {used:0.1f}G",
+    "interval": 3,
+    "tooltip-format": "RAM: {used:0.1f} / {total:0.1f} GiB",
+    "on-click": "kitty btop",
+    "cursor": 60
+  },
+  "cpu": {
+    "format": "\udb82\udd54 {usage}%",
+    "interval": 2,
+    "on-click": "kitty btop",
+    "cursor": 60
+  },
+  "custom/notification": {
+    "format": "\udb80\udc9a",
+    "on-click": "@STUDIO_APP@/commands/teigu notifications",
+    "cursor": 60,
+    "tooltip": false
+  }
+}

@@ -1,0 +1,88 @@
+{
+  "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+  "logo": {
+    "source": "@STUDIO_APP@/themes/extras/serashell/hornet.png",
+    "height": 12,
+    "type": "kitty"
+  },
+  "display": {
+    "separator": " : "
+  },
+  "modules": [
+    {
+      "type": "title",
+      "key": "  \uedc5"
+    },
+    {
+      "type": "custom",
+      "format": "\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510"
+    },
+    {
+      "type": "os",
+      "key": "  \udb82\udcc7 OS",
+      "format": "{2}",
+      "keyColor": "red"
+    },
+    {
+      "type": "kernel",
+      "key": "  \ue272 Kernel",
+      "format": "{2}",
+      "keyColor": "red"
+    },
+    {
+      "type": "packages",
+      "key": "  \udb80\udfd7 Packages",
+      "keyColor": "green"
+    },
+    {
+      "type": "display",
+      "key": "  \udb80\udf79 Display",
+      "format": "{1}x{2} @ {3}Hz [{7}]",
+      "keyColor": "green"
+    },
+    {
+      "type": "terminal",
+      "key": "  \uf120 Terminal",
+      "keyColor": "yellow"
+    },
+    {
+      "type": "wm",
+      "key": "  \udb85\uddc3 WM",
+      "format": "{2}",
+      "keyColor": "yellow"
+    },
+    "break",
+    {
+      "type": "cpu",
+      "format": "{1} @ {7}",
+      "key": "  \uf4bc CPU",
+      "keyColor": "blue"
+    },
+    {
+      "type": "gpu",
+      "format": "{1} {2}",
+      "key": "  \udb80\udeb4 GPU",
+      "keyColor": "blue"
+    },
+    {
+      "type": "memory",
+      "key": "  \udb81\ude1a Memory ",
+      "keyColor": "magenta"
+    },
+    {
+      "type": "uptime",
+      "key": "  \udb86\uded0 Uptime ",
+      "keyColor": "red"
+    },
+    {
+      "type": "custom",
+      "format": "\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518"
+    },
+    {
+      "type": "colors",
+      "paddingLeft": 2,
+      "symbol": "circle"
+    },
+    "break"
+  ]
+}

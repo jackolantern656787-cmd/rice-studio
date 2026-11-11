@@ -1,0 +1,97 @@
+{
+  "name": "phosphor-managed",
+  "position": "top",
+  "layer": "top",
+  "height": 22,
+  "spacing": 0,
+  "reload_style_on_change": true,
+  "modules-left": [
+    "custom/ws1",
+    "custom/ws2",
+    "custom/ws3",
+    "custom/ws4"
+  ],
+  "modules-center": [
+    "clock"
+  ],
+  "modules-right": [
+    "network",
+    "pulseaudio#input",
+    "custom/language",
+    "pulseaudio",
+    "custom/power"
+  ],
+  "clock": {
+    "format": "{:%a, %b %d %H:%M}",
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg toggle calendar",
+    "tooltip-format": "<tt>{calendar}</tt>",
+    "cursor": 68
+  },
+  "network": {
+    "format-ethernet": "\udb80\ude00",
+    "format-wifi": "\uf1eb",
+    "format-disconnected": "\udb82\udd2e",
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg toggle network",
+    "tooltip-format-ethernet": "Ethernet\n\u2193 {bandwidthDownBytes} \u2191 {bandwidthUpBytes}",
+    "cursor": 68
+  },
+  "pulseaudio#input": {
+    "format": "{format_source}",
+    "format-source": "mic on",
+    "format-source-muted": "mic off",
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg toggle volume",
+    "on-click-right": "@STUDIO_APP@/themes/bars/phosphor/volume input mute",
+    "cursor": 68
+  },
+  "custom/language": {
+    "exec": "@STUDIO_APP@/themes/bars/phosphor/language.py",
+    "return-type": "json",
+    "interval": 5,
+    "on-click": "@STUDIO_APP@/commands/serpantinum settings",
+    "cursor": 68
+  },
+  "pulseaudio": {
+    "format": "vol: {volume}",
+    "format-muted": "vol: muted",
+    "max-volume": 100,
+    "on-click": "@STUDIO_APP@/commands/phosphor-audio",
+    "on-click-right": "@STUDIO_APP@/themes/bars/phosphor/volume output mute",
+    "on-scroll-up": "@STUDIO_APP@/themes/bars/phosphor/volume output up",
+    "on-scroll-down": "@STUDIO_APP@/themes/bars/phosphor/volume output down",
+    "cursor": 68
+  },
+  "custom/power": {
+    "format": "\u23fb",
+    "on-click": "kitty --class phosphor-power -e @STUDIO_APP@/themes/bars/phosphor/actions.py power",
+    "tooltip-format": "Power menu \u2022 confirmation required",
+    "cursor": 68
+  },
+  "custom/ws1": {
+    "exec": "@STUDIO_APP@/themes/bars/phosphor/workspace.py 1",
+    "return-type": "json",
+    "interval": 1,
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg workspace 1",
+    "cursor": 68
+  },
+  "custom/ws2": {
+    "exec": "@STUDIO_APP@/themes/bars/phosphor/workspace.py 2",
+    "return-type": "json",
+    "interval": 1,
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg workspace 2",
+    "cursor": 68
+  },
+  "custom/ws3": {
+    "exec": "@STUDIO_APP@/themes/bars/phosphor/workspace.py 3",
+    "return-type": "json",
+    "interval": 1,
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg workspace 3",
+    "cursor": 68
+  },
+  "custom/ws4": {
+    "exec": "@STUDIO_APP@/themes/bars/phosphor/workspace.py 4",
+    "return-type": "json",
+    "interval": 1,
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg workspace 4",
+    "cursor": 68
+  }
+}

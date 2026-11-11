@@ -1,0 +1,16 @@
+{
+  "mpris": {
+    "format": "{player_icon} {title} - {artist}",
+    "player-icons": {
+      "default": "\udb81\udc0a"
+    },
+    "format-paused": "{status_icon} {title} - {artist}",
+    "status-icons": {
+      "paused": "\udb80\udfe4"
+    },
+    "max-length": 30,
+    "tooltip-format": "Playing: {title} \u2014 {artist}\nLeft: play/pause \u2022 middle: previous \u2022 right: next",
+    "tooltip-format-paused": "Paused: {title} \u2014 {artist}\nLeft: play/pause \u2022 middle: previous \u2022 right: next",
+    "cursor": 60
+  }
+}

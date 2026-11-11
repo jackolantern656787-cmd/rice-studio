@@ -1,0 +1,6 @@
+print("\033[38;2;249;226;175m")
+print("  ▄▀▀ █ █ █▀▀ ▄▀▄ ▀█▀ ▄▀▀ █ █ █▀▀ █▀▀ ▀█▀")
+print("  ▀▄▄ █▀█ ██▄ █▀█  █  ▄▄▀ █▀█ ██▄ ██▄  █ ")
+print("\n  H O N E Y V E I L\n\033[38;2;205;214;244m")
+for key,action in [("Alt + Space","Apps / Run / Files / Windows"),("Tab in launcher","Switch category"),("↑ / ↓ / Enter / Esc","Select / open / close"),("Click Pac-Man / ghost / dot","Switch workspace"),("Right-click Arch logo","This cheatsheet"),("Right-click CPU","System information"),("honeyveil cava","Yellow audio visualizer"),("honeyveil info","Arch + real hardware readout"),("honeyveil dock","Toggle optional dock for this rice"),("Super + Ctrl + T","Rice Studio / recovery"),("Super + Shift + T","Terminal rice picker"),("Super + L","Lock screen")]:print("  "+key.ljust(29)+"  "+action)
+print("\n  Dock: Rice Studio → Honeyveil → Widgets → + Dock → Save.\n  No time/date widgets are included.\033[0m")

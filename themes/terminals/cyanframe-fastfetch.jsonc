@@ -1,0 +1,55 @@
+{
+  "logo": {
+    "type": "builtin",
+    "source": "arch",
+    "padding": {
+      "top": 0,
+      "right": 3
+    },
+    "color": {
+      "1": "#77cbd6",
+      "2": "#bbd8dc"
+    }
+  },
+  "display": {
+    "separator": ": ",
+    "color": {
+      "keys": "#91cdd6",
+      "title": "#a9dde0",
+      "output": "#d8e5e3",
+      "separator": "#739aa3"
+    }
+  },
+  "modules": [
+    "title",
+    "separator",
+    "os",
+    "host",
+    "kernel",
+    "uptime",
+    "packages",
+    "shell",
+    "display",
+    "de",
+    "wm",
+    "wmtheme",
+    "theme",
+    "icons",
+    "terminal",
+    "terminalfont",
+    "cpu",
+    "gpu",
+    "memory",
+    "swap",
+    {
+      "type": "disk",
+      "folders": "/"
+    },
+    "locale",
+    "break",
+    {
+      "type": "colors",
+      "symbol": "block"
+    }
+  ]
+}

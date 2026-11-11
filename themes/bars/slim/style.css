@@ -1,0 +1,44 @@
+* {
+  font-family: 'Noto Sans', 'GoogleSansCode Nerd Font';
+  font-size: 11px;
+  font-weight: 700;
+  border: none;
+  border-radius: 0;
+  min-height: 0;
+  padding: 0;
+  margin: 0;
+  box-shadow: none;
+  text-shadow: none;
+}
+window#waybar {
+  background: #1e1e2e;
+  color: #cdd6f4;
+  border-bottom: 1px solid #89b4fa;
+}
+#custom-launcher {
+  font-family: 'GoogleSansCode Nerd Font';
+  font-size: 12px;
+  padding: 0 11px;
+  color: #b4befe;
+}
+#clock { padding: 0 10px; }
+#custom-weather { padding: 0 10px; }
+#tray { padding: 0 10px; }
+#pulseaudio, #cpu { padding: 0 12px; }
+#network { padding: 0 13px 0 10px; font-size: 14px; }
+#custom-launcher, #clock, #custom-weather, #pulseaudio, #cpu, #network, #tray > widget {
+  transition: background-color 120ms ease-out, color 120ms ease-out;
+}
+#custom-launcher:hover, #clock:hover, #custom-weather:hover,
+#pulseaudio:hover, #cpu:hover, #network:hover, #tray > widget:hover {
+  background-color: #313244;
+  color: #ffffff;
+}
+tooltip {
+  background: #1e1e2e;
+  border: 1px solid #45475a;
+  border-radius: 4px;
+}
+tooltip label { color: #cdd6f4; padding: 6px 8px; font-weight: 500; }
+#custom-weather.stale, #custom-weather.unavailable { color: #a6adc8; }
+#pulseaudio.muted, #network.disconnected { color: #a6adc8; }

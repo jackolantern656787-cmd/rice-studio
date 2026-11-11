@@ -1,0 +1,15 @@
+add_newline = false
+format = "$time$username$hostname$directory\n[>](#a9b3aa) "
+[time]
+disabled = false
+time_format = "%H:%M:%S"
+format = "[\\[$time\\]](#c3cdc4) "
+[username]
+show_always = true
+format = "[$user](#a9b3aa)"
+[hostname]
+ssh_only = false
+format = "[@$hostname](#a9b3aa) "
+[directory]
+format = "[$path](#a9b3aa)"
+truncation_length = 0

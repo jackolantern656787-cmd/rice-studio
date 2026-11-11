@@ -1,0 +1,79 @@
+{
+  "logo": {
+    "type": "file",
+    "source": "@STUDIO_CONFIG@/terminals/fuji-dusk-logo.txt",
+    "padding": {
+      "top": 1,
+      "right": 4
+    },
+    "color": {
+      "1": "#d6def6",
+      "2": "#9baedb",
+      "3": "#718bb8"
+    }
+  },
+  "display": {
+    "separator": "  ",
+    "color": {
+      "keys": "#9baedb",
+      "output": "#d6def6",
+      "title": "#adc9ef",
+      "separator": "#52668c"
+    }
+  },
+  "modules": [
+    "title",
+    "separator",
+    {
+      "type": "os",
+      "key": "\uf303 OS"
+    },
+    {
+      "type": "kernel",
+      "key": "\uf4bc Kernel"
+    },
+    {
+      "type": "wm",
+      "key": "\uf488 Desktop"
+    },
+    {
+      "type": "terminal",
+      "key": "\uf489 Terminal"
+    },
+    {
+      "type": "memory",
+      "key": "\udb80\udf5b Memory"
+    },
+    {
+      "type": "uptime",
+      "key": "\udb82\udd54 Uptime"
+    },
+    {
+      "type": "cpu",
+      "key": "\uf4bc CPU"
+    },
+    {
+      "type": "gpu",
+      "key": "\udb82\udcae GPU"
+    },
+    {
+      "type": "disk",
+      "key": "\udb80\udeca Disk",
+      "folders": "/"
+    },
+    {
+      "type": "shell",
+      "key": "\uf489 Shell"
+    },
+    {
+      "type": "display",
+      "key": "\udb80\udf79 Display"
+    },
+    {
+      "type": "terminalfont",
+      "key": "\uf031 Font"
+    },
+    "break",
+    "colors"
+  ]
+}

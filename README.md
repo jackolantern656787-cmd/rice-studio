@@ -1,9 +1,9 @@
 <div align="left">
 
 # Rice Studio
-### A desktop workshop for Arch + Hyprland.
+### A desktop workshop for Arch, Hyprland and Serpantinum.
 
-**Workshop 02 · portable beta**
+**Workshop 02 · theme collection beta**
 
 Browse a collection, tune the details, capture it in motion, and return to your own desktop.
 
@@ -13,9 +13,9 @@ Browse a collection, tune the details, capture it in motion, and return to your 
 
 ## Before installing
 
-This is the **portable edition**, not a copy of the author's personal dotfiles. It includes the Studio UI and **16 original palette studies + your personal Main**, with procedural wallpapers, a shared native panel, optional widgets, and separate Kitty palettes.
+This beta ships the **16 original desktop rices** and your own Main. The collection uses the actual wallpapers, Waybar styles, Kitty and Fastfetch files, and the bundled native components. Serashell uses its own Quickshell panel. Tideglass includes its animated wallpaper.
 
-The names echo the personal collection. They **do not recreate every Serpantinum-specific shell, animated wallpaper, themed app launcher, or reference desktop**. Those adapters are still being ported. No third-party wallpaper packs, private configs, credentials, or personal recordings are distributed.
+The installer is intended for Arch + Hyprland, with Serpantinum recommended for the shared settings, weather and notification actions. Personal Main settings, recordings, and machine credentials are excluded from the bundle.
 
 Tested on Arch, Hyprland 0.57.0 (Lua), Quickshell 0.3.2, Qt 6.12. Older config providers have an adapter but are not live-tested. Use a current Arch + Hyprland session; this is a beta, not a universal desktop installer.
 
@@ -36,7 +36,21 @@ Alternatively download the source ZIP through GitHub, extract it, and run the la
 
 `--deps` explicitly invokes **sudo pacman -Syu --needed** for the documented package set. It performs a full Arch system upgrade; inspect the transaction before accepting. The installer itself runs **without sudo**, downloads nothing, does not run third-party installers, and leaves your current desktop active.
 
-Dependencies: Python + Pillow, Quickshell, Qt Quick/Multimedia/ImageFormats/SVG, Kitty, Grim, wf-recorder, FFmpeg, xdg-utils, playerctl, JetBrains Mono, and gsfonts. Hyprland must already be installed and running. Optional networking/audio tools are reported in Setup.
+The dependency command includes Waybar, Wofi, Cava, Fastfetch, Starship and the fonts used by most themes. Check **Setup** for available commands and the Serpantinum bar hook.
+
+## Serpantinum bar switching
+
+If Setup shows the bar hook as connected, Studio hides the Serpantinum bar only after the theme bar appears and restores it when you go back to Main.
+
+For a compatible stock Serpantinum installation without the hook, run this after installing Studio:
+
+```bash
+python3 ~/.local/share/rice-studio-portable/serpantinum_hook.py --install
+```
+
+This optional hook backs up and edits only Serpantinum's `Shell.qml` and `bar/Bar.qml`. It checks for the expected layout before writing. Reopen Studio and check Setup after Quickshell reloads. Without the hook the original panel can remain visible alongside the theme bar.
+
+Restore the two original files with the same command using `--restore`.
 
 ## What you get
 
@@ -49,7 +63,9 @@ Dependencies: Python + Pillow, Quickshell, Qt Quick/Multimedia/ImageFormats/SVG,
 - Checkpoints, personal Main, and a terminal recovery command.
 - Reduced motion and rectangular controls with eased hover/pressed feedback.
 
-The portable panel is shared across presets; it is not a separate Waybar config per preset. Your existing launcher and global window behavior stay unchanged. Terminal changes apply only to **Studio Terminal**, opened with:
+The preset bar opens its included launcher where available. Themes using the original machine's Zunder setup fall back to the recipient's existing Serpantinum launcher or Wofi. Studio applies the original frame colors and corner styles through Hyprland. The recipient's window behavior and keybindings control window placement. Some panel actions depend on local services such as NetworkManager, MPRIS, and Serpantinum. Fuji Dusk uses a system font fallback when Anurati is unavailable.
+
+Terminal profiles apply through:
 
 ```bash
 ~/.local/bin/rice-studio-terminal
@@ -59,7 +75,7 @@ The portable panel is shared across presets; it is not a separate Waybar config 
 
 At first install, Studio reads the original compositor values it can change: gaps, border size/color, and corner radius. It saves them once in `~/.local/state/rice-studio-portable/original-main.json`.
 
-Your existing wallpaper/bar daemons, terminal configs, monitors, keybindings and shell files are **never replaced**. Studio adds separate wallpaper/panel layers while a preset is active; Main hides those layers and restores the saved compositor values. That is how your own starting desktop comes back, rather than somebody else's "Main" preset.
+Your existing wallpaper and bar daemons keep running. Studio adds its own wallpaper and panel layers. Main removes those layers, restores the saved compositor values and returns the Serpantinum bar to its starting state when the hook is available. The optional hook is the only change to existing Serpantinum source files.
 
 Upgrades preserve this original baseline. Invalid or incomplete Main data stops installation instead of silently recapturing a themed desktop. This is not a full-system backup.
 
@@ -104,4 +120,4 @@ The optional GitHub Actions configuration is stored as `docs/github-actions-temp
 
 Architecture and limits: [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
 
-Built with [Quickshell](https://quickshell.org/docs/v0.3.0/guide/install-setup/) and the [Hyprland configuration API](https://wiki.hypr.land/configuring/core/config-options/). Color studies acknowledge the Catppuccin palette family and the earlier rice collection; no upstream personal dotfiles or artwork are vendored. Project code and generated wallpaper designs: MIT.
+Built with [Quickshell](https://quickshell.org/docs/v0.3.0/guide/install-setup/) and the [Hyprland configuration API](https://wiki.hypr.land/configuring/core/config-options/). Project code is MIT. The private theme bundle also contains existing theme art and upstream components. See [theme credits](docs/THEMES.md) for attribution and bundled licenses.

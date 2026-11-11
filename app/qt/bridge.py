@@ -55,8 +55,12 @@ def media_library():
   result[key]=[{'url':f.as_uri(),'name':f.name,'video':f.suffix=='.mp4'} for f in sorted(folder.glob('*'),reverse=True) if f.suffix in ('.png','.mp4')][:12]
  return result
 def health():
- names=('quickshell','hyprctl','kitty','grim','wf-recorder','ffmpeg','nmcli','pactl')
- return [{'name':n,'ok':bool(shutil.which(n)),'detail':shutil.which(n) or 'Not installed'} for n in names]
+ names=('quickshell','hyprctl','kitty','grim','wf-recorder','ffmpeg','nmcli','pactl','waybar','wofi','cava','fastfetch','starship')
+ rows=[{'name':n,'ok':bool(shutil.which(n)),'detail':shutil.which(n) or 'Not installed'} for n in names]
+ hook=core.control().serp_bar()
+ rows.append({'name':'Serpantinum bar hook','ok':hook in ('main','hidden'),
+              'detail':'Connected' if hook in ('main','hidden') else 'Optional hook. See README for clean bar switching.'})
+ return rows
 def capture_media(key,video=False):
  keycheck(key)
  if key!=current():raise ValueError('Capture the active rice only. Preview and Keep this preset first.')
@@ -132,7 +136,11 @@ def handle(method,p):
   profile=core.read(core.FILES['profiles'])[keycheck(p['key'])];kind=p['kind']
   if kind in core.FILES:path=core.FILES[kind]
   elif kind=='terminal':path=core.CONFIG/'terminals'/(profile['terminal']+'.conf')
-  elif kind in ('bar','css'):raise ValueError('The portable panel is a native Qt component. See the installed desktop.qml source.')
+  elif kind in ('bar','css'):
+   bar=profile['bar']
+   if bar not in core.control().registry() or bar in ('main','studio','serashell'):
+    raise ValueError('This preset does not use a bundled Waybar file.')
+   path=core.APP/'themes/bars'/bar/('style.css' if kind=='css' else 'config.jsonc')
   else:raise ValueError('Unknown config file')
   if not path.is_file():raise ValueError('This file does not exist yet.')
   subprocess.Popen(['xdg-open',str(path)],stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL,start_new_session=True);return {'ok':True}

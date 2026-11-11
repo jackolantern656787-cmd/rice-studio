@@ -1,0 +1,51 @@
+{
+  "group/pulseaudio": {
+    "modules": [
+      "pulseaudio#output",
+      "pulseaudio#input"
+    ],
+    "orientation": "horizontal",
+    "drawer": {
+      "transition-left-to-right": false
+    }
+  },
+  "pulseaudio#output": {
+    "format": "{icon} {volume}%",
+    "format-muted": "{icon} {volume}%",
+    "format-icons": {
+      "default": [
+        "\udb81\udd7f",
+        "\udb81\udd80",
+        "\udb81\udd7e"
+      ],
+      "default-muted": "\udb81\udf5f",
+      "headphone": "\udb80\udecb",
+      "headphone-muted": "\udb81\udfce",
+      "headset": "\udb80\udece",
+      "headset-muted": "\udb80\uded0"
+    },
+    "min-length": 8,
+    "max-length": 8,
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg toggle volume",
+    "on-scroll-up": "@STUDIO_APP@/themes/bars/dark-cattpuccin/scripts/volume output up",
+    "on-scroll-down": "@STUDIO_APP@/themes/bars/dark-cattpuccin/scripts/volume output down",
+    "tooltip-format": "Speakers: {desc}\nLeft: audio panel \u2022 right: mute \u2022 scroll: volume",
+    "on-click-right": "@STUDIO_APP@/themes/bars/dark-cattpuccin/scripts/volume output mute",
+    "scroll-step": 2,
+    "cursor": 60
+  },
+  "pulseaudio#input": {
+    "format": "{format_source}",
+    "format-source": "\udb80\udf6c {volume}%",
+    "format-source-muted": "\udb80\udf6d {volume}%",
+    "min-length": 8,
+    "max-length": 8,
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg toggle volume",
+    "on-scroll-up": "@STUDIO_APP@/themes/bars/dark-cattpuccin/scripts/volume input up",
+    "on-scroll-down": "@STUDIO_APP@/themes/bars/dark-cattpuccin/scripts/volume input down",
+    "tooltip-format": "Microphone: {desc}\nLeft: audio panel \u2022 right: mute \u2022 scroll: volume",
+    "on-click-right": "@STUDIO_APP@/themes/bars/dark-cattpuccin/scripts/volume input mute",
+    "scroll-step": 2,
+    "cursor": 60
+  }
+}

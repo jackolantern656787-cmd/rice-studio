@@ -1,0 +1,88 @@
+{
+  "name": "dark-grey-managed",
+  "position": "top",
+  "layer": "top",
+  "height": 34,
+  "spacing": 0,
+  "reload_style_on_change": true,
+  "modules-left": [
+    "custom/ws1",
+    "custom/ws2",
+    "custom/ws3",
+    "custom/ws4",
+    "cpu",
+    "custom/memory"
+  ],
+  "modules-center": [
+    "clock",
+    "custom/title"
+  ],
+  "modules-right": [
+    "pulseaudio"
+  ],
+  "custom/ws1": {
+    "exec": "@STUDIO_APP@/themes/bars/beige/workspace.py 1",
+    "return-type": "json",
+    "interval": 1,
+    "format": "desktop {}",
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg workspace 1",
+    "cursor": 68,
+    "tooltip": false
+  },
+  "custom/ws2": {
+    "exec": "@STUDIO_APP@/themes/bars/beige/workspace.py 2",
+    "return-type": "json",
+    "interval": 1,
+    "format": "desktop {}",
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg workspace 2",
+    "cursor": 68,
+    "tooltip": false
+  },
+  "custom/ws3": {
+    "exec": "@STUDIO_APP@/themes/bars/beige/workspace.py 3",
+    "return-type": "json",
+    "interval": 1,
+    "format": "desktop {}",
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg workspace 3",
+    "cursor": 68,
+    "tooltip": false
+  },
+  "custom/ws4": {
+    "exec": "@STUDIO_APP@/themes/bars/beige/workspace.py 4",
+    "return-type": "json",
+    "interval": 1,
+    "format": "desktop {}",
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg workspace 4",
+    "cursor": 68,
+    "tooltip": false
+  },
+  "cpu": {
+    "format": "{usage}%",
+    "interval": 2,
+    "on-click": "kitty -e btop"
+  },
+  "custom/memory": {
+    "exec": "python3 @STUDIO_APP@/themes/bars/dark-grey/memory.py",
+    "interval": 3,
+    "on-click": "kitty -e btop"
+  },
+  "clock": {
+    "format": "{:%H:%M:%S %p}",
+    "interval": 1,
+    "tooltip-format": "{:%A, %d %B %Y}",
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg toggle calendar"
+  },
+  "custom/title": {
+    "format": "Screenshot",
+    "on-click": "@STUDIO_APP@/commands/serpantinum screenshot",
+    "tooltip-format": "Take a screenshot",
+    "cursor": 68
+  },
+  "pulseaudio": {
+    "format": "{volume}%",
+    "format-muted": "muted",
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg toggle volume",
+    "on-scroll-up": "@STUDIO_APP@/themes/bars/beige/volume output up",
+    "on-scroll-down": "@STUDIO_APP@/themes/bars/beige/volume output down"
+  }
+}

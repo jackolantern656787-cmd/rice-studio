@@ -1,0 +1,11 @@
+{
+  "ext/workspaces": {
+    "format": "{name}",
+    "on-click": "activate",
+    "sort-by-name": true,
+    "all-outputs": true,
+    "active-only": false,
+    "ignore-hidden": false,
+    "cursor": 60
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "logo": {
+    "type": "file",
+    "source": "@STUDIO_CONFIG@/terminals/phosphor-logo.txt",
+    "padding": {
+      "right": 4
+    },
+    "color": {
+      "1": "#a9b3aa"
+    }
+  },
+  "display": {
+    "color": {
+      "keys": "#a9b3aa",
+      "title": "#a9b3aa",
+      "output": "#a9b3aa",
+      "separator": "#536457"
+    },
+    "separator": " "
+  },
+  "modules": [
+    {
+      "type": "os",
+      "key": "\uf303"
+    },
+    {
+      "type": "kernel",
+      "key": "\uf013"
+    },
+    {
+      "type": "shell",
+      "key": "\uf489"
+    },
+    {
+      "type": "uptime",
+      "key": "\udb82\udd54"
+    },
+    {
+      "type": "memory",
+      "key": "\udb80\udf5b"
+    },
+    {
+      "type": "disk",
+      "key": "\udb80\udeca",
+      "folders": "/"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+add_newline = true
+format = "[╭─](#cdd6f4)[](#f9e2af)$username[](fg:#f9e2af bg:#89b4fa)$directory[](fg:#89b4fa bg:#f5c2e7)$git_branch$time[](#f5c2e7)\n[╰─](#cdd6f4)[ϟ](bold #a6e3a1) "
+[username]
+show_always = true
+format = "[ $user ]($style)"
+style_user = "fg:#181825 bg:#f9e2af"
+style_root = "fg:#181825 bg:#f38ba8"
+[directory]
+format = "[  $path ]($style)"
+style = "fg:#181825 bg:#89b4fa"
+truncation_length = 5
+[git_branch]
+format = "[ ($branch) ]($style)"
+style = "fg:#181825 bg:#f5c2e7"
+[time]
+disabled = false
+time_format = "%H:%M"
+format = "[ ♥ $time ]($style)"
+style = "fg:#181825 bg:#f5c2e7"

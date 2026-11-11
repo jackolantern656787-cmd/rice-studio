@@ -1,0 +1,18 @@
+{
+  "temperature": {
+    "interval": 10,
+    "format": "{icon} {temperatureC}\u00b0C",
+    "format-icons": [
+      "\udb84\udcc3",
+      "\udb81\udd0f",
+      "\udb84\udcc2"
+    ],
+    "critical-threshold": 90,
+    "format-critical": "\udb80\udc26 {temperatureC}\u00b0C",
+    "min-length": 9,
+    "max-length": 9,
+    "tooltip-format": "In Fahrenheit: {temperatureF}\u00b0F",
+    "hwmon-path": "/sys/class/hwmon/hwmon3/temp1_input",
+    "cursor": 60
+  }
+}

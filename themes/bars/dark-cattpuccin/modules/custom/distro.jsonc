@@ -1,0 +1,9 @@
+{
+  "custom/distro": {
+    "format": "\udb82\udcc7",
+    "tooltip-format": "Left: settings \u2022 right: bar switcher",
+    "on-click": "@STUDIO_APP@/commands/rice-launch",
+    "on-click-right": "kitty --class mechabar-switcher --title \"Top bar switcher\" -e @STUDIO_APP@/commands/bar-switch",
+    "cursor": 60
+  }
+}

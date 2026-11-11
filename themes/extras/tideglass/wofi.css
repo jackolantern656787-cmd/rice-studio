@@ -1,0 +1,5 @@
+* {font-family:"JetBrainsMono Nerd Font Mono";font-size:13px;}
+window {background:rgba(39,46,63,.97);border:1px solid #a89cbe;border-radius:8px;color:#e3dfed;}
+#outer-box {padding:18px;} #input {padding:13px;margin-bottom:12px;background:#343b50;color:#e3dfed;border:1px solid #746c89;border-radius:4px;}
+#entry {padding:12px;margin:2px 0;border-radius:4px;} #entry:selected {background:#625b7c;} #text {margin-left:12px;color:#e3dfed;} #text:selected {color:#f2e6ff;}
+#scroll {border:none;} #img {margin-right:8px;}

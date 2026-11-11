@@ -29,8 +29,8 @@ Item {
             Layout.fillHeight:true;clip:true;contentWidth:availableWidth
             ColumnLayout {
                 width:inspector.availableWidth-6;spacing:11
-                Text {text:"PORTABLE EDITION";color:"#d6ab7d";font.family:"JetBrains Mono";font.pixelSize:11}
-                Text {Layout.fillWidth:true;wrapMode:Text.Wrap;text:"Your original configs, app launcher and window mode stay untouched. Studio adds its own wallpaper and panel. Terminal palettes apply to the Studio Terminal launcher.";font.pixelSize:12;color:"#aaa49a"}
+                Text {text:"THEME COLLECTION";color:"#d6ab7d";font.family:"JetBrains Mono";font.pixelSize:11}
+                Text {Layout.fillWidth:true;wrapMode:Text.Wrap;text:"Use the theme bar to open its launcher. Open Studio Terminal for the preset’s Kitty and Fastfetch profiles.";font.pixelSize:12;color:"#aaa49a"}
                 Text {textFormat:Text.PlainText;text:"SETUP";font.family:"JetBrains Mono";font.pixelSize:10;font.letterSpacing:1.2;color:"#8a878c";Layout.bottomMargin:4}
                 Field {Layout.fillWidth:true;text:page.studio.draft.label || "";onTextEdited:page.studio.setField("label",text);Accessible.name:"Preset name"}
                 GridLayout {

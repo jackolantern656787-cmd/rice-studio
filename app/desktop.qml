@@ -8,6 +8,26 @@ ShellRoot {
  property string selected:"main"
  property var profiles:({})
  readonly property var preset:profiles[selected] || ({})
+ readonly property string rice:preset.rice || ""
+ readonly property string bar:preset.bar || ""
+ readonly property string base:Quickshell.env("HOME")+"/.local/share/rice-studio-portable/themes"
+ readonly property bool packed:selected!=="main" && rice!==""
+ Variants {
+  model:root.packed && root.bar!=="main" && root.bar!=="studio" && root.bar!=="serashell" ? [root.bar] : []
+  delegate:Process {
+   required property string modelData
+   command:["waybar","-c",root.base+"/bars/"+modelData+"/config.jsonc","-s",root.base+"/bars/"+modelData+"/style.css"]
+   running:true
+  }
+ }
+ Variants {
+  model:root.packed ? (root.bar==="serashell" ? ["serashell"] : ["pixel","dark-grey","dark-cattpuccin","fuji-dusk","cold-front","honeyveil","teigu","tideglass"].includes(root.rice) ? [root.rice] : []) : []
+  delegate:Process {
+   required property string modelData
+   command:["quickshell","-n","-p",root.base+"/extras/"+modelData+"/shell.qml"]
+   running:true
+  }
+ }
  readonly property var palette:(preset.theme || {}).colors || ({base:"#17191d",text:"#eee7dc",blue:"#d6ab7d"})
  property date now:new Date()
  FileView {path:Quickshell.env("HOME")+"/.local/state/rice-studio-portable/current";watchChanges:true;onLoaded:root.selected=text().trim();onFileChanged:reload()}
@@ -31,7 +51,7 @@ ShellRoot {
   model:Quickshell.screens
   PanelWindow {
    required property var modelData
-   screen:modelData;visible:root.selected!=="main"
+   screen:modelData;visible:root.selected!=="main" && (!root.packed || root.bar==="studio")
    anchors {top:true;left:true;right:true}
    implicitHeight:30;exclusionMode:ExclusionMode.Ignore
    WlrLayershell.layer:WlrLayer.Top

@@ -1,0 +1,92 @@
+{
+  "name": "stillwater-managed",
+  "position": "top",
+  "layer": "top",
+  "height": 24,
+  "spacing": 0,
+  "reload_style_on_change": true,
+  "modules-left": [
+    "custom/arch",
+    "custom/ws2",
+    "custom/ws3",
+    "custom/ws4"
+  ],
+  "modules-center": [
+    "clock"
+  ],
+  "modules-right": [
+    "cpu",
+    "memory",
+    "mpris",
+    "pulseaudio",
+    "custom/notifications"
+  ],
+  "custom/arch": {
+    "format": "\uf303",
+    "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = 1 })'",
+    "on-click-right": "@STUDIO_APP@/commands/rice-launch",
+    "cursor": 60,
+    "tooltip-format": "Workspace 1 \u00b7 right-click applications"
+  },
+  "custom/ws2": {
+    "exec": "@STUDIO_APP@/themes/bars/beige/workspace.py 2",
+    "return-type": "json",
+    "interval": 1,
+    "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = 2 })'",
+    "cursor": 60,
+    "tooltip": false
+  },
+  "custom/ws3": {
+    "exec": "@STUDIO_APP@/themes/bars/beige/workspace.py 3",
+    "return-type": "json",
+    "interval": 1,
+    "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = 3 })'",
+    "cursor": 60,
+    "tooltip": false
+  },
+  "custom/ws4": {
+    "exec": "@STUDIO_APP@/themes/bars/beige/workspace.py 4",
+    "return-type": "json",
+    "interval": 1,
+    "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = 4 })'",
+    "cursor": 60,
+    "tooltip": false
+  },
+  "clock": {
+    "format": "{:%a, %b %d, %Y  %I:%M:%S %p}",
+    "interval": 1,
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg toggle calendar",
+    "cursor": 60
+  },
+  "cpu": {
+    "format": "\uf2db  {usage}%",
+    "interval": 2,
+    "on-click": "kitty -e btop"
+  },
+  "memory": {
+    "format": "\udb80\udf5b  {used:0.1f} GB",
+    "interval": 3,
+    "on-click": "kitty -e btop"
+  },
+  "mpris": {
+    "format": "\udb80\udfe4 {title} - {artist}",
+    "format-paused": "\udb81\udc0a {title} - {artist}",
+    "max-length": 26,
+    "on-click": "playerctl play-pause",
+    "cursor": 60
+  },
+  "pulseaudio": {
+    "format": "\uf028 {volume}%",
+    "format-muted": "\udb81\udf5f muted",
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg toggle volume",
+    "on-scroll-up": "@STUDIO_APP@/themes/bars/beige/volume output up",
+    "on-scroll-down": "@STUDIO_APP@/themes/bars/beige/volume output down",
+    "cursor": 60
+  },
+  "custom/notifications": {
+    "format": "\udb80\udc9a",
+    "on-click": "@STUDIO_APP@/commands/stillwater-notifications",
+    "cursor": 60,
+    "tooltip-format": "Notifications"
+  }
+}

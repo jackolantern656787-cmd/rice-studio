@@ -1,0 +1,13 @@
+* { font-family: "JetBrainsMono Nerd Font Mono"; font-size: 11px; border: none; border-radius: 0; margin: 0; padding: 0; min-height: 0; box-shadow: none; text-shadow: none; }
+window#waybar { background: rgba(24,29,49,0.90); color: #c8cde5; border: 1px solid rgba(157,174,220,0.14); border-radius: 5px; }
+#mpris { padding: 0 10px; color: #bdc5e5; }
+#custom-previous, #custom-play, #custom-next { padding: 0 4px; }
+#custom-cava { min-width: 70px; padding: 0 12px; color: #777aa0; }
+#custom-ws1, #custom-ws2, #custom-ws3, #custom-ws4, #custom-ws5 { min-width: 28px; color: #a0aac9; }
+#custom-ws1.active, #custom-ws2.active, #custom-ws3.active, #custom-ws4.active, #custom-ws5.active { color: #eef0fc; font-weight: bold; }
+#clock { padding: 0 12px; }
+#tray { padding: 0 8px; }
+#pulseaudio, #network, #custom-launcher { padding: 0 7px; }
+#mpris:hover, #custom-previous:hover, #custom-play:hover, #custom-next:hover, #clock:hover, #pulseaudio:hover, #network:hover, #custom-launcher:hover { background: rgba(152,170,221,0.13); }
+tooltip { background: #1a2037; border: 1px solid #69799f; border-radius: 5px; }
+tooltip label { color: #d6def6; padding: 7px; }

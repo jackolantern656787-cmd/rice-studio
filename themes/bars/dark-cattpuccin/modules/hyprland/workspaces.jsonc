@@ -1,0 +1,14 @@
+{
+  "hyprland/workspaces": {
+    "persistent-workspaces": {
+      "*": 5
+    },
+    "format": "{icon}",
+    "format-icons": {
+      "active": "\ueaab",
+      "default": "\ueb8a"
+    },
+    "cursor": 60,
+    "on-click": "activate"
+  }
+}

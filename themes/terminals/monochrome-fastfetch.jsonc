@@ -1,0 +1,63 @@
+{
+  "logo": {
+    "type": "file",
+    "source": "@STUDIO_CONFIG@/terminals/arch-logo.txt",
+    "padding": {
+      "top": 1,
+      "left": 0,
+      "right": 4
+    },
+    "color": {
+      "1": "#ffffff"
+    }
+  },
+  "display": {
+    "separator": ": ",
+    "color": {
+      "keys": "#dddddd",
+      "title": "#eeeeee",
+      "output": "#bcbcbc",
+      "separator": "#bcbcbc"
+    },
+    "percent": {
+      "type": 1
+    }
+  },
+  "modules": [
+    {
+      "type": "title",
+      "format": "{user-name}@{host-name}"
+    },
+    "separator",
+    "os",
+    {
+      "type": "board",
+      "key": "Host"
+    },
+    "kernel",
+    "display",
+    {
+      "type": "wm",
+      "key": "Window Manager"
+    },
+    "theme",
+    "icons",
+    "font",
+    "terminal",
+    {
+      "type": "terminalfont",
+      "key": "Terminal"
+    },
+    "cpu",
+    {
+      "type": "gpu",
+      "key": "GPU"
+    },
+    "memory",
+    "swap",
+    {
+      "type": "disk",
+      "folders": "/"
+    }
+  ]
+}

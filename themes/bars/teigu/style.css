@@ -1,0 +1,78 @@
+@define-color color0 #151617;
+@define-color color1 #4b494b;
+@define-color color2 #656367;
+@define-color color3 #858187;
+@define-color color4 #969196;
+@define-color color5 #aaa5ad;
+@define-color color6 #b7b3bb;
+@define-color color7 #dedbe1;
+@define-color background #151617;
+
+* {
+    font-family: "JetBrainsMono Nerd Font Mono";
+    font-weight: bold;
+    font-size: 13px;
+    border: none;
+}
+
+window#waybar {
+    background: transparent;
+}
+
+/* Общий стиль для всех кнопок/модулей */
+#clock,
+#network,
+#custom-temperature,
+#group-workspaces,
+#pulseaudio,
+#memory,
+#bluetooth,
+#custom-power,
+#cpu,
+#custom-backlight_down,
+#custom-backlight_up {
+    background: rgba(0, 0, 0, 0.7);
+    color: @color7;
+    border: 2px solid @color1;
+    border-radius: 20px;
+
+    /* Тот самый отступ: 4px сверху/снизу и 15px по бокам */
+    padding: 4px 15px;
+    margin: 5px;
+}
+
+#custom-ws1,#custom-ws2,#custom-ws3,#custom-ws4 {
+    padding: 0 10px;
+    color: @color7;
+}
+
+#custom-ws1.active,#custom-ws2.active,#custom-ws3.active,#custom-ws4.active {
+    background: @color1;
+    color: @background;
+    border-radius: 15px;
+}
+
+/* Цвета модулей */
+#custom-temperature { color: @color5; }
+#network { color: @color4; }
+#pulseaudio { color: @color3; }
+#memory { color: @color2; }
+#custom-power { color: #e74c3c; }
+
+/* Специфичные цвета для батареи и яркости */
+#cpu.enabled { color: #89b4fa; }
+#cpu.disabled { color: #f38ba8; }
+#custom-backlight_down, #custom-backlight_up { color: #f9e2af; }
+
+/* Эффект при наведении */
+#custom-backlight_down:hover, #custom-backlight_up:hover, #custom-power:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+* {min-height:0;box-shadow:none;text-shadow:none;}
+#custom-notification {background:rgba(0,0,0,.7);color:#c3c0c6;border:2px solid #4b494b;border-radius:20px;padding:4px 15px;margin:5px;}
+#custom-ws1,#custom-ws2,#custom-ws3,#custom-ws4 {border:0;margin:0;border-radius:15px;background:transparent;min-width:22px;transition:background .15s;}
+#custom-ws1:hover,#custom-ws2:hover,#custom-ws3:hover,#custom-ws4:hover,#network:hover,#pulseaudio:hover,#bluetooth:hover,#memory:hover,#cpu:hover,#custom-notification:hover {background:rgba(255,255,255,.12);}
+#custom-backlight_down,#custom-backlight_up {color:#dedbe1;}
+#cpu {color:#b7b3bb;}
+tooltip {background:#151617;border:1px solid #4b494b;border-radius:8px;color:#dedbe1;} tooltip label {padding:8px;}

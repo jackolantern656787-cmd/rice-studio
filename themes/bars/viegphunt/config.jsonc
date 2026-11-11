@@ -1,0 +1,143 @@
+{
+  "name": "viegphunt-managed",
+  "layer": "top",
+  "position": "top",
+  "height": 32,
+  "margin-top": 0,
+  "margin-left": 0,
+  "margin-right": 0,
+  "fixed-center": true,
+  "spacing": 0,
+  "reload_style_on_change": true,
+  "modules-left": [
+    "custom/power",
+    "group/workspaces"
+  ],
+  "modules-center": [],
+  "modules-right": [
+    "tray",
+    "bluetooth",
+    "network",
+    "pulseaudio",
+    "clock"
+  ],
+  "group/workspaces": {
+    "orientation": "horizontal",
+    "modules": [
+      "custom/ws1",
+      "custom/ws2",
+      "custom/ws3",
+      "custom/ws4",
+      "custom/ws5",
+      "custom/ws6"
+    ]
+  },
+  "custom/ws1": {
+    "exec": "@STUDIO_APP@/themes/bars/beige/workspace.py 1",
+    "return-type": "json",
+    "interval": 1,
+    "cursor": 60,
+    "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = 1 })'",
+    "tooltip": true
+  },
+  "custom/ws2": {
+    "exec": "@STUDIO_APP@/themes/bars/beige/workspace.py 2",
+    "return-type": "json",
+    "interval": 1,
+    "cursor": 60,
+    "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = 2 })'",
+    "tooltip": true
+  },
+  "custom/ws3": {
+    "exec": "@STUDIO_APP@/themes/bars/beige/workspace.py 3",
+    "return-type": "json",
+    "interval": 1,
+    "cursor": 60,
+    "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = 3 })'",
+    "tooltip": true
+  },
+  "custom/ws4": {
+    "exec": "@STUDIO_APP@/themes/bars/beige/workspace.py 4",
+    "return-type": "json",
+    "interval": 1,
+    "cursor": 60,
+    "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = 4 })'",
+    "tooltip": true
+  },
+  "custom/ws5": {
+    "exec": "@STUDIO_APP@/themes/bars/beige/workspace.py 5",
+    "return-type": "json",
+    "interval": 1,
+    "cursor": 60,
+    "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = 5 })'",
+    "tooltip": true
+  },
+  "custom/ws6": {
+    "exec": "@STUDIO_APP@/themes/bars/beige/workspace.py 6",
+    "return-type": "json",
+    "interval": 1,
+    "cursor": 60,
+    "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = 6 })'",
+    "tooltip": true
+  },
+  "hyprland/window": {
+    "format": "{}",
+    "max-length": 22,
+    "separate-outputs": true
+  },
+  "clock": {
+    "format": "{:%a %d/%m/%Y ~ %H:%M}",
+    "interval": 1,
+    "on-click": "serpantinum msg toggle calendar",
+    "cursor": 60,
+    "tooltip-format": "{:%A, %d %B %Y}"
+  },
+  "pulseaudio": {
+    "format": "\uf028  {volume}%",
+    "format-muted": "\uf466  {volume}%",
+    "format-icons": {
+      "default": [
+        "\uf026",
+        "\uf027",
+        "\uf028"
+      ]
+    },
+    "on-click": "pavucontrol",
+    "on-scroll-up": "@STUDIO_APP@/themes/bars/beige/volume output up",
+    "on-scroll-down": "@STUDIO_APP@/themes/bars/beige/volume output down",
+    "cursor": 60
+  },
+  "network": {
+    "format-wifi": "\uf1eb  {essid}",
+    "format-ethernet": "\uef09  Ethernet",
+    "format-disconnected": "\uf071  Disconnected",
+    "tooltip-format": "{ifname}",
+    "on-click": "@STUDIO_APP@/commands/rice-panel network",
+    "cursor": 60,
+    "tooltip": false
+  },
+  "custom/notification": {
+    "format": "\udb80\udc9a",
+    "on-click": "@STUDIO_APP@/commands/tideglass notifications",
+    "cursor": 60,
+    "tooltip": false
+  },
+  "custom/power": {
+    "format": "\u2b58 ",
+    "on-click": "@STUDIO_APP@/commands/viegphunt power",
+    "cursor": 60,
+    "tooltip-format": "Session controls \u00b7 right-click applications",
+    "on-click-right": "@STUDIO_APP@/commands/viegphunt launcher"
+  },
+  "tray": {
+    "icon-size": 20,
+    "spacing": 10
+  },
+  "bluetooth": {
+    "format": " \udb80\udcaf ",
+    "format-disabled": " \udb80\udcb2 ",
+    "format-connected": " \udb80\udcb1 ",
+    "on-click": "@STUDIO_APP@/commands/viegphunt bluetooth",
+    "cursor": 60
+  }
+}

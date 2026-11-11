@@ -1,0 +1,15 @@
+* {font-family:"JetBrainsMono Nerd Font Mono";font-size:10px;border:none;border-radius:0;min-height:0;margin:0;padding:0;box-shadow:none;text-shadow:none;}
+window#waybar {background:rgba(48,57,79,.90);color:#e3dfed;border:1px solid rgba(168,156,190,.65);border-radius:2px;}
+#custom-launcher {padding:0 13px;font-size:16px;color:#d5c0f4;border-right:1px solid rgba(168,156,190,.23);}
+#group-workspaces {padding:0 6px;}
+#custom-ws1,#custom-ws2,#custom-ws3,#custom-ws4,#custom-ws5,#custom-ws6 {min-width:22px;color:#aaa6bb;margin:4px 1px;padding:0 2px;border-radius:3px;transition:background .13s;}
+#custom-ws1.active,#custom-ws2.active,#custom-ws3.active,#custom-ws4.active,#custom-ws5.active,#custom-ws6.active {background:#bba9d5;color:#282e40;}
+#window {padding:0 10px;color:#b6b6cb;}
+#clock {padding:0 10px;color:#e3dfed;}
+#mpris,#cpu,#memory,#pulseaudio,#network,#custom-notification,#custom-power {padding:0 9px;}
+#mpris {color:#c2b2da;} #cpu,#memory {color:#b6c6df;}
+#custom-power {color:#d6b8e4;border-left:1px solid rgba(168,156,190,.23);}
+#custom-launcher:hover,#custom-ws1:hover,#custom-ws2:hover,#custom-ws3:hover,#custom-ws4:hover,#custom-ws5:hover,#custom-ws6:hover,#clock:hover,#pulseaudio:hover,#network:hover,#custom-notification:hover,#custom-power:hover,#mpris:hover,#cpu:hover,#memory:hover {background:rgba(197,179,223,.17);}
+tooltip {background:#272e3f;border:1px solid #a89cbe;border-radius:2px;color:#e3dfed;} tooltip label {padding:8px;}
+
+#taskbar {padding:0 5px;} #taskbar button {padding:0 9px;margin:2px 2px;background:rgba(89,111,160,.22);color:#c6cee6;border-radius:2px;} #taskbar button.active {background:rgba(144,153,195,.45);color:#e3e4fa;} #taskbar button:hover {background:rgba(153,163,210,.4);}

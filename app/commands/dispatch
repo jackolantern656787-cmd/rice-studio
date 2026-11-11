@@ -1,0 +1,110 @@
+#!/usr/bin/env python3
+"""Route theme actions to this installation or the existing Serpantinum shell."""
+import json
+import os
+import shutil
+import subprocess
+import sys
+from pathlib import Path
+
+app = Path(__file__).resolve().parents[1]
+home = Path.home()
+config = home / '.config/rice-studio-portable'
+state = home / '.local/state/rice-studio-portable'
+themes = app / 'themes'
+profiles = json.loads((config / 'profiles.json').read_text())
+key = (state / 'current').read_text().strip()
+rice = profiles.get(key, {}).get('rice', key)
+action, *args = sys.argv[1:]
+
+
+def serp(*arguments):
+    binary = shutil.which('serpantinum') or home / '.local/bin/serpantinum'
+    return subprocess.call([str(binary), *arguments])
+
+
+def ipc(theme, target, method='toggle', *arguments):
+    return subprocess.call(['quickshell', '-p', str(themes / 'extras' / theme / 'shell.qml'),
+                            'ipc', 'call', target, method, *arguments])
+
+
+def launch():
+    if rice == 'serashell':
+        return ipc(rice, 'pill', 'toggleLauncher')
+    if rice in {'cold-front', 'dark-grey', 'dark-cattpuccin', 'honeyveil', 'tideglass'}:
+        return ipc(rice, 'launcher')
+    directory = themes / 'extras' / rice
+    if (directory / 'wofi.css').is_file():
+        return subprocess.call(['wofi', '--show', 'drun', '--conf', str(directory / 'wofi.conf'),
+                                '--style', str(directory / 'wofi.css')])
+    if shutil.which('serpantinum') or (home / '.local/bin/serpantinum').is_file():
+        return serp('msg', 'toggle', 'launcher')
+    return subprocess.call(['wofi', '--show', 'drun'])
+
+
+if action in {'studio', 'bar-switch'}:
+    result = subprocess.call([str(home / '.local/bin/rice-studio')])
+elif action == 'rice-launch':
+    result = launch()
+elif action == 'serpantinum':
+    result = serp(*args)
+elif action in {'rice-panel', 'rice-popup'} and args:
+    if rice == 'tideglass' and args[0] in {'volume', 'network'}:
+        result = ipc(rice, args[0])
+    elif rice == 'serashell' and args[0] in {'volume', 'network'}:
+        result = ipc(rice, 'controlCenter')
+    else:
+        result = serp('msg', 'toggle', *args)
+elif action == 'serashell-ipc':
+    result = subprocess.call(['quickshell', '-p', str(themes / 'extras/serashell/shell.qml'), *args])
+elif action == 'serashell' and args and args[0] == 'theme':
+    mode = args[1]
+    if mode not in {'light', 'dark'}:
+        raise SystemExit('Choose light or dark')
+    directory = themes / 'extras/serashell'
+    shutil.copyfile(directory / f'terminal-{mode}.conf', directory / 'terminal-theme.conf')
+    (directory / 'theme-mode').write_text(mode + '\n')
+    result = 0
+elif action == 'serashell' and args and args[0] == 'wallpaper':
+    directory = themes / 'extras/serashell/wallpaper'
+    image = Path(args[1]).resolve()
+    if image.parent != directory.resolve() or not image.is_file() or image.suffix not in {'.png', '.jpg'}:
+        raise SystemExit('Choose an included Serashell wallpaper')
+    import importlib.util
+    spec = importlib.util.spec_from_file_location('studio_control', app / 'control.py')
+    control = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(control)
+    profiles[key]['wallpaper'] = str(image)
+    control.atomic(config / 'profiles.json', profiles)
+    result = 0
+elif action == 'stillwater-notifications':
+    result = serp('msg', 'toggle', 'notifications')
+elif action == 'honeyveil' and args and args[0] in {'help', 'info', 'cava'}:
+    directory = themes / 'extras/honeyveil'
+    terminal = config / 'terminals'
+    commands = {
+        'help': ['--hold', 'python3', str(directory / 'help.py')],
+        'info': ['--hold', 'fastfetch', '--config', str(terminal / 'honeyveil-fastfetch.jsonc')],
+        'cava': ['cava', '-p', str(directory / 'cava.conf')],
+    }
+    result = subprocess.call(['kitty', '--config', str(terminal / 'honeyveil.conf'), *commands[args[0]]])
+elif action == 'phosphor-audio':
+    result = subprocess.call(['pavucontrol'])
+elif action in {'honeyveil', 'teigu', 'tideglass', 'viegphunt', 'cyanframe'} and args:
+    if args[0] == 'launcher':
+        result = launch()
+    elif args[0] == 'dashboard' and (themes / 'extras' / action / 'dashboard.py').is_file():
+        result = subprocess.call(['python3', str(themes / 'extras' / action / 'dashboard.py'), *args[1:]])
+    elif args[0] == '--execute' and len(args) == 2 and args[1] in {'suspend', 'reboot', 'poweroff'}:
+        result = subprocess.call(['systemctl', args[1]])
+    elif args[0] == 'power' and action == 'viegphunt':
+        result = serp('msg', 'toggle', 'power')
+    elif args[0] in {'power', 'notifications', 'calendar', 'network', 'volume', 'wallpapers'}:
+        result = ipc(action, args[0]) if (themes / 'extras' / action / 'shell.qml').is_file() else serp('msg', 'toggle', args[0])
+    elif args[0] == 'bluetooth':
+        result = serp('msg', 'open', 'network', 'bt')
+    else:
+        result = subprocess.call([str(home / '.local/bin/rice-studio')])
+else:
+    result = 2
+raise SystemExit(result)

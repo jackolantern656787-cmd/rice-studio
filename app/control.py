@@ -42,12 +42,60 @@ def ensure_main():
    data=read(path)
    if not isinstance(data.get('options'),dict) or not all(k in data['options'] for k in OPTIONS):raise ValueError('Original Main is incomplete; refusing to replace it.')
    return data
-  data=capture_original();atomic(path,data);return data
+  data=capture_original();data['serp_bar']=serp_bar();atomic(path,data);return data
 
-def registry():return {'main':('Original desktop','Personal Main'),'studio':('Studio panel','Isolated native panel')}
+def registry():
+ result = {'main': ('Original bar', 'Personal Main'), 'studio': ('Studio panel', 'Native panel')}
+ for folder in sorted((APP / 'themes/bars').glob('*')):
+  if (folder / 'config.jsonc').is_file():
+   result[folder.name] = (folder.name.replace('-', ' ').title(), 'Bundled Waybar')
+ if (APP / 'themes/extras/serashell/shell.qml').is_file():
+  result['serashell'] = ('Serashell', 'Native Quickshell panel')
+ return result
+
+
+def serp_bar(value=None):
+ shell = HOME / '.local/share/serpantinum/src/quickshell/Shell.qml'
+ if not shell.is_file():
+  return None
+ args = ['quickshell', '-p', str(shell), 'ipc', 'call', 'barSwitcher']
+ try:
+  output = run(args + (['status'] if value is None else ['setHidden', 'true' if value else 'false']))
+ except (OSError, RuntimeError, subprocess.SubprocessError):
+  return None
+ return output.splitlines()[-1].strip() if output.strip() else None
+
+
+def wait_for_bar(profile):
+ bar = profile.get('bar')
+ if not profile.get('rice') or bar in ('studio', 'main', None):
+  return
+ config = APP / ('themes/extras/serashell/shell.qml' if bar == 'serashell' else f'themes/bars/{bar}/config.jsonc')
+ deadline = time.monotonic() + 8
+ while time.monotonic() < deadline:
+  layers = json.loads(run(['hyprctl', 'layers', '-j']))
+  if layers:
+   found = []
+   for monitor in layers.values():
+    ready = False
+    for level in monitor.get('levels', {}).values():
+     for item in level:
+      try:
+       command = Path('/proc', str(item['pid']), 'cmdline').read_bytes().split(b'\0')
+      except (OSError, KeyError):
+       continue
+      if os.fsencode(config) in command:
+       ready = True
+       break
+    found.append(ready)
+   if all(found):
+    return
+  time.sleep(.2)
+ raise RuntimeError(f'The {bar} bar did not appear on all outputs.')
 def snapshot():
  # Read exact runtime values for timed rollback, including an intermediate Studio theme.
  data=capture_original();data['desktop']=(STATE/'current').read_text().strip() if (STATE/'current').exists() else 'main'
+ data['serp_bar']=serp_bar()
  return data
 
 def set_options(options):
@@ -95,11 +143,41 @@ def apply_desktop(key):
  try:
   if key=='main':set_options(main['options'])
   else:
-   p=profiles[key];t=p['theme'];set_options({'general:gaps_in':6,'general:gaps_out':38,'decoration:rounding':t['borderRadius'],'general:border_size':2,'general:col.active_border':'rgb('+t['colors']['blue'].lstrip('#')+')'})
+   p=profiles[key]
+   t=p['theme']
+   style=p.get('window_style','standard')
+   frames={
+    'phosphor':(0,1,'38463bff'),
+    'dark-cattpuccin':(16,3,'bac2deff'),
+    'stillwater':(0,2,'c87c70ff'),
+    'cold-front':(3,2,'64b6eeff'),
+    'honeyveil':(10,3,'c4b58cff'),
+    'teigu':(8,2,'68656bff'),
+    'tideglass':(3,1,'8998b999'),
+    'cyanframe':(8,2,'bbd8dcaa'),
+    'viegphunt':(2,2,'cdd6f4aa'),
+    'serashell':(14,2,'4b3d43ee'),
+   }
+   rounding,border,color=frames.get(style,(t['borderRadius'],2,t['colors']['blue'].lstrip('#')+'ff'))
+   # A bundled bar reserves its own space. The fallback panel does not.
+   gaps_in,gaps_out={'viegphunt':(2,5),'serashell':(5,8)}.get(style,(6,8))
+   if not p.get('rice') or p.get('bar')=='studio':gaps_out=38
+   set_options({'general:gaps_in':gaps_in,'general:gaps_out':gaps_out,
+                'decoration:rounding':rounding,'general:border_size':border,
+                'general:col.active_border':'rgba('+color+')'})
   write_current(key);start_components()
+  if key == 'main' or profiles[key].get('bar') == 'main':
+   serp_bar(main.get('serp_bar') == 'hidden')
+  else:
+   wait_for_bar(profiles[key])
+   if serp_bar() == 'main':
+    serp_bar(True)
  except Exception:
   restore_snapshot(before);raise
 
 def restore_snapshot(data):
  if not isinstance(data.get('options'),dict):raise ValueError('Missing compositor snapshot')
- set_options(data['options']);write_current(data.get('desktop','main'));start_components()
+ set_options(data['options'])
+ write_current(data.get('desktop','main'))
+ serp_bar(data.get('serp_bar') == 'hidden')
+ start_components()

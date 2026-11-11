@@ -1,0 +1,158 @@
+{
+  "name": "fuji-dusk-managed",
+  "position": "top",
+  "layer": "top",
+  "height": 32,
+  "margin-top": 6,
+  "margin-left": 8,
+  "margin-right": 8,
+  "spacing": 0,
+  "reload_style_on_change": true,
+  "modules-left": [
+    "mpris",
+    "custom/previous",
+    "custom/play",
+    "custom/next",
+    "custom/cava"
+  ],
+  "modules-center": [
+    "custom/ws1",
+    "custom/ws2",
+    "custom/ws3",
+    "custom/ws4",
+    "custom/ws5"
+  ],
+  "modules-right": [
+    "clock",
+    "tray",
+    "pulseaudio",
+    "pulseaudio#source",
+    "network",
+    "custom/launcher"
+  ],
+  "custom/ws1": {
+    "exec": "@STUDIO_APP@/themes/bars/beige/workspace.py 1",
+    "return-type": "json",
+    "interval": 1,
+    "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = 1 })'",
+    "cursor": 60,
+    "tooltip": false
+  },
+  "custom/ws2": {
+    "exec": "@STUDIO_APP@/themes/bars/beige/workspace.py 2",
+    "return-type": "json",
+    "interval": 1,
+    "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = 2 })'",
+    "cursor": 60,
+    "tooltip": false
+  },
+  "custom/ws3": {
+    "exec": "@STUDIO_APP@/themes/bars/beige/workspace.py 3",
+    "return-type": "json",
+    "interval": 1,
+    "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = 3 })'",
+    "cursor": 60,
+    "tooltip": false
+  },
+  "custom/ws4": {
+    "exec": "@STUDIO_APP@/themes/bars/beige/workspace.py 4",
+    "return-type": "json",
+    "interval": 1,
+    "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = 4 })'",
+    "cursor": 60,
+    "tooltip": false
+  },
+  "custom/ws5": {
+    "exec": "@STUDIO_APP@/themes/bars/beige/workspace.py 5",
+    "return-type": "json",
+    "interval": 1,
+    "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = 5 })'",
+    "cursor": 60,
+    "tooltip": false
+  },
+  "mpris": {
+    "format": "{player_icon} {title} - {artist}",
+    "format-paused": "{player_icon} {title} - {artist}",
+    "player-icons": {
+      "default": "\uf001",
+      "spotify": "\uf1bc"
+    },
+    "max-length": 32,
+    "on-click": "playerctl play-pause",
+    "tooltip": true,
+    "cursor": 60
+  },
+  "custom/previous": {
+    "format": "\udb81\udcae",
+    "on-click": "playerctl previous",
+    "cursor": 60,
+    "tooltip": false
+  },
+  "custom/play": {
+    "format": "\udb80\udfe4",
+    "on-click": "playerctl play-pause",
+    "cursor": 60,
+    "tooltip": false
+  },
+  "custom/next": {
+    "format": "\udb81\udcad",
+    "on-click": "playerctl next",
+    "cursor": 60,
+    "tooltip": false
+  },
+  "custom/cava": {
+    "exec": "python3 @STUDIO_APP@/themes/bars/fuji-dusk/visualizer.py",
+    "return-type": "json",
+    "restart-interval": 3,
+    "tooltip": false
+  },
+  "clock": {
+    "format": "{:%I:%M %p}",
+    "tooltip-format": "{:%A, %d %B %Y}",
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg toggle calendar",
+    "cursor": 60
+  },
+  "tray": {
+    "icon-size": 13,
+    "spacing": 9
+  },
+  "pulseaudio": {
+    "format": "{icon}",
+    "format-muted": "\udb81\udf5f",
+    "format-icons": {
+      "default": [
+        "\uf026",
+        "\uf027",
+        "\uf028"
+      ]
+    },
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg toggle volume",
+    "on-scroll-up": "@STUDIO_APP@/themes/bars/beige/volume output up",
+    "on-scroll-down": "@STUDIO_APP@/themes/bars/beige/volume output down",
+    "tooltip-format": "Output: {volume}%",
+    "cursor": 60
+  },
+  "pulseaudio#source": {
+    "format": "{format_source}",
+    "format-source": "\uf130",
+    "format-source-muted": "\uf131",
+    "on-click": "@STUDIO_APP@/themes/bars/beige/volume input mute",
+    "tooltip-format": "Microphone: {source_volume}%",
+    "cursor": 60
+  },
+  "network": {
+    "format-ethernet": "\udb80\ude00",
+    "format-wifi": "\uf1eb",
+    "format-disconnected": "\udb81\uddaa",
+    "tooltip-format": "{ifname}: {bandwidthDownBytes} \u2193 {bandwidthUpBytes} \u2191",
+    "on-click": "@STUDIO_APP@/commands/serpantinum msg toggle network",
+    "cursor": 60
+  },
+  "custom/launcher": {
+    "format": "\u2304",
+    "on-click": "@STUDIO_APP@/commands/rice-launch",
+    "on-click-right": "@STUDIO_APP@/commands/serpantinum settings",
+    "tooltip-format": "Applications \u00b7 right-click settings",
+    "cursor": 60
+  }
+}
