@@ -52,7 +52,7 @@ For a compatible stock Serpantinum installation without the hook, run this after
 python3 ~/.local/share/rice-studio-portable/serpantinum_hook.py --install
 ```
 
-This optional hook backs up and edits only Serpantinum's `Shell.qml` and `bar/Bar.qml`. It checks for the expected layout before writing. Reopen Studio and check Setup after Quickshell reloads. Without the hook the original panel can remain visible alongside the theme bar.
+This optional hook backs up and edits only Serpantinum's `Shell.qml` and `bar/Bar.qml`. It checks for the expected layout before writing. Reopen Studio and check Setup after Quickshell reloads. Add `--hide` to the hook command to close the running Serpantinum bar immediately. Without the hook the original panel can remain visible alongside the theme bar.
 
 Restore the two original files with the same command using `--restore`.
 

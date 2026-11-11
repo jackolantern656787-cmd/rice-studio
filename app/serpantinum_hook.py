@@ -2,11 +2,11 @@
 import argparse
 import hashlib
 import re
+import time
 from pathlib import Path
 
 import control
 
-ROOT = control.HOME / '.local/share/serpantinum/src/quickshell'
 BACKUP = control.STATE / 'serpantinum-bar-hook.json'
 HOOK = '''
     property bool externalBarHidden: false
@@ -33,8 +33,13 @@ def digest(text):
 
 
 def install_hook():
-    shell = ROOT / 'Shell.qml'
-    bar = ROOT / 'bar/Bar.qml'
+    shell = control.serp_shell()
+    if shell is None:
+        raise ValueError('No Serpantinum shell found. Start Serpantinum first.')
+    root = shell.parent
+    bar = next((p for p in (root/'bar/Bar.qml', root/'bar/bar.qml') if p.is_file()), None)
+    if bar is None:
+        raise ValueError(f'Could not locate the Serpantinum bar QML next to {shell}.')
     original = {path: path.read_text() for path in (shell, bar)}
     if 'target: "barSwitcher"' in original[shell]:
         print('Serpantinum already has the bar switch hook.')
@@ -52,7 +57,10 @@ def install_hook():
         with_hook = replace_once(original[shell], 'ShellRoot {', 'ShellRoot {\n    id: studioShell\n' + HOOK)
     if 'import Quickshell.Io' not in with_hook:
         with_hook = 'import Quickshell.Io\n' + with_hook
-    with_hook = replace_once(with_hook, 'Bar {}', 'Bar { externalBarHidden: ' + root_id + '.externalBarHidden }')
+    components = list(re.finditer(r'\bBar\s*\{\s*\}', with_hook))
+    if len(components) != 1:
+        raise ValueError('Could not find the stock Bar component in ' + str(shell))
+    with_hook = replace_once(with_hook, components[0][0], 'Bar { externalBarHidden: ' + root_id + '.externalBarHidden }')
 
     match = re.search(r'Variants\s*\{\s*id:\s*(\w+)', original[bar])
     if not match:
@@ -64,8 +72,10 @@ def install_hook():
     patched_bar = replace_once(patched_bar, 'exclusiveZone: (!barConfigReady',
                                f'exclusiveZone: ({bar_id}.externalBarHidden || !barConfigReady')
     updated = {bar: patched_bar, shell: with_hook}
-    control.atomic(BACKUP, {str(path.relative_to(ROOT)): {'original': original[path], 'patched': digest(text)}
-                            for path, text in updated.items()})
+    control.atomic(BACKUP, {'root': str(root), 'files': {
+        str(path.relative_to(root)): {'original': original[path], 'patched': digest(text)}
+        for path, text in updated.items()
+    }})
     changed = []
     try:
         for path, text in updated.items():
@@ -96,12 +106,15 @@ def restore_hook():
     saved = control.read(BACKUP)
     if not saved:
         return
-    for name in ('Shell.qml', 'bar/Bar.qml'):
-        if digest((ROOT / name).read_text()) != saved[name]['patched']:
+    root = Path(saved.get('root', control.HOME / '.local/share/serpantinum/src/quickshell'))
+    files = saved.get('files', saved)
+    paths = {root / name: item for name, item in files.items()}
+    for path, item in paths.items():
+        if not path.resolve().is_relative_to(root.resolve()) or digest(path.read_text()) != item['patched']:
             raise ValueError('Serpantinum files changed since installing the hook. Backup retained at ' + str(BACKUP))
     control.serp_bar(False)
-    for name in ('Shell.qml', 'bar/Bar.qml'):
-        write(ROOT / name, saved[name]['original'])
+    for path, item in paths.items():
+        write(path, item['original'])
     BACKUP.unlink()
     print('Original Serpantinum QML restored.')
 
@@ -111,7 +124,22 @@ if __name__ == '__main__':
     mode = parser.add_mutually_exclusive_group(required=True)
     mode.add_argument('--install', action='store_true')
     mode.add_argument('--restore', action='store_true')
+    parser.add_argument('--hide', action='store_true', help='Hide the bar after installing the hook')
+    args = parser.parse_args()
     try:
-        install_hook() if parser.parse_args().install else restore_hook()
+        if args.install:
+            install_hook()
+            if args.hide:
+                for _ in range(12):
+                    if control.serp_bar() in ('main','hidden'):
+                        control.serp_bar(True)
+                        if control.serp_bar() == 'hidden':
+                            print('Serpantinum bar hidden.')
+                            break
+                    time.sleep(.25)
+                else:
+                    raise ValueError('Bar hook saved, but the running shell did not load it. Restart Serpantinum, then rerun this command.')
+        else:
+            restore_hook()
     except (OSError, ValueError) as error:
         raise SystemExit(str(error))

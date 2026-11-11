@@ -57,9 +57,27 @@ def registry():
  return result
 
 
+def serp_shell():
+ for directory in ('serpantinum','serpantium'):
+  root=HOME/'.local/share'/directory/'src/quickshell'
+  for filename in ('Shell.qml','shell.qml'):
+   path=root/filename
+   if path.is_file():
+    return path
+ try:
+  instances=json.loads(run(['quickshell','list','-a','-j']))
+ except (OSError,ValueError,RuntimeError,subprocess.SubprocessError):
+  return None
+ for instance in instances:
+  path=Path(instance.get('config_path',''))
+  if path.is_file() and any(part.lower() in ('serpantinum','serpantium') for part in path.parts):
+   return path
+ return None
+
+
 def serp_bar(value=None):
- shell = HOME / '.local/share/serpantinum/src/quickshell/Shell.qml'
- if not shell.is_file():
+ shell=serp_shell()
+ if shell is None:
   return None
  args = ['quickshell', '-p', str(shell), 'ipc', 'call', 'barSwitcher']
  try:
