@@ -53,6 +53,8 @@ def ipc(theme, target, method='toggle', *arguments):
 
 
 def launch():
+    if rice == 'main' and (shutil.which('serpantinum') or (home / '.local/bin/serpantinum').is_file()):
+        return serp('msg', 'toggle', 'launcher')
     if rice == 'serashell':
         return ipc(rice, 'pill', 'toggleLauncher')
     if rice in {'cold-front', 'dark-grey', 'dark-cattpuccin', 'honeyveil', 'tideglass'}:

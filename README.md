@@ -36,7 +36,7 @@ For a file-manager install or update, download the release ZIP, extract it, and 
 
 `--deps` explicitly invokes **sudo pacman -Syu --needed** for the documented package set. It performs a full Arch system upgrade; inspect the transaction before accepting. The installer itself runs **without sudo**, downloads nothing, does not run third-party installers, and leaves your current desktop active.
 
-The dependency command includes Waybar, Wofi, Cava, Fastfetch, Starship and the fonts used by most themes. Check **Setup** for available commands and the Serpantinum bar hook.
+The dependency command includes Waybar, Wofi, Cava, Fastfetch, Starship and the fonts used by most themes. Check **Setup** for available commands.
 
 ## Illogical Impulse bar switching
 
@@ -44,7 +44,7 @@ Studio closes the Illogical Impulse bar after the selected theme bar appears. Re
 
 ## Serpantinum bar switching
 
-When a theme bar appears, Studio automatically hides the running Serpantinum bar. On supported stock versions it installs the bar hook on first use and saves backups of the two affected QML files. Main and preview rollback restore the original bar. If the running shell has a different QML layout, Studio reports the error and reverts the preview.
+Set the Serpantinum bar’s visibility or hover behavior in Serpantinum itself. Rice Studio theme switching leaves that setting alone.
 
 ## What you get
 
@@ -75,7 +75,7 @@ To bring over the main PC’s shortcuts, Hyprland animations and input preferenc
 
 This optional step requires a native Hyprland Lua config. It backs up files before writing and replaces overlapping keybindings. Use `--restore` to restore the original files. To enable just the Hyprland shortcuts and visuals, use `rice-studio-keys --install`. Serpantinum-specific lock layouts and shell panels require Serpantinum. They are separate from the Illogical Impulse bar integration.
 
-With those shortcuts, **Alt+Space** opens the themed launcher, **Super+F1** opens the shortcut sheet, **Super+[ / ]** place a terminal left or right, and **Super+Alt+R** returns it to the center. Tideglass opens new Kitty windows floating, centered and horizontal by default. The target is 1200×700, capped to the available screen area. The preset rule requires Hyprland’s Lua API.
+With those shortcuts, **Alt+Space** and **Super+D** open the active theme’s launcher. Main uses the original Serpantinum launcher when available. **Super+F1** opens the shortcut sheet, **Super+[ / ]** place a terminal left or right, and **Super+Alt+R** returns it to the center. Tideglass opens new Kitty windows floating, centered and horizontal by default. The target is 1200×700, capped to the available screen area. The preset rule requires Hyprland’s Lua API.
 
 ```bash
 ~/.local/bin/rice-studio-bar                 # choose a standalone Waybar
@@ -90,7 +90,7 @@ The companion bundle is an export of the portable desktop setup. Each machine su
 
 At first install, Studio reads the original compositor values it can change: gaps, border size/color, and corner radius. It saves them once in `~/.local/state/rice-studio-portable/original-main.json`.
 
-Your existing wallpaper and bar daemons keep running. Studio adds its own wallpaper and panel layers. Main removes those layers, restores the saved compositor values and returns the Serpantinum bar to its starting state when the hook is available. The optional hook is the only change to existing Serpantinum source files.
+Your existing wallpaper and bar daemons keep running. Studio adds its own wallpaper and panel layers. Main removes those layers and restores the saved compositor values.
 
 Upgrades preserve this original baseline. Invalid or incomplete Main data stops installation instead of silently recapturing a themed desktop. This is not a full-system backup.
 

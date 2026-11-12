@@ -10,7 +10,6 @@ local function bind(key, action, options)
   hl.bind(key, action, options or {})
 end
 
-hl.gesture({ fingers = 3, direction = "horizontal", action = "workspace" })
 bind(mainMod .. " + mouse:272", hl.dsp.window.drag(), { mouse = true })
 bind(mainMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
 
@@ -77,8 +76,8 @@ for i = 1, 10 do
   bind(mainMod .. " + SHIFT + " .. key, hl.dsp.exec_cmd(commands .. "workspace " .. ws .. " move"))
 end
 
--- Zunder launcher (separate from Serpantinum Super+D).
-bind("ALT + SPACE", hl.dsp.exec_cmd(commands .. "rice-launch"))
+-- Use the same active-theme launcher as Super+D.
+bind("ALT + SPACE", hl.dsp.exec_cmd(commands .. "rice-popup launcher"))
 
 -- Animate only the Zunder overlay.
 hl.layer_rule({ name = "zunder-fade", match = { namespace = "^zunder$" }, animation = "fade" })

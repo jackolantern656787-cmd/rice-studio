@@ -5,7 +5,7 @@ Item {
  id:page;required property var studio
  ColumnLayout {anchors.fill:parent;spacing:16
   RowLayout {Layout.fillWidth:true;Text {text:"Under the hood.";font.family:"C059";font.pixelSize:34;color:"#eee7dc"} Item {Layout.fillWidth:true} ActionButton {text:"Check again";onClicked:page.studio.request("health",{},"Checking installed tools")}}
-  Text {Layout.fillWidth:true;wrapMode:Text.Wrap;text:"This machine’s capabilities. The Serpantinum bar hook allows a theme bar to take over while its preset is active.";color:"#aaa49a";font.family:"JetBrains Mono";font.pixelSize:12}
+  Text {Layout.fillWidth:true;wrapMode:Text.Wrap;text:"Available tools for themes, previews, and recording.";color:"#aaa49a";font.family:"JetBrains Mono";font.pixelSize:12}
   ListView {Layout.fillWidth:true;Layout.fillHeight:true;clip:true;spacing:1;model:page.studio.library.health || []
    delegate:Rectangle {required property var modelData;required property int index;width:ListView.view.width;height:58;color:index%2 ? "#18191c":"#141518"
     RowLayout {anchors.fill:parent;anchors.margins:16;spacing:20

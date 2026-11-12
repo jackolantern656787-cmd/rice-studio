@@ -45,7 +45,7 @@ def ensure_main():
    data=read(path)
    if not isinstance(data.get('options'),dict) or not all(k in data['options'] for k in OPTIONS):raise ValueError('Original Main is incomplete; refusing to replace it.')
    return data
-  data=capture_original();data['serp_bar']=serp_bar();atomic(path,data);return data
+  data=capture_original();atomic(path,data);return data
 
 def registry():
  result = {'main': ('Original bar', 'Personal Main'), 'studio': ('Studio panel', 'Native panel')}
@@ -117,7 +117,6 @@ def wait_for_bar(profile):
 def snapshot():
  # Read exact runtime values for timed rollback, including an intermediate Studio theme.
  data=capture_original();data['desktop']=(STATE/'current').read_text().strip() if (STATE/'current').exists() else 'main'
- data['serp_bar']=serp_bar()
  data['impulse_bar']=bool(impulse_bar.owner(STATE))
  data['bar_override']=read(STATE/'bar-override.json').get('bar')
  return data
@@ -165,47 +164,23 @@ def write_current(key):
   os.replace(tmp,path)
  finally:
   if os.path.exists(tmp):os.unlink(tmp)
-def hide_serp_bar():
- shell=serp_shell(running_only=True)
- if shell is None:
-  return
- status=serp_bar(shell=shell)
- if status not in ('main','hidden'):
-  from serpantinum_hook import install_hook
-  install_hook(shell)
-  deadline=time.monotonic()+6
-  while time.monotonic()<deadline:
-   status=serp_bar(shell=shell)
-   if status in ('main','hidden'):
-    break
-   time.sleep(.2)
-  else:
-   raise RuntimeError('Serpantinum saved the bar hook but has not loaded it. Restart Serpantinum and try the theme again.')
- if status=='main':
-  serp_bar(True,shell=shell)
-  if serp_bar(shell=shell)!='hidden':
-   raise RuntimeError('Serpantinum did not hide its bar.')
-
-
-def update_bar_visibility(bar, original):
+def update_bar_visibility(bar):
  if bar == 'main':
-  serp_bar(original.get('serp_bar') == 'hidden')
   impulse_bar.restore(HOME,STATE,run)
  else:
   wait_for_bar({'rice':True,'bar':bar})
-  hide_serp_bar()
   impulse_bar.hide(HOME,STATE,run)
 
 
 def apply_bar(key):
  if key not in registry():
   raise ValueError('Unknown bar preset')
- main=ensure_main()
+ ensure_main()
  before=snapshot()
  try:
   atomic(STATE/'bar-override.json',{'bar':key})
   start_components()
-  update_bar_visibility(key,main)
+  update_bar_visibility(key)
  except Exception:
   restore_snapshot(before)
   raise
@@ -243,7 +218,7 @@ def apply_desktop(key):
   atomic(STATE/'bar-override.json',{})
   preset_windows.apply(run, profiles[key].get('rice',key))
   write_current(key);start_components()
-  update_bar_visibility('main' if key=='main' else profiles[key].get('bar','studio'),main)
+  update_bar_visibility('main' if key=='main' else profiles[key].get('bar','studio'))
  except Exception:
   restore_snapshot(before);raise
 
@@ -254,7 +229,6 @@ def restore_snapshot(data):
  atomic(STATE/'bar-override.json',{'bar':data.get('bar_override')})
  preset_windows.apply(run,read(CONFIG/'profiles.json').get(key,{}).get('rice',key))
  write_current(key)
- serp_bar(data.get('serp_bar') == 'hidden')
  start_components()
  if data.get('impulse_bar'):
   impulse_bar.hide(HOME,STATE,run)

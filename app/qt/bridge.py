@@ -60,9 +60,6 @@ def media_library():
 def health():
  names=('quickshell','hyprctl','kitty','grim','wf-recorder','ffmpeg','nmcli','pactl','waybar','wofi','cava','fastfetch','starship')
  rows=[{'name':n,'ok':bool(shutil.which(n)),'detail':shutil.which(n) or 'Not installed'} for n in names]
- hook=core.control().serp_bar()
- rows.append({'name':'Serpantinum bar hook','ok':hook in ('main','hidden'),
-              'detail':'Connected' if hook in ('main','hidden') else 'Optional hook. See README for clean bar switching.'})
  return rows
 def capture_media(key,video=False):
  keycheck(key)
